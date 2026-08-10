@@ -14,6 +14,8 @@ pnpm content:sync
 
 See [docs/CONTENT_WORKFLOW.md](docs/CONTENT_WORKFLOW.md) for the state and integrity rules. Review findings are canonical JSON records; the Markdown review is a generated reading view.
 
+The reader has a chronological Journal, About and Search pages, and an Auto/Light/Dark theme control. The future semantic Explore view is intentionally not implemented; its evidence and governance model is described in [docs/EXPLORE_CONCEPT.md](docs/EXPLORE_CONCEPT.md).
+
 ## Development
 
 ```sh

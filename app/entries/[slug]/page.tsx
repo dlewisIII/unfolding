@@ -21,7 +21,7 @@ export default async function EntryPage({ params }: Props) {
   const { slug } = await params;
   const entry = publishedEntries.find((item) => item.slug === slug);
   if (!entry) return (
-    <main className="entry-shell not-found"><p className="eyebrow">404</p><h1>Entry not found.</h1><Link href="/">← Return to journal</Link></main>
+    <main className="not-found"><p className="eyebrow">404</p><h1>Entry not found.</h1><Link href="/">← Return to journal</Link></main>
   );
 
   const date = new Intl.DateTimeFormat(entry.originalLanguage, {
@@ -29,7 +29,7 @@ export default async function EntryPage({ params }: Props) {
   }).format(new Date(entry.publishedAt));
 
   return (
-    <main className="entry-shell">
+    <main>
       <nav className="entry-nav"><Link href="/">← Journal</Link></nav>
       <article>
         <header className="entry-header">

@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import { SiteHeader } from "./components/SiteHeader";
 import "katex/dist/katex.min.css";
 import "./globals.css";
+
+const themeBoot = `(function(){try{var t=localStorage.getItem('unfolding-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);else document.documentElement.removeAttribute('data-theme')}catch(e){}})()`;
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
@@ -24,8 +27,15 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{ __html: themeBoot }} /></head>
+      <body>
+        <div className="site-shell">
+          <SiteHeader />
+          {children}
+          <footer className="site-footer">Written and tended by Anastasia.</footer>
+        </div>
+      </body>
     </html>
   );
 }
