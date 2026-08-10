@@ -14,6 +14,7 @@
   --code-text: #2c2923;
   --search-background: rgba(255, 253, 247, .28);
   --search-placeholder: #978d7d;
+  --menu-background: #f0eadc;
   --math-text: #24231f;
   --logo-primary: #22211e;
   --logo-accent: #93672f;
@@ -21,6 +22,7 @@
   --wash-a: rgba(144, 102, 53, .09);
   --wash-b: rgba(255, 252, 241, .56);
   --grain: rgba(64, 50, 33, .055);
+  --wordmark: "Bodoni Moda", "Cormorant Garamond", Didot, serif;
   --display: "Cormorant Garamond", Iowan Old Style, Georgia, serif;
   --serif: "Source Serif 4", Georgia, serif;
   --sans: "IBM Plex Sans", ui-sans-serif, sans-serif;
@@ -41,6 +43,7 @@
     --code-text: #e5dccd;
     --search-background: rgba(234, 218, 191, .025);
     --search-placeholder: #7f776b;
+    --menu-background: #25211c;
     --math-text: #eee5d6;
     --logo-primary: #eee5d6;
     --logo-accent: #c89b5b;
@@ -65,6 +68,7 @@
   --code-text: #e5dccd;
   --search-background: rgba(234, 218, 191, .025);
   --search-placeholder: #7f776b;
+  --menu-background: #25211c;
   --math-text: #eee5d6;
   --logo-primary: #eee5d6;
   --logo-accent: #c89b5b;
@@ -85,6 +89,7 @@ body {
     radial-gradient(ellipse at 92% 3%, var(--wash-a), transparent 38rem),
     radial-gradient(ellipse at 8% 22%, var(--wash-b), transparent 32rem),
     radial-gradient(ellipse at 52% 78%, var(--wash-a), transparent 58rem),
+    radial-gradient(ellipse at 32% 46%, transparent 0 18rem, rgba(118, 86, 48, .018) 45rem, transparent 72rem),
     var(--background);
   font-family: var(--serif);
   font-size: 18px;
@@ -101,9 +106,10 @@ body::before {
   opacity: .36;
   background-image:
     radial-gradient(circle at 20% 30%, var(--grain) 0 .45px, transparent .6px),
-    radial-gradient(circle at 70% 80%, var(--grain) 0 .4px, transparent .58px);
-  background-position: 0 0, 1px 1px;
-  background-size: 3px 3px, 5px 5px;
+    radial-gradient(circle at 70% 80%, var(--grain) 0 .4px, transparent .58px),
+    radial-gradient(ellipse at 43% 17%, var(--grain) 0 .28px, transparent .48px);
+  background-position: 0 0, 1px 1px, 2px 4px;
+  background-size: 3px 3px, 5px 5px, 7px 9px;
 }
 .site-shell { position: relative; z-index: 1; }
 button, input { font: inherit; }
@@ -119,14 +125,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .top-nav { display: flex; align-items: center; justify-content: flex-end; gap: clamp(17px, 4vw, 30px); color: var(--secondary-text); font-family: var(--sans); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
 .top-nav > a:hover, .theme-control summary:hover { color: var(--primary-text); }
 .journal-identity { padding: clamp(38px, 8vw, 72px) 0 36px; }
-.wordmark { display: block; width: fit-content; color: var(--logo-primary); font-family: var(--display); font-size: clamp(68px, 15.2vw, 119px); font-weight: 400; letter-spacing: -.055em; line-height: .82; text-transform: uppercase; }
-.identity-rule { width: 100%; height: 1px; margin-top: clamp(25px, 4vw, 35px); background: var(--subtle-border); }
-.concept-coordinates { min-height: 1.5em; margin: 16px 0 0; color: var(--logo-accent); font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: .19em; line-height: 1.5; text-transform: uppercase; }
+.wordmark { display: block; width: fit-content; color: var(--logo-primary); font-family: var(--wordmark); font-size: clamp(58px, 12.8vw, 96px); font-weight: 400; letter-spacing: .018em; line-height: .9; text-transform: uppercase; }
+.identity-rule { width: 100%; height: 1px; margin-top: clamp(24px, 3.5vw, 31px); background: var(--subtle-border); }
+.concept-coordinates { display: flex; flex-wrap: wrap; gap: 5px 0; min-height: 1.5em; margin: 15px 0 0; padding: 0; list-style: none; color: var(--logo-accent); font-family: var(--sans); font-size: 9px; font-weight: 500; letter-spacing: .145em; line-height: 1.6; text-transform: uppercase; }
+.concept-coordinates li { white-space: nowrap; }
+.concept-coordinates li + li::before { content: "·"; display: inline-block; margin: 0 11px; color: var(--secondary-text); }
 .theme-control { position: relative; }
 .theme-control summary { cursor: pointer; list-style: none; user-select: none; }
 .theme-control summary::-webkit-details-marker { display: none; }
 .theme-control summary::after { content: " ▾"; color: var(--logo-accent); font-size: 9px; }
-.theme-menu { position: absolute; top: calc(100% + 13px); right: 0; display: grid; min-width: 104px; padding: 6px; border: 1px solid var(--subtle-border); background: var(--search-background); box-shadow: 0 14px 34px rgba(0,0,0,.09); }
+.theme-menu { position: absolute; top: calc(100% + 13px); right: 0; display: grid; min-width: 112px; padding: 6px; border: 1px solid var(--subtle-border); background: var(--menu-background); box-shadow: 0 14px 34px rgba(0,0,0,.16); }
 .theme-menu button { padding: 7px 10px; border: 0; background: transparent; color: var(--secondary-text); text-align: left; font-family: var(--sans); font-size: 12px; cursor: pointer; }
 .theme-menu button:hover, .theme-menu button[aria-pressed="true"] { background: var(--background-raised); color: var(--primary-text); }
 .theme-menu button[aria-pressed="true"]::before { content: "·"; margin-right: 6px; color: var(--logo-accent); }
@@ -188,8 +196,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   .site-header { padding-top: 24px; }
   .top-nav { gap: 14px; font-size: 11px; }
   .journal-identity { padding: 38px 0 29px; }
-  .wordmark { font-size: clamp(56px, 19vw, 92px); }
+  .wordmark { max-width: 100%; font-size: clamp(40px, 11.5vw, 56px); letter-spacing: .018em; }
   .identity-rule { margin-top: 22px; }
+  .concept-coordinates { gap: 2px 0; font-size: 8px; letter-spacing: .105em; }
+  .concept-coordinates li + li::before { margin: 0 7px; }
   .feed { padding-top: 47px; }
   .empty-state { padding: 38px 0 76px; }
   .entry-nav { padding: 28px 0 54px; }
@@ -200,7 +210,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 
 @media (max-width: 410px) {
   .top-nav { justify-content: space-between; }
-  .theme-menu { right: auto; left: 0; }
+  .theme-menu { right: 0; left: auto; }
+  .concept-coordinates { display: grid; grid-template-columns: repeat(2, max-content); column-gap: 13px; }
+  .concept-coordinates li + li::before { content: none; }
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }

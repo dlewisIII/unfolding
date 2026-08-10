@@ -12,9 +12,13 @@ export function SiteHeader() {
       <div className="journal-identity">
         <Link className="wordmark" href="/" aria-label="Unfolding — journal">Unfolding</Link>
         <div className="identity-rule" aria-hidden="true" />
-        <p className="concept-coordinates" aria-label="Conceptual coordinates: Phenomenology">
-          <span>Phenomenology</span>
-        </p>
+        <ul className="concept-coordinates" aria-label="Conceptual coordinates">
+          <li>Phenomenology</li>
+          <li>Metaphysics</li>
+          <li>Science</li>
+          <li>Experience</li>
+          <li>Creation</li>
+        </ul>
       </div>
     </header>
   );
