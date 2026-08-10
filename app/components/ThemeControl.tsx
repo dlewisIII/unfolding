@@ -30,7 +30,6 @@ export function ThemeControl({ locale }: { locale: Locale }) {
   return (
     <div className="theme-toggle" role="group" aria-label={locale === "ru" ? "Цветовая тема" : "Color theme"}>
       <button type="button" aria-label={locale === "ru" ? "Тёмная тема" : "Dark theme"} aria-pressed={theme === "dark"} onClick={() => choose("dark")}>☾</button>
-      <span aria-hidden="true" />
       <button type="button" aria-label={locale === "ru" ? "Светлая тема" : "Light theme"} aria-pressed={theme === "light"} onClick={() => choose("light")}>☼</button>
     </div>
   );
