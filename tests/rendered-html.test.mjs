@@ -58,9 +58,9 @@ test("renders localized About and Search routes", async () => {
   const aboutHtml = await aboutResponse.text();
   const searchHtml = await searchResponse.text();
   assert.match(aboutHtml, /href="https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/about" hreflang="x-default"/i);
-  assert.match(aboutHtml, /personal record of inquiry into consciousness, reality, the body, mathematics, science/i);
-  assert.match(aboutHtml, /What any of it ultimately means is left open\./i);
-  assert.match(await russianAboutResponse.text(), /личная хроника исследования сознания/i);
+  assert.match(aboutHtml, /my record of exploring consciousness, reality, the body, mathematics, science/i);
+  assert.match(aboutHtml, /The question of what any of this ultimately means remains open\./i);
+  assert.match(await russianAboutResponse.text(), /мои записи об исследовании сознания/i);
   assert.match(await render("/ru/about").then((response) => response.text()), /Об Unfolding/i);
   assert.match(aboutHtml, /Written and edited by Anastasia/i);
   assert.match(searchHtml, /Search titles, text, and tags/i);
