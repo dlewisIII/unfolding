@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { SiteHeader } from "./components/SiteHeader";
+import { isLocale, siteUrl, type Locale } from "./i18n";
+import { publishedEntries } from "@/content/generated";
 import "@fontsource/gfs-didot/400.css";
 import "@fontsource/cormorant-garamond/400.css";
 import "@fontsource/cormorant-garamond/500.css";
@@ -15,8 +17,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
   const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host");
   const protocol = requestHeaders.get("x-forwarded-proto") ?? (host?.startsWith("localhost") || host?.startsWith("127.0.0.1") ? "http" : "https");
-  const origin = host ? `${protocol}://${host}` : "https://unfolding.local";
+  const origin = host ? `${protocol}://${host}` : siteUrl;
   return {
+    metadataBase: new URL(origin || siteUrl),
     title: { default: "Unfolding", template: "%s · Unfolding" },
     description: "A personal journal and research notebook.",
     icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
@@ -30,15 +33,26 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const requestHeaders = await headers();
+  const headerLocale = requestHeaders.get("x-unfolding-locale") ?? "en";
+  const locale: Locale = isLocale(headerLocale) ? headerLocale : "en";
+  const alternateRoutes = Object.fromEntries(publishedEntries.flatMap((entry) => {
+    const en = entry.versions.en;
+    const ru = entry.versions.ru;
+    const routes: Array<[string, Partial<Record<Locale, string>>]> = [];
+    if (en) routes.push([`/en/entries/${en.slug}`, { en: `/en/entries/${en.slug}`, ...(ru ? { ru: `/ru/entries/${ru.slug}` } : {}) }]);
+    if (ru) routes.push([`/ru/entries/${ru.slug}`, { ru: `/ru/entries/${ru.slug}`, ...(en ? { en: `/en/entries/${en.slug}` } : {}) }]);
+    return routes;
+  }));
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head><script dangerouslySetInnerHTML={{ __html: themeBoot }} /></head>
       <body>
         <div className="site-shell">
-          <SiteHeader />
+          <SiteHeader locale={locale} alternateRoutes={alternateRoutes} />
           {children}
-          <footer className="site-footer">Written and tended by Anastasia.</footer>
+          <footer className="site-footer">{locale === "ru" ? "Автор и хранитель журнала — Анастасия." : "Written and tended by Anastasia."}</footer>
         </div>
       </body>
     </html>

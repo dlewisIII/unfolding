@@ -1,51 +1,37 @@
 "use client";
+/* eslint-disable react-hooks/set-state-in-effect -- state mirrors the theme applied by the pre-hydration boot script. */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import type { Locale } from "../i18n";
 
-type Theme = "auto" | "light" | "dark";
-const themes: Array<{ value: Theme; label: string }> = [
-  { value: "auto", label: "Auto" },
-  { value: "light", label: "Light" },
-  { value: "dark", label: "Dark" },
-];
+type Theme = "light" | "dark";
 
 function applyTheme(theme: Theme) {
-  if (theme === "auto") document.documentElement.removeAttribute("data-theme");
-  else document.documentElement.dataset.theme = theme;
+  document.documentElement.dataset.theme = theme;
 }
 
-export function ThemeControl() {
-  const [theme, setTheme] = useState<Theme>("auto");
-  const detailsRef = useRef<HTMLDetailsElement>(null);
+export function ThemeControl({ locale }: { locale: Locale }) {
+  const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
     const saved = localStorage.getItem("unfolding-theme");
-    if (saved === "light" || saved === "dark") setTheme(saved);
+    const resolved = saved === "light" || saved === "dark"
+      ? saved
+      : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    setTheme(resolved);
   }, []);
 
   function choose(next: Theme) {
     setTheme(next);
     applyTheme(next);
-    if (next === "auto") localStorage.removeItem("unfolding-theme");
-    else localStorage.setItem("unfolding-theme", next);
-    detailsRef.current?.removeAttribute("open");
+    localStorage.setItem("unfolding-theme", next);
   }
 
   return (
-    <details className="theme-control" ref={detailsRef}>
-      <summary>Theme</summary>
-      <div className="theme-menu" role="group" aria-label="Color theme">
-        {themes.map((item) => (
-          <button
-            type="button"
-            key={item.value}
-            aria-pressed={theme === item.value}
-            onClick={() => choose(item.value)}
-          >
-            {item.label}
-          </button>
-        ))}
-      </div>
-    </details>
+    <div className="theme-toggle" role="group" aria-label={locale === "ru" ? "Цветовая тема" : "Color theme"}>
+      <button type="button" aria-label={locale === "ru" ? "Тёмная тема" : "Dark theme"} aria-pressed={theme === "dark"} onClick={() => choose("dark")}>☾</button>
+      <span aria-hidden="true" />
+      <button type="button" aria-label={locale === "ru" ? "Светлая тема" : "Light theme"} aria-pressed={theme === "light"} onClick={() => choose("light")}>☼</button>
+    </div>
   );
 }

@@ -2,45 +2,68 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-async function render(pathname = "/") {
+async function render(pathname = "/", headers = {}) {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${pathname}`);
   const { default: worker } = await import(workerUrl.href);
-  return worker.fetch(new Request(`http://localhost${pathname}`, { headers: { accept: "text/html" } }), {
+  return worker.fetch(new Request(`http://localhost${pathname}`, { headers: { accept: "text/html", ...headers } }), {
     ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) },
   }, { waitUntil() {}, passThroughOnException() {} });
 }
 
-test("renders the journal home without starter UI", async () => {
-  const response = await render();
+test("negotiates the first locale without geolocation", async () => {
+  const [english, russian, saved] = await Promise.all([
+    render("/"),
+    render("/", { "accept-language": "ru-RU,ru;q=0.9,en;q=0.8" }),
+    render("/", { "accept-language": "ru-RU", cookie: "unfolding-language=en" }),
+  ]);
+  assert.equal(english.status, 307);
+  assert.equal(english.headers.get("location"), "/en");
+  assert.equal(russian.headers.get("location"), "/ru");
+  assert.equal(saved.headers.get("location"), "/en");
+});
+
+test("renders both indexable journal homes without starter UI", async () => {
+  const response = await render("/en");
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /<title>Unfolding<\/title>/i);
-  assert.match(html, /Personal journal &amp; research notebook/i);
+  assert.match(html, /lang="en"/i);
   assert.match(html, /The first page is still unwritten/i);
-  assert.match(html, /href="\/about"/i);
-  assert.match(html, /href="\/search"/i);
-  assert.match(html, />Theme</i);
+  assert.match(html, /href="\/en\/about"/i);
+  assert.match(html, /href="\/en\/search"/i);
+  assert.match(html, /href="\/ru"/i);
+  assert.match(html, /hreflang="ru-RU"/i);
+  assert.match(html, /rel="canonical" href="https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/en"/i);
   assert.match(html, /unfolding-theme/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
+
+  const russianResponse = await render("/ru");
+  const russianHtml = await russianResponse.text();
+  assert.equal(russianResponse.status, 200);
+  assert.match(russianHtml, /lang="ru"/i);
+  assert.match(russianHtml, /Первая страница ещё не написана/i);
 });
 
-test("renders About and Search as separate minimal routes", async () => {
-  const [aboutResponse, searchResponse] = await Promise.all([render("/about"), render("/search")]);
+test("renders localized About and Search routes", async () => {
+  const [aboutResponse, russianAboutResponse, searchResponse] = await Promise.all([render("/en/about"), render("/ru/about"), render("/en/search")]);
   assert.equal(aboutResponse.status, 200);
   assert.equal(searchResponse.status, 200);
   const aboutHtml = await aboutResponse.text();
   assert.match(aboutHtml, /personal record of inquiry into consciousness, reality, the body, mathematics, science/i);
   assert.match(aboutHtml, /What any of it ultimately means is left open\./i);
+  assert.match(await russianAboutResponse.text(), /личная хроника исследования сознания/i);
   assert.match(await searchResponse.text(), /Search titles, text, and tags/i);
 });
 
 test("keeps review records structured and connections independent", async () => {
-  const [reviewSchema, connectionSchema, workflow, explore] = await Promise.all([
+  const [reviewSchema, connectionSchema, workflow, explore, languageSwitcher, syncScript] = await Promise.all([
     readFile(new URL("../content/schemas/review.schema.json", import.meta.url), "utf8"),
     readFile(new URL("../content/schemas/connection.schema.json", import.meta.url), "utf8"),
     readFile(new URL("../docs/CONTENT_WORKFLOW.md", import.meta.url), "utf8"),
     readFile(new URL("../docs/EXPLORE_CONCEPT.md", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/LanguageSwitcher.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../scripts/sync-content.mjs", import.meta.url), "utf8"),
   ]);
   assert.match(reviewSchema, /factual_claims/);
   assert.match(reviewSchema, /confidence/);
@@ -49,4 +72,7 @@ test("keeps review records structured and connections independent", async () => 
   assert.match(workflow, /original\.md.*created once/is);
   assert.match(explore, /Tag[\s\S]*Concept[\s\S]*Cluster[\s\S]*Explore section/);
   assert.match(explore, /progressive disclosure/i);
+  assert.match(await readFile(new URL("../docs/BILINGUAL_ARCHITECTURE.md", import.meta.url), "utf8"), /one stable `id`[\s\S]*originalLanguage[\s\S]*No translation is generated or published automatically/i);
+  assert.match(languageSwitcher, /is-unavailable[\s\S]*Translation not published/i);
+  assert.match(syncScript, /translation\.status !== "published"/i);
 });
