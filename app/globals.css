@@ -141,7 +141,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .language-option.is-active { color: var(--primary-text); font-weight: 600; }
 .language-option.is-unavailable { cursor: help; opacity: .36; }
 .journal-identity { padding: clamp(36px, 7vw, 62px) 0 32px; }
-.wordmark { display: block; width: min(92%, 600px); color: var(--logo-primary); line-height: 0; }
+.wordmark { display: block; width: min(75%, 500px); color: var(--logo-primary); line-height: 0; }
 .wordmark-art, .wordmark-art svg { display: block; width: 100%; }
 .wordmark-art { aspect-ratio: 1041 / 125; }
 .wordmark-art svg { height: auto; aspect-ratio: 1041 / 125; overflow: visible; }
@@ -216,7 +216,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   .theme-toggle { height: 26px; }
   .theme-toggle button { width: 24px; height: 20px; font-size: 15px; }
   .journal-identity { padding: 38px 0 29px; }
-  .wordmark { max-width: 100%; }
+  .wordmark { width: 80%; max-width: 100%; }
   .identity-rule { margin-top: 22px; }
   .concept-coordinates { gap: 2px 0; font-size: 8px; letter-spacing: .105em; }
   .concept-coordinates li + li::before { margin: 0 7px; }
