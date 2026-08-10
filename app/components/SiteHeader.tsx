@@ -1,16 +1,16 @@
-import Link from "next/link";
+/* eslint-disable @next/next/no-html-link-for-pages -- vinext client navigation currently stalls in production; document navigation is intentional. */
 import { ThemeControl } from "./ThemeControl";
 
 export function SiteHeader() {
   return (
     <header className="site-header">
       <nav className="top-nav" aria-label="Primary navigation">
-        <Link href="/about">About</Link>
-        <Link href="/search">Search</Link>
+        <a href="/about">About</a>
+        <a href="/search">Search</a>
         <ThemeControl />
       </nav>
       <div className="journal-identity">
-        <Link className="wordmark" href="/" aria-label="Unfolding — journal">Unfolding</Link>
+        <a className="wordmark" href="/" aria-label="Unfolding — journal">Unfolding</a>
         <div className="identity-rule" aria-hidden="true" />
         <ul className="concept-coordinates" aria-label="Conceptual coordinates">
           <li>Phenomenology</li>
