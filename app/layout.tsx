@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import { SiteHeader } from "./components/SiteHeader";
 import { isLocale, siteUrl, type Locale } from "./i18n";
 import { publishedEntries } from "@/content/generated";
-import "@fontsource/gfs-didot/400.css";
+import "@fontsource/italiana/400.css";
 import "@fontsource/cormorant-garamond/400.css";
 import "@fontsource/cormorant-garamond/500.css";
 import "@fontsource/source-sans-3/400.css";

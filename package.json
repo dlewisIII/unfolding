@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",
-    "@fontsource/gfs-didot": "^5.3.0",
+    "@fontsource/italiana": "^5.3.0",
     "@fontsource/source-sans-3": "^5.3.0",
     "drizzle-orm": "0.45.2",
     "gray-matter": "^4.0.3",
