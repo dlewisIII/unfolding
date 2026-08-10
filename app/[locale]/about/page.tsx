@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, pageMetadata } from "../../i18n";
+import { copy, isLocale, pageMetadata } from "../../i18n";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  return pageMetadata(locale, locale === "ru" ? "О журнале" : "About", locale === "ru" ? "О журнале Unfolding и его авторе." : "About Unfolding and its author.", "/about");
+  return pageMetadata(locale, copy[locale].about, locale === "ru" ? "Об Unfolding и его авторе." : "About Unfolding and its author.", "/about");
 }
 
 export default async function AboutPage({ params }: Props) {
@@ -29,7 +29,7 @@ function EnglishAbout() {
 }
 
 function RussianAbout() {
-  return <main className="quiet-page"><h1>О журнале</h1><div className="prose about-copy">
+  return <main className="quiet-page"><h1>Об Unfolding</h1><div className="prose about-copy">
     <p><strong>UNFOLDING</strong> — это личная хроника исследования сознания, реальности, тела, математики, науки и всего остального, что становится частью этого исследования.</p>
     <p>Некоторые записи начинаются с того, что я изучаю. Другие — с вопроса, наблюдения, эксперимента, практики или переживания. Некоторые могут развиться в аргументы или доказательства; другие могут остаться фрагментами, рисунками, фотографиями или описаниями состояний, которые не поддаются точному объяснению.</p>
     <p>Журнал свободно движется между <strong>феноменологией, метафизикой, наукой, опытом и творчеством</strong>. Я воспринимаю их не столько как отдельные территории, сколько как разные способы приблизиться к тому, что есть.</p>

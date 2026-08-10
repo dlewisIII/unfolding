@@ -27,11 +27,11 @@ export const copy = {
     notFound: "Entry not found.",
     tags: "Tags",
     translationMissing: "Translation not published",
-    footer: "Written and tended by Anastasia.",
+    footer: "Written and edited by Anastasia",
     description: "A personal journal of inquiry, observation, and creation.",
   },
   ru: {
-    about: "О журнале",
+    about: "Об Unfolding",
     search: "Поиск",
     theme: "Тема",
     journalReady: "Журнал готов.",
@@ -48,7 +48,7 @@ export const copy = {
     notFound: "Запись не найдена.",
     tags: "Теги",
     translationMissing: "Перевод не опубликован",
-    footer: "Автор и хранитель журнала — Анастасия.",
+    footer: "Written and edited by Anastasia",
     description: "Личный журнал исследования, наблюдения и творчества.",
   },
 } as const;

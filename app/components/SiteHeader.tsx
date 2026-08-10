@@ -1,6 +1,7 @@
 import { ThemeControl } from "./ThemeControl";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { copy, type Locale } from "../i18n";
+import wordmarkSvg from "../../unfolding-wordmark.svg?raw";
 
 type AlternateRoutes = Record<string, Partial<Record<Locale, string>>>;
 
@@ -17,7 +18,9 @@ export function SiteHeader({ locale, alternateRoutes }: { locale: Locale; altern
         </div>
       </nav>
       <div className="journal-identity">
-        <a className="wordmark" href={`/${locale}`} target="_top" aria-label="Unfolding — journal">Unfolding</a>
+        <a className="wordmark" href={`/${locale}`} target="_top" aria-label="UNFOLDING">
+          <span className="wordmark-art" aria-hidden="true" dangerouslySetInnerHTML={{ __html: wordmarkSvg }} />
+        </a>
         <div className="identity-rule" aria-hidden="true" />
         <ul className="concept-coordinates" aria-label="Conceptual coordinates">
           <li>Phenomenology</li>

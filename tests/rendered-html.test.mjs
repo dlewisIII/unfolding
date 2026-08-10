@@ -33,6 +33,9 @@ test("renders both indexable journal homes without starter UI", async () => {
   assert.match(html, /href="\/en\/about"/i);
   assert.match(html, /href="\/en\/search"/i);
   assert.match(html, /href="\/ru"/i);
+  assert.match(html, /aria-label="UNFOLDING"/i);
+  assert.match(html, /viewBox="0 0 1041 125"/i);
+  assert.doesNotMatch(html, />Unfolding<\/a>/i);
   assert.match(html, /hreflang="ru"/i);
   assert.match(html, /hreflang="en"/i);
   assert.match(html, /rel="canonical" href="https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/en"/i);
@@ -56,6 +59,8 @@ test("renders localized About and Search routes", async () => {
   assert.match(aboutHtml, /personal record of inquiry into consciousness, reality, the body, mathematics, science/i);
   assert.match(aboutHtml, /What any of it ultimately means is left open\./i);
   assert.match(await russianAboutResponse.text(), /личная хроника исследования сознания/i);
+  assert.match(await render("/ru/about").then((response) => response.text()), /Об Unfolding/i);
+  assert.match(aboutHtml, /Written and edited by Anastasia/i);
   assert.match(searchHtml, /Search titles, text, and tags/i);
   assert.match(searchHtml, /href="https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/search" hreflang="x-default"/i);
 });

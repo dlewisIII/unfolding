@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { SiteHeader } from "./components/SiteHeader";
-import { isLocale, siteUrl, type Locale } from "./i18n";
+import { copy, isLocale, siteUrl, type Locale } from "./i18n";
 import { publishedEntries } from "@/content/generated";
 import "@fontsource/italiana/400.css";
 import "@fontsource/cormorant-garamond/400.css";
@@ -52,7 +52,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <div className="site-shell">
           <SiteHeader locale={locale} alternateRoutes={alternateRoutes} />
           {children}
-          <footer className="site-footer">{locale === "ru" ? "Автор и хранитель журнала — Анастасия." : "Written and tended by Anastasia."}</footer>
+          <footer className="site-footer">{copy[locale].footer}</footer>
         </div>
       </body>
     </html>
