@@ -33,7 +33,8 @@ test("renders both indexable journal homes without starter UI", async () => {
   assert.match(html, /href="\/en\/about"/i);
   assert.match(html, /href="\/en\/search"/i);
   assert.match(html, /href="\/ru"/i);
-  assert.match(html, /hreflang="ru-RU"/i);
+  assert.match(html, /hreflang="ru"/i);
+  assert.match(html, /hreflang="en"/i);
   assert.match(html, /rel="canonical" href="https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/en"/i);
   assert.match(html, /unfolding-theme/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
@@ -50,10 +51,25 @@ test("renders localized About and Search routes", async () => {
   assert.equal(aboutResponse.status, 200);
   assert.equal(searchResponse.status, 200);
   const aboutHtml = await aboutResponse.text();
+  const searchHtml = await searchResponse.text();
+  assert.match(aboutHtml, /href="https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/about" hreflang="x-default"/i);
   assert.match(aboutHtml, /personal record of inquiry into consciousness, reality, the body, mathematics, science/i);
   assert.match(aboutHtml, /What any of it ultimately means is left open\./i);
   assert.match(await russianAboutResponse.text(), /личная хроника исследования сознания/i);
-  assert.match(await searchResponse.text(), /Search titles, text, and tags/i);
+  assert.match(searchHtml, /Search titles, text, and tags/i);
+  assert.match(searchHtml, /href="https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/search" hreflang="x-default"/i);
+});
+
+test("publishes robots and sitemap discovery files", async () => {
+  const [robotsResponse, sitemapResponse] = await Promise.all([render("/robots.txt"), render("/sitemap.xml")]);
+  assert.equal(robotsResponse.status, 200);
+  assert.match(await robotsResponse.text(), /Sitemap: https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/sitemap\.xml/i);
+  assert.equal(sitemapResponse.status, 200);
+  const sitemap = await sitemapResponse.text();
+  assert.match(sitemap, /https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/en\/about/i);
+  assert.match(sitemap, /hreflang="en"/i);
+  assert.match(sitemap, /hreflang="ru"/i);
+  assert.doesNotMatch(sitemap, /\/entries\//i);
 });
 
 test("keeps review records structured and connections independent", async () => {

@@ -25,10 +25,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const entry = findEntry(rawLocale, slug);
   const version = entry?.versions[rawLocale];
   if (!entry || !version) return { title: copy[rawLocale].notFound, robots: { index: false } };
-  const languages: Record<string, string> = { [rawLocale === "ru" ? "ru-RU" : "en-US"]: `/${rawLocale}/entries/${version.slug}` };
+  const languages: Record<string, string> = { [rawLocale]: `/${rawLocale}/entries/${version.slug}` };
   const otherLocale: Locale = rawLocale === "ru" ? "en" : "ru";
   const other = entry.versions[otherLocale];
-  if (other) languages[otherLocale === "ru" ? "ru-RU" : "en-US"] = `/${otherLocale}/entries/${other.slug}`;
+  if (other) languages[otherLocale] = `/${otherLocale}/entries/${other.slug}`;
+  const original = entry.versions[entry.originalLanguage] ?? version;
+  languages["x-default"] = `/${original.locale}/entries/${original.slug}`;
   return {
     title: version.title,
     description: version.excerpt,

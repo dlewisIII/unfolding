@@ -55,13 +55,13 @@ export const copy = {
 
 export function pageMetadata(locale: Locale, title?: string, description?: string, suffix = ""): Metadata {
   const path = `/${locale}${suffix}`;
-  const alternateSuffix = suffix;
+  const xDefault = suffix || "/";
   return {
     title: title ?? { absolute: "Unfolding" },
     description: description ?? copy[locale].description,
     alternates: {
       canonical: path,
-      languages: { "en-US": `/en${alternateSuffix}`, "ru-RU": `/ru${alternateSuffix}`, "x-default": "/" },
+      languages: { en: `/en${suffix}`, ru: `/ru${suffix}`, "x-default": xDefault },
     },
     openGraph: {
       type: "website",
