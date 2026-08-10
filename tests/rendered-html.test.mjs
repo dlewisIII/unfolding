@@ -29,7 +29,9 @@ test("renders About and Search as separate minimal routes", async () => {
   const [aboutResponse, searchResponse] = await Promise.all([render("/about"), render("/search")]);
   assert.equal(aboutResponse.status, 200);
   assert.equal(searchResponse.status, 200);
-  assert.match(await aboutResponse.text(), /personal journal, research notebook, and digital garden/i);
+  const aboutHtml = await aboutResponse.text();
+  assert.match(aboutHtml, /personal record of inquiry into consciousness, reality, the body, mathematics, science/i);
+  assert.match(aboutHtml, /What any of it ultimately means is left open\./i);
   assert.match(await searchResponse.text(), /Search titles, text, and tags/i);
 });
 
