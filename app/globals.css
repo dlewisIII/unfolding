@@ -130,6 +130,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 }
 .top-nav { display: flex; align-items: center; justify-content: flex-end; gap: clamp(16px, 3.4vw, 28px); color: var(--secondary-text); font-family: var(--sans); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
 .top-nav > a:hover, .language-option:hover { color: var(--primary-text); }
+.home-link { display: grid; width: 16px; height: 16px; flex: 0 0 auto; place-items: center; color: var(--secondary-text); }
+.home-icon { position: relative; width: 10px; height: 8px; margin-top: 4px; border: 1px solid currentColor; border-top: 0; }
+.home-icon::before { content: ""; position: absolute; width: 8px; height: 8px; top: -5px; left: 0; border-top: 1px solid currentColor; border-left: 1px solid currentColor; transform: rotate(45deg); }
 .nav-controls { display: flex; align-items: center; gap: 15px; }
 .language-switcher { display: flex; align-items: center; letter-spacing: .1em; white-space: nowrap; }
 .language-option-wrap { display: flex; align-items: center; }

@@ -10,6 +10,9 @@ export function SiteHeader({ locale, alternateRoutes }: { locale: Locale; altern
   return (
     <header className="site-header">
       <nav className="top-nav" aria-label="Primary navigation">
+        <a className="home-link" href={`/${locale}`} target="_top" aria-label={locale === "ru" ? "Главная" : "Home"} title={locale === "ru" ? "Главная" : "Home"}>
+          <span className="home-icon" aria-hidden="true" />
+        </a>
         <a href={`/${locale}/about`} target="_top">{text.about}</a>
         <a href={`/${locale}/search`} target="_top">{text.search}</a>
         <div className="nav-controls">

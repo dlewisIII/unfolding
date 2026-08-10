@@ -32,6 +32,7 @@ test("renders both indexable journal homes without starter UI", async () => {
   assert.match(html, /The first page is still unwritten/i);
   assert.match(html, /href="\/en\/about"/i);
   assert.match(html, /href="\/en\/search"/i);
+  assert.match(html, /class="home-link" href="\/en"[^>]+aria-label="Home"/i);
   assert.match(html, /href="\/ru"/i);
   assert.match(html, /aria-label="UNFOLDING"/i);
   assert.match(html, /viewBox="0 0 1041 125"/i);
@@ -47,6 +48,7 @@ test("renders both indexable journal homes without starter UI", async () => {
   assert.equal(russianResponse.status, 200);
   assert.match(russianHtml, /lang="ru"/i);
   assert.match(russianHtml, /Первая страница ещё не написана/i);
+  assert.match(russianHtml, /class="home-link" href="\/ru"[^>]+aria-label="Главная"/i);
 });
 
 test("renders localized About and Search routes", async () => {
