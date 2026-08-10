@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unfolding.local/schemas/connection.schema.json",
+  "title": "Independent connection between entries",
+  "type": "object",
+  "required": ["id", "sourceEntryId", "targetEntryId", "reason"],
+  "properties": {
+    "id": { "type": "string" },
+    "sourceEntryId": { "type": "string" },
+    "targetEntryId": { "type": "string" },
+    "concept": { "type": "string" },
+    "relationType": { "type": "string" },
+    "reason": { "type": "string" },
+    "relevance": { "type": "number", "minimum": 0, "maximum": 1 }
+  },
+  "additionalProperties": false
+}

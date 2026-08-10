@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unfolding.local/schemas/review.schema.json",
+  "title": "Structured entry review",
+  "type": "object",
+  "required": ["schemaVersion", "entryId", "reviewedAt", "originalSha256", "summary", "issues"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "entryId": { "type": "string" },
+    "reviewedAt": { "type": "string", "format": "date-time" },
+    "originalSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "summary": { "type": "string" },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "category", "location", "explanation", "severity", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "category": { "enum": ["language", "clarity", "logic", "factual_claims", "mathematics"] },
+          "location": { "type": "object", "properties": { "paragraph": { "type": "integer", "minimum": 1 }, "fragment": { "type": "string" } }, "minProperties": 1 },
+          "explanation": { "type": "string" },
+          "severity": { "enum": ["note", "minor", "major", "blocking"] },
+          "status": { "enum": ["open", "accepted", "dismissed", "resolved"] },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
