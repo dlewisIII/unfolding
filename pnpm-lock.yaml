@@ -8,10 +8,10 @@ importers:
 
   .:
     dependencies:
-      '@fontsource/bodoni-moda':
+      '@fontsource/cormorant-garamond':
         specifier: ^5.3.0
         version: 5.3.0
-      '@fontsource/cormorant-garamond':
+      '@fontsource/gfs-didot':
         specifier: ^5.3.0
         version: 5.3.0
       '@fontsource/source-sans-3':
@@ -902,11 +902,11 @@ packages:
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@fontsource/bodoni-moda@5.3.0':
-    resolution: {integrity: sha512-Wt2XBCHivYxkTP3ydq/Ax+7VshwsOh/6ayA5om2t+yClCkGwLPj2Mi6OnyMANjyLcqDUWs4rlOHnc8SBLf6/pA==}
-
   '@fontsource/cormorant-garamond@5.3.0':
     resolution: {integrity: sha512-weuGsCirGVWBWqpt6YUp0yLThTe4G8YO45noq8wxeJCRvEpq5lFrxNMFSTxcyOyV5k5otzJ8guDzYegdYlcLMQ==}
+
+  '@fontsource/gfs-didot@5.3.0':
+    resolution: {integrity: sha512-q2iTXsuM04N1Qfpmjk8tM+zEegUY+chODcCV6T7q11hN12onfOflHKSinwIHxMgsXn3kJxt2ENkoaGJPFGJacw==}
 
   '@fontsource/source-sans-3@5.3.0':
     resolution: {integrity: sha512-VrWixSgF93kOVSEkwjs9ImnAbxrBew4PgcnaJYEitG9TyJSwxjFUNJIgzB1XFP/acyAWcTDg7+sWe7JI8LTB9w==}
@@ -4122,9 +4122,9 @@ snapshots:
       '@eslint/core': 0.17.0
       levn: 0.4.1
 
-  '@fontsource/bodoni-moda@5.3.0': {}
-
   '@fontsource/cormorant-garamond@5.3.0': {}
+
+  '@fontsource/gfs-didot@5.3.0': {}
 
   '@fontsource/source-sans-3@5.3.0': {}
 
