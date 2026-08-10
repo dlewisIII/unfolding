@@ -5,12 +5,12 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <nav className="top-nav" aria-label="Primary navigation">
-        <a href="/about">About</a>
-        <a href="/search">Search</a>
+        <a href="/about" target="_top">About</a>
+        <a href="/search" target="_top">Search</a>
         <ThemeControl />
       </nav>
       <div className="journal-identity">
-        <a className="wordmark" href="/" aria-label="Unfolding — journal">Unfolding</a>
+        <a className="wordmark" href="/" target="_top" aria-label="Unfolding — journal">Unfolding</a>
         <div className="identity-rule" aria-hidden="true" />
         <ul className="concept-coordinates" aria-label="Conceptual coordinates">
           <li>Phenomenology</li>
