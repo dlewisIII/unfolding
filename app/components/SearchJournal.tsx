@@ -33,7 +33,7 @@ export function SearchJournal({ entries, locale }: { entries: PublishedVersion[]
         <ol className="search-results">
           {results.map((entry) => (
             <li key={entry.slug}>
-              <a href={`/${locale}/entries/${entry.slug}`} target="_top">{entry.title}</a>
+              <a href={`/${locale}/entries/${entry.slug}`} target="_top">{entry.title || entry.excerpt || "UNFOLDING"}</a>
               {entry.excerpt && <p>{entry.excerpt}</p>}
               {entry.tags.length > 0 && <span>{entry.tags.join(" · ")}</span>}
             </li>

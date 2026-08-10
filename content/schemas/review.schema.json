@@ -1,15 +1,32 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://unfolding.local/schemas/review.schema.json",
-  "title": "Structured entry review",
+  "title": "Structured language-version review",
   "type": "object",
-  "required": ["schemaVersion", "entryId", "reviewedAt", "originalSha256", "summary", "issues"],
+  "required": ["schemaVersion", "entryId", "locale", "reviewedAt", "originalSha256", "draftSha256", "summary", "checks", "issues"],
   "properties": {
-    "schemaVersion": { "const": 1 },
+    "schemaVersion": { "const": 2 },
     "entryId": { "type": "string" },
+    "locale": { "enum": ["en", "ru"] },
     "reviewedAt": { "type": "string", "format": "date-time" },
     "originalSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "draftSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
     "summary": { "type": "string" },
+    "checks": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["category", "status", "explanation"],
+        "properties": {
+          "category": { "enum": ["language", "clarity", "logic", "factual_claims", "mathematics"] },
+          "status": { "enum": ["reviewed", "not_applicable"] },
+          "explanation": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
     "issues": {
       "type": "array",
       "items": {

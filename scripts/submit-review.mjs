@@ -2,50 +2,47 @@ import { existsSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { z } from "zod";
-import { ensureOriginalIntegrity, entryDirectory, readJson, readMetadata, sha256, writeJson, writeMetadata } from "./lib/content.mjs";
+import { ensureLifecycleOriginalIntegrity, lifecycleDirectory, localDateTime, readJson, readMetadata, resolveEntry, reviewCategories, sha256, writeJson, writeMetadata } from "./lib/content.mjs";
 
-const [slug, reviewInput] = process.argv.slice(2);
-if (!slug || !reviewInput) throw new Error("Usage: pnpm entry:review <slug> <review.json>");
-
+const [selector, locale, reviewInput, tagsInput] = process.argv.slice(2);
+if (!selector || !locale || !reviewInput || !tagsInput) throw new Error("Usage: pnpm entry:review <slug|--active> <ru|en> <review.json> <suggested-tags.json>");
+const slug = await resolveEntry(selector);
+const check = z.object({ category: z.enum(reviewCategories), status: z.enum(["reviewed", "not_applicable"]), explanation: z.string().default("") });
 const issue = z.object({
-  category: z.enum(["language", "clarity", "logic", "factual_claims", "mathematics"]),
+  category: z.enum(reviewCategories),
   location: z.object({ paragraph: z.number().int().positive().optional(), fragment: z.string().min(1).optional() }).refine((v) => v.paragraph || v.fragment, "location needs paragraph or fragment"),
-  explanation: z.string().min(1),
-  severity: z.enum(["note", "minor", "major", "blocking"]),
-  status: z.enum(["open", "accepted", "dismissed", "resolved"]).default("open"),
-  confidence: z.number().min(0).max(1).optional(),
+  explanation: z.string().min(1), severity: z.enum(["note", "minor", "major", "blocking"]),
+  status: z.enum(["open", "accepted", "dismissed", "resolved"]).default("open"), confidence: z.number().min(0).max(1).optional(),
 });
-const reviewSchema = z.object({ summary: z.string().default(""), issues: z.array(issue) });
+const reviewSchema = z.object({ summary: z.string().default(""), checks: z.array(check).length(reviewCategories.length), issues: z.array(issue) }).superRefine((value, ctx) => {
+  const categories = value.checks.map((item) => item.category);
+  for (const category of reviewCategories) if (categories.filter((item) => item === category).length !== 1) ctx.addIssue({ code: "custom", message: `checks must contain ${category} exactly once` });
+});
+const tagsSchema = z.object({ tags: z.array(z.string().trim().min(1)).default([]), rationale: z.string().default("") });
 
-const directory = entryDirectory(slug);
 const metadata = await readMetadata(slug);
-if (metadata.status === "published") throw new Error("A published entry cannot be resubmitted in this vertical slice.");
+const directory = lifecycleDirectory(slug, locale, metadata);
+const lifecycle = locale === metadata.originalLanguage ? metadata : metadata.translations?.[locale];
+if (!lifecycle) throw new Error(`No ${locale} lifecycle exists.`);
+if (lifecycle.status === "published") throw new Error("A published language version cannot be resubmitted.");
 const draft = await readFile(path.join(directory, "draft.md"), "utf8");
 if (!draft.trim()) throw new Error("Draft is empty.");
-
 const originalPath = path.join(directory, "original.md");
-if (existsSync(originalPath)) await ensureOriginalIntegrity(slug, metadata);
-else await writeFile(originalPath, draft, { encoding: "utf8", flag: "wx" });
-
+let originalSha256 = lifecycle.originalSha256;
+if (existsSync(originalPath)) await ensureLifecycleOriginalIntegrity(slug, locale, metadata);
+else {
+  await writeFile(originalPath, draft, { encoding: "utf8", flag: "wx" });
+  originalSha256 = sha256(draft);
+}
 const parsed = reviewSchema.parse(await readJson(path.resolve(reviewInput)));
-const review = {
-  schemaVersion: 1,
-  entryId: metadata.id,
-  reviewedAt: new Date().toISOString(),
-  originalSha256: metadata.originalSha256 || sha256(draft),
-  summary: parsed.summary,
-  issues: parsed.issues.map((item, index) => ({ id: `issue-${index + 1}`, ...item })),
-};
+const reviewedAt = localDateTime();
+const review = { schemaVersion: 2, entryId: metadata.id, locale, reviewedAt, originalSha256, draftSha256: sha256(draft), summary: parsed.summary, checks: parsed.checks, issues: parsed.issues.map((item, index) => ({ id: `issue-${index + 1}`, ...item })) };
 await writeJson(path.join(directory, "review.json"), review);
-
-const counts = ["language", "clarity", "logic", "factual_claims", "mathematics"].map((category) => {
-  const count = review.issues.filter((item) => item.category === category).length;
-  return `- **${category.replace("_", " ")}**: ${count || "no issues"}`;
-});
-const details = review.issues.map((item) => {
-  const place = item.location.fragment ? `“${item.location.fragment}”` : `paragraph ${item.location.paragraph}`;
-  return `### ${item.category} · ${item.severity}\n\n${place}\n\n${item.explanation}`;
-});
+await writeJson(path.join(directory, "suggested-tags.json"), { schemaVersion: 1, entryId: metadata.id, locale, suggestedAt: reviewedAt, ...tagsSchema.parse(await readJson(path.resolve(tagsInput))) });
+const counts = review.checks.map((item) => `- **${item.category.replace("_", " ")}**: ${item.status}${item.explanation ? ` — ${item.explanation}` : ""}`);
+const details = review.issues.map((item) => `### ${item.category} · ${item.severity}\n\n${item.location.fragment ? `“${item.location.fragment}”` : `paragraph ${item.location.paragraph}`}\n\n${item.explanation}`);
 await writeFile(path.join(directory, "review.md"), `# Review\n\n${review.summary}\n\n${counts.join("\n")}\n${details.length ? `\n${details.join("\n\n")}` : ""}\n`, "utf8");
-await writeMetadata(slug, { ...metadata, status: "reviewed", submittedAt: new Date().toISOString(), originalSha256: review.originalSha256 });
-console.log(`Original snapshot sealed and structured review saved for: ${slug}`);
+if (locale === metadata.originalLanguage) await writeMetadata(slug, { ...metadata, status: "reviewed", submittedAt: reviewedAt, originalSha256 });
+else await writeMetadata(slug, { ...metadata, translations: { ...metadata.translations, [locale]: { ...lifecycle, status: "reviewed", submittedAt: reviewedAt, originalSha256 } } });
+const substantial = review.issues.filter((item) => item.status === "open" && ["major", "blocking"].includes(item.severity)).length;
+console.log(substantial ? `Review saved: ${substantial} substantial open issue(s).` : "Review saved: ready for publication from the review perspective; author decision is still required.");

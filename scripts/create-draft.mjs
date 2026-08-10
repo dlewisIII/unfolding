@@ -1,17 +1,23 @@
 import { existsSync } from "node:fs";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { entryDirectory, ensureEntriesRoot, writeJson } from "./lib/content.mjs";
+import { assertLocale, entryDirectory, ensureEntriesRoot, localDateTime, setActiveEntry, writeJson } from "./lib/content.mjs";
 
-const [slug, title, originalLanguage = "en"] = process.argv.slice(2);
-if (!slug || !title) throw new Error("Usage: pnpm entry:create <slug> \"Title\" [language]");
-if (!["en", "ru"].includes(originalLanguage)) throw new Error("Language must be en or ru.");
+const args = process.argv.slice(2);
+const [originalLanguage, slug] = args;
+const fromIndex = args.indexOf("--from");
+const titleIndex = args.indexOf("--title");
+if (!slug || fromIndex < 0 || !args[fromIndex + 1]) throw new Error("Usage: pnpm entry:create <ru|en> <slug> --from <text-file> [--title <title>]");
+assertLocale(originalLanguage);
+const sourcePath = path.resolve(args[fromIndex + 1]);
+const title = titleIndex >= 0 ? args[titleIndex + 1] : null;
+const draft = await readFile(sourcePath);
 
 await ensureEntriesRoot();
 const directory = entryDirectory(slug);
 if (existsSync(directory)) throw new Error(`Entry already exists: ${slug}`);
 await mkdir(directory, { recursive: false });
-await writeFile(path.join(directory, "draft.md"), "", "utf8");
+await writeFile(path.join(directory, "draft.md"), draft);
 await writeJson(path.join(directory, "metadata.json"), {
   schemaVersion: 2,
   id: crypto.randomUUID(),
@@ -19,7 +25,7 @@ await writeJson(path.join(directory, "metadata.json"), {
   title,
   originalLanguage,
   status: "draft",
-  createdAt: new Date().toISOString(),
+  createdAt: localDateTime(),
   submittedAt: null,
   publishedAt: null,
   originalSha256: null,
@@ -27,4 +33,5 @@ await writeJson(path.join(directory, "metadata.json"), {
   tags: [],
   translations: {},
 });
+await setActiveEntry(slug);
 console.log(`Draft created: content/entries/${slug}/draft.md`);
