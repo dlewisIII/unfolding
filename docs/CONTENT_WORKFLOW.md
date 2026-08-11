@@ -19,4 +19,6 @@ pnpm content:sync
 
 Use `--from-draft` after the author has made post-review edits and explicitly selected that working version for publication. Neither review nor tags can modify any Markdown body.
 
+For a reviewed bilingual entry, the author may approve publication of both language versions together. In that case, the already presented reviewed tag proposals for RU and EN are approved as a pair and saved to their respective language lifecycles before publishing. The two tag lists remain independent; one is never mechanically copied or translated from the other.
+
 `review.json` is canonical and machine-readable. `review.md` is a derived human view. Connections are reserved as independent documents under `content/connections/`; discovery and UI are intentionally not implemented yet.

@@ -131,6 +131,7 @@ test("keeps review records structured and connections independent", async () => 
   assert.match(connectionSchema, /sourceEntryId/);
   assert.match(connectionSchema, /targetEntryId/);
   assert.match(workflow, /original\.md.*created once/is);
+  assert.match(workflow, /reviewed tag proposals for RU and EN are approved as a pair/i);
   assert.match(explore, /Tag[\s\S]*Concept[\s\S]*Cluster[\s\S]*Explore section/);
   assert.match(explore, /progressive disclosure/i);
   assert.match(await readFile(new URL("../docs/BILINGUAL_ARCHITECTURE.md", import.meta.url), "utf8"), /one stable `id`[\s\S]*originalLanguage[\s\S]*No translation is generated or published automatically/i);

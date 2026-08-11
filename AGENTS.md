@@ -24,7 +24,7 @@ Every review covers exactly these categories: `language`, `clarity`, `logic`, `f
 
 Review as an editor/teacher. Identify possible problems but do not silently correct the author's words. Store suggested semantic tags separately from approved `metadata.json.tags`; derive them from the actual content and do not use a fixed taxonomy. If there are no major or blocking open issues, explicitly say that the version is ready for publication from the review perspective.
 
-When the author explicitly accepts or edits the tags, write only that approved list with `pnpm entry:tags <slug|--active> <locale> --from <approved-tags.json>`. Rejection may leave the approved list empty. Never promote `suggested-tags.json` automatically.
+When the author explicitly accepts or edits the tags, write only that approved list with `pnpm entry:tags <slug|--active> <locale> --from <approved-tags.json>`. Rejection may leave the approved list empty. Never promote `suggested-tags.json` automatically, except for the explicit bilingual bundle approval below.
 
 When no metadata title is approved, inspect the author text after review. If it contains an H1 (`# Title`), propose that exact H1 as the primary title but do not remove or alter it in `draft.md`, `original.md`, or `published.md`. Otherwise propose one natural title and add up to two alternatives only when genuinely useful. Store proposals in the language lifecycle's `suggested-title.json`. A title becomes metadata only after explicit author confirmation via `pnpm entry:title:approve <slug|--active> <locale> --title <title>`.
 
@@ -50,6 +50,12 @@ Translation creates another language lifecycle of the same root entry, never ano
 
 The translation lives under `translations/<locale>/` with `draft.md`, immutable review snapshot `original.md`, `review.json`, `review.md`, `suggested-tags.json`, and, only after explicit publication, `published.md`. If the agent writes the translation, it is still only a draft and requires normal review and author approval.
 
+### Bilingual bundle approval
+
+When both language lifecycles of one entry have completed review, present the reviewed tag proposals for both locales together. If the author then explicitly instructs to publish both language versions, treat that instruction as approval of those two presented tag proposals. Before publication, write each locale's own proposed list into its own metadata lifecycle with `pnpm entry:tags`; do not copy, translate, or normalize the other locale's list mechanically.
+
+This exception applies only to tag proposals that were reviewed and presented for the same entry in the current publication decision. If either locale has no reviewed tag proposal, or the author has rejected or replaced one list, do not infer a replacement. Ask for the missing tags only when needed. Metadata titles still require their own explicit approval.
+
 ### Russian mathematical translation style
 
 When translating mathematical or logical entries into Russian, use established terminology found in Russian-language university textbooks and courses rather than literal English calques. Preserve the mathematical meaning and proof structure exactly.
@@ -74,4 +80,4 @@ Do not translate mathematical terminology mechanically. If several established R
 
 Only an explicit author instruction semantically equivalent to “Publish”, “Опубликовать”, “Publish as is”, or “Опубликовать как есть” authorizes publication. New entry, translation, revision, and review never create `published.md` or set a lifecycle to published. Publish the intended locale with `pnpm entry:publish <slug|--active> <locale> (--as-is|--from-draft)`. If locale or entry is genuinely ambiguous, ask one short question first.
 
-Publishing one locale does not publish the other. Both versions retain the same root `id` and `createdAt`; `translatedAt`, `submittedAt`, and `publishedAt` are lifecycle history only and never replace the root date.
+Publishing one locale does not publish the other. An explicit instruction to publish both locales authorizes two lifecycle publications and the bilingual tag-bundle behavior above. Both versions retain the same root `id` and `createdAt`; `translatedAt`, `submittedAt`, and `publishedAt` are lifecycle history only and never replace the root date.
