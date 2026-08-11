@@ -32,6 +32,12 @@ External links are optional root entry metadata and never part of author text. S
 
 The first review of each language lifecycle seals its own `original.md`. It is immutable thereafter and protected by SHA-256. A later draft may be reviewed again, but must not replace that snapshot.
 
+## Authorial style
+
+Avoid excessive use of the em dash (`—`) in proposed wording, editorial suggestions, and agent-generated translations. Do not use it as the default way to connect clauses when a full stop, comma, colon, or a natural restructuring expresses the thought more clearly. Retain an em dash where syntax or the author's rhythm genuinely calls for it.
+
+This rule never authorizes changes to immutable author text. Do not remove, replace, or normalize punctuation in author-supplied `draft.md`, `original.md`, or `published.md` automatically.
+
 ## Revisions and active entry
 
 - When context clearly identifies the current entry, treat a new author-supplied version as a revision of its `draft.md`, not a new entry. Use `pnpm entry:draft <slug|--active> <locale> --from <file>`, then review again.
@@ -43,6 +49,26 @@ The first review of each language lifecycle seals its own `original.md`. It is i
 Translation creates another language lifecycle of the same root entry, never another root entry. Run `pnpm entry:translate <slug|--active> <ru|en> --from <file> --method <author|agent>` for author-supplied or agent-produced translation text. Preserve the root `id`, root `createdAt`, and `originalLanguage`; record `translatedAt` and private provenance `translationMethod` separately. Never expose translation provenance publicly without a separate author decision.
 
 The translation lives under `translations/<locale>/` with `draft.md`, immutable review snapshot `original.md`, `review.json`, `review.md`, `suggested-tags.json`, and, only after explicit publication, `published.md`. If the agent writes the translation, it is still only a draft and requires normal review and author approval.
+
+### Russian mathematical translation style
+
+When translating mathematical or logical entries into Russian, use established terminology found in Russian-language university textbooks and courses rather than literal English calques. Preserve the mathematical meaning and proof structure exactly.
+
+Use the following current terminology:
+
+- `implication` → `импликация`
+- `premise` → `посылка`
+- `conclusion` → `заключение`
+- `Modus Ponens` → `правило отделения (modus ponens)`
+- `Conditional Proof` → `правило введения импликации` or `правило дедукции`
+- `antecedent` → `антецедент`
+- `consequent` → `консеквент`
+
+For `antecedent` and `consequent`, do not introduce Russian technical terms unless they are useful in context. In explanatory prose, prefer a natural formulation that refers explicitly to `P`, `Q`, or the relevant expressions.
+
+For `Conditional Proof`, prefer `правило введения импликации` when describing an inference step in a proof. Use `правило дедукции` only when that term matches the formal system or source under discussion. Write Latin names such as `modus ponens` in lowercase in Russian prose.
+
+Do not translate mathematical terminology mechanically. If several established Russian equivalents exist and the correct choice depends on the formal system, record the ambiguity as a review issue instead of choosing silently.
 
 ## Publication gate
 
