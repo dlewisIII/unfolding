@@ -47,7 +47,7 @@ test("renders both indexable journal homes and published bilingual entries", asy
   assert.doesNotMatch(html, />Unfolding<\/a>/i);
   assert.match(html, /hreflang="ru"/i);
   assert.match(html, /hreflang="en"/i);
-  assert.match(html, /rel="canonical" href="https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/en"/i);
+  assert.match(html, /rel="canonical" href="https:\/\/unfolding\.day\/en"/i);
   assert.match(html, /unfolding-theme/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 
@@ -70,7 +70,7 @@ test("keeps permanent entry pages and localized copy-link actions", async () => 
   const russianHtml = await russian.text();
   assert.equal(english.status, 200);
   assert.equal(russian.status, 200);
-  assert.match(englishHtml, /rel="canonical" href="https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/en\/entries\/limits-of-scientific-description"/i);
+  assert.match(englishHtml, /rel="canonical" href="https:\/\/unfolding\.day\/en\/entries\/limits-of-scientific-description"/i);
   assert.match(englishHtml, /aria-label="Copy link"/i);
   assert.match(englishHtml, /href="\/en">← Notes<\/a>/i);
   assert.match(englishHtml, /class="chain-link-icon"/i);
@@ -109,23 +109,23 @@ test("renders localized About and Search routes", async () => {
   assert.equal(searchResponse.status, 200);
   const aboutHtml = await aboutResponse.text();
   const searchHtml = await searchResponse.text();
-  assert.match(aboutHtml, /href="https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/about" hreflang="x-default"/i);
+  assert.match(aboutHtml, /href="https:\/\/unfolding\.day\/about" hreflang="x-default"/i);
   assert.match(aboutHtml, /my record of exploring consciousness, reality, the body, mathematics, science/i);
   assert.match(aboutHtml, /The question of what any of this ultimately means remains open\./i);
   assert.match(await russianAboutResponse.text(), /мои записи об исследовании сознания/i);
   assert.match(await render("/ru/about").then((response) => response.text()), /Об Unfolding/i);
   assert.match(aboutHtml, /Written and edited by Anastasia/i);
   assert.match(searchHtml, /Search titles, text, and tags/i);
-  assert.match(searchHtml, /href="https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/search" hreflang="x-default"/i);
+  assert.match(searchHtml, /href="https:\/\/unfolding\.day\/search" hreflang="x-default"/i);
 });
 
 test("publishes robots and sitemap discovery files", async () => {
   const [robotsResponse, sitemapResponse] = await Promise.all([render("/robots.txt"), render("/sitemap.xml")]);
   assert.equal(robotsResponse.status, 200);
-  assert.match(await robotsResponse.text(), /Sitemap: https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/sitemap\.xml/i);
+  assert.match(await robotsResponse.text(), /Sitemap: https:\/\/unfolding\.day\/sitemap\.xml/i);
   assert.equal(sitemapResponse.status, 200);
   const sitemap = await sitemapResponse.text();
-  assert.match(sitemap, /https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/en\/about/i);
+  assert.match(sitemap, /https:\/\/unfolding\.day\/en\/about/i);
   assert.match(sitemap, /hreflang="en"/i);
   assert.match(sitemap, /hreflang="ru"/i);
   assert.match(sitemap, /\/en\/entries\/limits-of-scientific-description/i);

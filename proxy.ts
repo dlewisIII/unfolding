@@ -10,6 +10,16 @@ function preferredLocale(request: NextRequest) {
 }
 
 export function proxy(request: NextRequest) {
+  const forwardedHost = request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? "";
+  const host = forwardedHost.split(",")[0].trim().split(":")[0].toLowerCase();
+
+  if (host === "www.unfolding.day") {
+    const destination = request.nextUrl.clone();
+    destination.protocol = "https:";
+    destination.host = "unfolding.day";
+    return NextResponse.redirect(destination, 301);
+  }
+
   const { pathname } = request.nextUrl;
   const firstSegment = pathname.split("/")[1];
 

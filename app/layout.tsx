@@ -15,12 +15,8 @@ import "./globals.css";
 const themeBoot = `(function(){try{var e=document.documentElement,m=document.querySelector('meta[name="theme-color"]'),t=localStorage.getItem('unfolding-theme');if(t==='light'||t==='dark')e.setAttribute('data-theme',t);var r=e.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');if(m)m.setAttribute('content',r==='dark'?'#171717':'#f5f1e8');requestAnimationFrame(function(){e.setAttribute('data-theme-ready','')})}catch(e){}})()`;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host");
-  const protocol = requestHeaders.get("x-forwarded-proto") ?? (host?.startsWith("localhost") || host?.startsWith("127.0.0.1") ? "http" : "https");
-  const origin = host ? `${protocol}://${host}` : siteUrl;
   return {
-    metadataBase: new URL(origin || siteUrl),
+    metadataBase: new URL(siteUrl),
     title: { default: "Unfolding", template: "%s · Unfolding" },
     description: "A personal journal and research notebook.",
     icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
@@ -28,9 +24,9 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       title: "Unfolding",
       description: "Personal journal & research notebook",
-      images: [{ url: `${origin}/og.png`, width: 1200, height: 630, alt: "Unfolding — Personal journal & research notebook" }],
+      images: [{ url: `${siteUrl}/og.png`, width: 1200, height: 630, alt: "Unfolding — Personal journal & research notebook" }],
     },
-    twitter: { card: "summary_large_image", images: [`${origin}/og.png`] },
+    twitter: { card: "summary_large_image", images: [`${siteUrl}/og.png`] },
   };
 }
 
