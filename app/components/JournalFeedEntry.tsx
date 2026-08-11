@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import type { PublishedVersion } from "@/content/generated";
-import { copy, type Locale } from "../i18n";
+import { copy, localePath, type Locale } from "../i18n";
 import { entryDisplayTitle, formatEntryDate, journalPreview, withoutDuplicateLeadingTitle } from "../lib/entry-display.mjs";
 import { ExternalLinks } from "./ExternalLinks";
 
@@ -13,7 +13,7 @@ export function JournalFeedEntry({ entry, locale }: { entry: PublishedVersion; l
   const [expanded, setExpanded] = useState(false);
   const articleRef = useRef<HTMLElement>(null);
   const text = copy[locale];
-  const permalink = `/${locale}/entries/${entry.slug}`;
+  const permalink = localePath(locale, `/entries/${entry.slug}`);
   const displayTitle = entryDisplayTitle(entry.title, entry.body);
   const renderedBody = withoutDuplicateLeadingTitle(entry.body, displayTitle);
   const preview = journalPreview(renderedBody);

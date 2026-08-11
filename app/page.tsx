@@ -1,4 +1,8 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "./i18n";
+import LocaleHome from "./[locale]/page";
 
-export const metadata: Metadata = { robots: { index: false, follow: true } };
-export default function LanguageRedirectPage() { return null; }
+export function generateMetadata() { return pageMetadata("en"); }
+
+export default function EnglishHome() {
+  return <LocaleHome params={Promise.resolve({ locale: "en" })} />;
+}

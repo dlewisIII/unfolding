@@ -40,8 +40,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     const en = entry.versions.en;
     const ru = entry.versions.ru;
     const routes: Array<[string, Partial<Record<Locale, string>>]> = [];
-    if (en) routes.push([`/en/entries/${en.slug}`, { en: `/en/entries/${en.slug}`, ...(ru ? { ru: `/ru/entries/${ru.slug}` } : {}) }]);
-    if (ru) routes.push([`/ru/entries/${ru.slug}`, { ru: `/ru/entries/${ru.slug}`, ...(en ? { en: `/en/entries/${en.slug}` } : {}) }]);
+    if (en) routes.push([`/entries/${en.slug}`, { en: `/entries/${en.slug}`, ...(ru ? { ru: `/ru/entries/${ru.slug}` } : {}) }]);
+    if (ru) routes.push([`/ru/entries/${ru.slug}`, { ru: `/ru/entries/${ru.slug}`, ...(en ? { en: `/entries/${en.slug}` } : {}) }]);
     return routes;
   }));
   return (

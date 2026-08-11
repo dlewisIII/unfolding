@@ -4,6 +4,10 @@ export const locales = ["en", "ru"] as const;
 export type Locale = (typeof locales)[number];
 export const siteUrl = "https://unfolding.day";
 
+export function localePath(locale: Locale, suffix = "") {
+  return locale === "ru" ? `/ru${suffix}` : suffix || "/";
+}
+
 export function isLocale(value: string): value is Locale {
   return locales.includes(value as Locale);
 }
@@ -66,14 +70,14 @@ export const copy = {
 } as const;
 
 export function pageMetadata(locale: Locale, title?: string, description?: string, suffix = ""): Metadata {
-  const path = `/${locale}${suffix}`;
-  const xDefault = suffix || "/";
+  const path = localePath(locale, suffix);
+  const xDefault = localePath("en", suffix);
   return {
     title: title ?? { absolute: "Unfolding" },
     description: description ?? copy[locale].description,
     alternates: {
       canonical: path,
-      languages: { en: `/en${suffix}`, ru: `/ru${suffix}`, "x-default": xDefault },
+      languages: { en: localePath("en", suffix), ru: localePath("ru", suffix), "x-default": xDefault },
     },
     openGraph: {
       type: "website",

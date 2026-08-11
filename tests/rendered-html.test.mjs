@@ -11,35 +11,65 @@ async function render(pathname = "/", headers = {}) {
   }, { waitUntil() {}, passThroughOnException() {} });
 }
 
-test("negotiates the first locale without geolocation", async () => {
+test("serves English at the root regardless of language preferences", async () => {
   const [english, russian, saved] = await Promise.all([
     render("/"),
     render("/", { "accept-language": "ru-RU,ru;q=0.9,en;q=0.8" }),
     render("/", { "accept-language": "ru-RU", cookie: "unfolding-language=en" }),
   ]);
-  assert.equal(english.status, 307);
-  assert.equal(english.headers.get("location"), "/en");
-  assert.equal(russian.headers.get("location"), "/ru");
-  assert.equal(saved.headers.get("location"), "/en");
+  assert.equal(english.status, 200);
+  assert.equal(russian.status, 200);
+  assert.equal(saved.status, 200);
+});
+
+test("permanently redirects legacy English routes without changing their path or query", async () => {
+  const [home, about, search, entry] = await Promise.all([
+    render("/en?source=legacy"),
+    render("/en/about?source=legacy"),
+    render("/en/search?query=logic"),
+    render("/en/entries/implication-chain?source=legacy"),
+  ]);
+  assert.equal(home.status, 301);
+  assert.equal(home.headers.get("location"), "/?source=legacy");
+  assert.equal(about.status, 301);
+  assert.equal(about.headers.get("location"), "/about?source=legacy");
+  assert.equal(search.status, 301);
+  assert.equal(search.headers.get("location"), "/search?query=logic");
+  assert.equal(entry.status, 301);
+  assert.equal(entry.headers.get("location"), "/entries/implication-chain?source=legacy");
+});
+
+test("redirects the legacy Sites hostname to the canonical domain", async () => {
+  const [page, legacyEnglish, asset] = await Promise.all([
+    render("/about?source=legacy-host", { host: "unfolding-journal.davidlewisiii.chatgpt.site" }),
+    render("/en/entries/implication-chain?source=legacy-host", { host: "unfolding-journal.davidlewisiii.chatgpt.site" }),
+    render("/favicon.svg", { host: "unfolding-journal.davidlewisiii.chatgpt.site" }),
+  ]);
+  assert.equal(page.status, 301);
+  assert.equal(page.headers.get("location"), "https://unfolding.day/about?source=legacy-host");
+  assert.equal(legacyEnglish.status, 301);
+  assert.equal(legacyEnglish.headers.get("location"), "https://unfolding.day/entries/implication-chain?source=legacy-host");
+  assert.equal(asset.status, 301);
+  assert.equal(asset.headers.get("location"), "https://unfolding.day/favicon.svg");
 });
 
 test("renders both indexable journal homes and published bilingual entries", async () => {
-  const response = await render("/en");
+  const response = await render("/");
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /<title>Unfolding<\/title>/i);
   assert.match(html, /lang="en"/i);
   assert.match(html, /A scientific discovery may begin with a fact/i);
-  assert.match(html, /<h2 class="feed-entry-title"><a href="\/en\/entries\/implication-chain"[^>]*>Implication Chain<\/a><\/h2>/i);
+  assert.match(html, /<h2 class="feed-entry-title"><a href="\/entries\/implication-chain"[^>]*>Implication Chain<\/a><\/h2>/i);
   assert.match(html, /class="prose entry-content feed-entry-body"/i);
   assert.doesNotMatch(html, /class="prose entry-content feed-entry-body"><h1>Implication Chain<\/h1>/i);
   assert.match(html, /<h2>Statement<\/h2>[\s\S]*Suppose that[\s\S]*P[\s\S]*Q[\s\S]*Strategy[\s\S]*Proof/i);
-  assert.match(html, /href="\/en\/entries\/limits-of-scientific-description"/i);
+  assert.match(html, /href="\/entries\/limits-of-scientific-description"/i);
   assert.match(html, /11 August 2026 · 02:58/i);
-  assert.match(html, /class="open-entry-link" href="\/en\/entries\/magic-of-dawn" aria-label="Open entry"[^>]*>→<\/a>/i);
-  assert.match(html, /href="\/en\/about"/i);
-  assert.match(html, /href="\/en\/search"/i);
-  assert.match(html, /class="home-link" href="\/en"[^>]+aria-label="Home"/i);
+  assert.match(html, /class="open-entry-link" href="\/entries\/magic-of-dawn" aria-label="Open entry"[^>]*>→<\/a>/i);
+  assert.match(html, /href="\/about"/i);
+  assert.match(html, /href="\/search"/i);
+  assert.match(html, /class="home-link" href="\/"[^>]+aria-label="Home"/i);
   assert.doesNotMatch(html, /target="_top"|target="_blank"/i);
   assert.match(html, /href="\/ru"/i);
   assert.match(html, /aria-label="UNFOLDING"/i);
@@ -47,7 +77,7 @@ test("renders both indexable journal homes and published bilingual entries", asy
   assert.doesNotMatch(html, />Unfolding<\/a>/i);
   assert.match(html, /hreflang="ru"/i);
   assert.match(html, /hreflang="en"/i);
-  assert.match(html, /rel="canonical" href="https:\/\/unfolding\.day\/en"/i);
+  assert.match(html, /rel="canonical" href="https:\/\/unfolding\.day\/?"/i);
   assert.match(html, /unfolding-theme/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 
@@ -63,16 +93,16 @@ test("renders both indexable journal homes and published bilingual entries", asy
 
 test("keeps permanent entry pages and localized copy-link actions", async () => {
   const [english, russian] = await Promise.all([
-    render("/en/entries/limits-of-scientific-description"),
+    render("/entries/limits-of-scientific-description"),
     render("/ru/entries/limits-of-scientific-description"),
   ]);
   const englishHtml = await english.text();
   const russianHtml = await russian.text();
   assert.equal(english.status, 200);
   assert.equal(russian.status, 200);
-  assert.match(englishHtml, /rel="canonical" href="https:\/\/unfolding\.day\/en\/entries\/limits-of-scientific-description"/i);
+  assert.match(englishHtml, /rel="canonical" href="https:\/\/unfolding\.day\/entries\/limits-of-scientific-description"/i);
   assert.match(englishHtml, /aria-label="Copy link"/i);
-  assert.match(englishHtml, /href="\/en">← Notes<\/a>/i);
+  assert.match(englishHtml, /href="\/">← Notes<\/a>/i);
   assert.match(englishHtml, /class="chain-link-icon"/i);
   assert.match(englishHtml, /11 August 2026 · 02:58/i);
   assert.match(russianHtml, /aria-label="Скопировать ссылку"/i);
@@ -82,7 +112,7 @@ test("keeps permanent entry pages and localized copy-link actions", async () => 
   assert.match(englishHtml, /hreflang="ru"/i);
   assert.match(russianHtml, /hreflang="en"/i);
 
-  const implication = await render("/en/entries/implication-chain").then((response) => response.text());
+  const implication = await render("/entries/implication-chain").then((response) => response.text());
   assert.match(implication, /<header class="entry-header">[\s\S]*<h1>Implication Chain<\/h1><\/header>/i);
   assert.match(implication, /class="prose entry-content"/i);
   assert.doesNotMatch(implication, /class="prose entry-content"><h1>Implication Chain<\/h1>/i);
@@ -90,7 +120,7 @@ test("keeps permanent entry pages and localized copy-link actions", async () => 
 });
 
 test("renders a saved theme before the document is painted", async () => {
-  const response = await render("/en", { cookie: "unfolding-theme=dark" });
+  const response = await render("/", { cookie: "unfolding-theme=dark" });
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /<html lang="en" data-theme="dark"/i);
@@ -104,7 +134,7 @@ test("enables MPA view transitions as a progressive enhancement", async () => {
 });
 
 test("renders localized About and Search routes", async () => {
-  const [aboutResponse, russianAboutResponse, searchResponse] = await Promise.all([render("/en/about"), render("/ru/about"), render("/en/search")]);
+  const [aboutResponse, russianAboutResponse, searchResponse] = await Promise.all([render("/about"), render("/ru/about"), render("/search")]);
   assert.equal(aboutResponse.status, 200);
   assert.equal(searchResponse.status, 200);
   const aboutHtml = await aboutResponse.text();
@@ -125,10 +155,10 @@ test("publishes robots and sitemap discovery files", async () => {
   assert.match(await robotsResponse.text(), /Sitemap: https:\/\/unfolding\.day\/sitemap\.xml/i);
   assert.equal(sitemapResponse.status, 200);
   const sitemap = await sitemapResponse.text();
-  assert.match(sitemap, /https:\/\/unfolding\.day\/en\/about/i);
+  assert.match(sitemap, /https:\/\/unfolding\.day\/about/i);
   assert.match(sitemap, /hreflang="en"/i);
   assert.match(sitemap, /hreflang="ru"/i);
-  assert.match(sitemap, /\/en\/entries\/limits-of-scientific-description/i);
+  assert.match(sitemap, /\/entries\/limits-of-scientific-description/i);
   assert.match(sitemap, /\/ru\/entries\/limits-of-scientific-description/i);
 });
 

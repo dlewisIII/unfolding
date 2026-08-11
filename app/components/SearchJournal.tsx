@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { PublishedVersion } from "@/content/generated";
-import { copy, type Locale } from "../i18n";
+import { copy, localePath, type Locale } from "../i18n";
 
 export function SearchJournal({ entries, locale }: { entries: PublishedVersion[]; locale: Locale }) {
   const text = copy[locale];
@@ -33,7 +33,7 @@ export function SearchJournal({ entries, locale }: { entries: PublishedVersion[]
         <ol className="search-results">
           {results.map((entry) => (
             <li key={entry.slug}>
-              <a href={`/${locale}/entries/${entry.slug}`}>{entry.title || entry.excerpt || "UNFOLDING"}</a>
+              <a href={localePath(locale, `/entries/${entry.slug}`)}>{entry.title || entry.excerpt || "UNFOLDING"}</a>
               {entry.excerpt && <p>{entry.excerpt}</p>}
               {entry.tags.length > 0 && <span>{entry.tags.join(" · ")}</span>}
             </li>

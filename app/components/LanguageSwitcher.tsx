@@ -16,7 +16,8 @@ export function LanguageSwitcher({ locale, alternateRoutes }: { locale: Locale; 
   function routeFor(target: Locale) {
     if (target === locale) return pathname;
     if (pathname.includes("/entries/")) return alternateRoutes[pathname]?.[target] ?? null;
-    return pathname.replace(/^\/(en|ru)(?=\/|$)/, `/${target}`);
+    if (target === "ru") return pathname === "/" ? "/ru" : `/ru${pathname}`;
+    return pathname.replace(/^\/ru(?=\/|$)/, "") || "/";
   }
 
   return (

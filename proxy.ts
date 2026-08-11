@@ -1,42 +1,41 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const locales = new Set(["en", "ru"]);
 const themes = new Set(["light", "dark"]);
+const primaryHost = "unfolding.day";
+const legacyHosts = new Set(["www.unfolding.day", "unfolding-journal.davidlewisiii.chatgpt.site"]);
 
-function preferredLocale(request: NextRequest) {
-  const saved = request.cookies.get("unfolding-language")?.value;
-  if (saved && locales.has(saved)) return saved;
-  return request.headers.get("accept-language")?.toLowerCase().startsWith("ru") ? "ru" : "en";
+function canonicalPath(pathname: string) {
+  return pathname === "/en" ? "/" : pathname.startsWith("/en/") ? pathname.slice(3) || "/" : pathname;
 }
 
 export function proxy(request: NextRequest) {
   const forwardedHost = request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? "";
   const host = forwardedHost.split(",")[0].trim().split(":")[0].toLowerCase();
 
-  if (host === "www.unfolding.day") {
+  if (legacyHosts.has(host)) {
     const destination = request.nextUrl.clone();
     destination.protocol = "https:";
-    destination.host = "unfolding.day";
+    destination.host = primaryHost;
+    destination.pathname = canonicalPath(destination.pathname);
     return NextResponse.redirect(destination, 301);
   }
 
   const { pathname } = request.nextUrl;
   const firstSegment = pathname.split("/")[1];
 
-  if (!locales.has(firstSegment)) {
-    const locale = preferredLocale(request);
+  if (firstSegment === "en") {
     const destination = request.nextUrl.clone();
-    destination.pathname = pathname === "/" ? `/${locale}` : `/${locale}${pathname}`;
-    return NextResponse.redirect(destination, 307);
+    destination.pathname = canonicalPath(pathname);
+    return NextResponse.redirect(destination, 301);
   }
 
   const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-unfolding-locale", firstSegment);
+  requestHeaders.set("x-unfolding-locale", firstSegment === "ru" ? "ru" : "en");
   const theme = request.cookies.get("unfolding-theme")?.value;
   if (theme && themes.has(theme)) requestHeaders.set("x-unfolding-theme", theme);
   return NextResponse.next({ request: { headers: requestHeaders } });
 }
 
 export const config = {
-  matcher: ["/((?!_next/|favicon\\.svg|og\\.png|.*\\.[a-zA-Z0-9]+$).*)"],
+  matcher: ["/:path*"],
 };
