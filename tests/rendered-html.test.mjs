@@ -92,6 +92,7 @@ test("renders a saved theme before the document is painted", async () => {
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /<html lang="en" data-theme="dark"/i);
+  assert.match(html, /<meta name="theme-color" content="#171717"/i);
   assert.doesNotMatch(html, /target="_top"/i);
 });
 

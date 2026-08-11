@@ -12,7 +12,7 @@ import "@fontsource-variable/inter/wght.css";
 import "katex/dist/katex.min.css";
 import "./globals.css";
 
-const themeBoot = `(function(){try{var e=document.documentElement,t=localStorage.getItem('unfolding-theme');if(t==='light'||t==='dark')e.setAttribute('data-theme',t);requestAnimationFrame(function(){e.setAttribute('data-theme-ready','')})}catch(e){}})()`;
+const themeBoot = `(function(){try{var e=document.documentElement,m=document.querySelector('meta[name="theme-color"]'),t=localStorage.getItem('unfolding-theme');if(t==='light'||t==='dark')e.setAttribute('data-theme',t);var r=e.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');if(m)m.setAttribute('content',r==='dark'?'#171717':'#f5f1e8');requestAnimationFrame(function(){e.setAttribute('data-theme-ready','')})}catch(e){}})()`;
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
@@ -50,7 +50,10 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   }));
   return (
     <html lang={locale} data-theme={theme} suppressHydrationWarning>
-      <head><script dangerouslySetInnerHTML={{ __html: themeBoot }} /></head>
+      <head>
+        <meta name="theme-color" content={theme === "dark" ? "#171717" : "#f5f1e8"} />
+        <script dangerouslySetInnerHTML={{ __html: themeBoot }} />
+      </head>
       <body>
         <div className="site-shell">
           <SiteHeader locale={locale} alternateRoutes={alternateRoutes} />
