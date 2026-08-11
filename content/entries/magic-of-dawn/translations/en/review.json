@@ -2,30 +2,30 @@
   "schemaVersion": 2,
   "entryId": "2502f97d-e27a-4c57-b44f-0e196e2103bd",
   "locale": "en",
-  "reviewedAt": "2026-08-11T16:00:48+03:00",
+  "reviewedAt": "2026-08-11T16:33:35+03:00",
   "originalSha256": "d6796f97ecc92fe520b6cec4caf103a4f4f090183c583938562a2b8ec67f75f2",
-  "draftSha256": "d6796f97ecc92fe520b6cec4caf103a4f4f090183c583938562a2b8ec67f75f2",
-  "summary": "A clear, contemplative translation that preserves the atmosphere and open questions of the Russian original. It is ready for publication from the review perspective.",
+  "draftSha256": "67f0c2208a37e053a1085f8c7beea32860156645af690a1d46f406c2f751b812",
+  "summary": "The revised English entry remains fluent and contemplative. “A sleepless summer night” is idiomatic and preserves the Russian meaning.",
   "checks": [
     {
       "category": "language",
       "status": "reviewed",
-      "explanation": "The English is fluent and the concise fragments preserve the original's observational rhythm."
+      "explanation": "“A sleepless summer night” is idiomatic English and naturally modifies the night with both qualities."
     },
     {
       "category": "clarity",
       "status": "reviewed",
-      "explanation": "The sensory scene and closing questions are clear."
+      "explanation": "The seasonal detail makes the opening image more specific."
     },
     {
       "category": "logic",
       "status": "reviewed",
-      "explanation": "This is reflective writing rather than an argument requiring a formal inferential structure."
+      "explanation": "This is reflective writing rather than a formal argument."
     },
     {
       "category": "factual_claims",
       "status": "not_applicable",
-      "explanation": "The entry presents direct experience and open questions, not externally verifiable claims."
+      "explanation": "The entry presents direct experience and open questions."
     },
     {
       "category": "mathematics",

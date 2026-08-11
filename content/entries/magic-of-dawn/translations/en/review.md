@@ -1,10 +1,10 @@
 # Review
 
-A clear, contemplative translation that preserves the atmosphere and open questions of the Russian original. It is ready for publication from the review perspective.
+The revised English entry remains fluent and contemplative. “A sleepless summer night” is idiomatic and preserves the Russian meaning.
 
-- **language**: reviewed — The English is fluent and the concise fragments preserve the original's observational rhythm.
-- **clarity**: reviewed — The sensory scene and closing questions are clear.
-- **logic**: reviewed — This is reflective writing rather than an argument requiring a formal inferential structure.
-- **factual claims**: not_applicable — The entry presents direct experience and open questions, not externally verifiable claims.
+- **language**: reviewed — “A sleepless summer night” is idiomatic English and naturally modifies the night with both qualities.
+- **clarity**: reviewed — The seasonal detail makes the opening image more specific.
+- **logic**: reviewed — This is reflective writing rather than a formal argument.
+- **factual claims**: not_applicable — The entry presents direct experience and open questions.
 - **mathematics**: not_applicable — No mathematical content.
 

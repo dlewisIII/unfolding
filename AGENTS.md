@@ -40,7 +40,7 @@ This rule never authorizes changes to immutable author text. Do not remove, repl
 
 ## Revisions and active entry
 
-- When context clearly identifies the current entry, treat a new author-supplied version as a revision of its `draft.md`, not a new entry. Use `pnpm entry:draft <slug|--active> <locale> --from <file>`, then review again.
+- When context clearly identifies the current entry, treat a new author-supplied version as a revision of its `draft.md`, not a new entry. Use `pnpm entry:draft <slug|--active> <locale> --from <file>`, then review again. For an already published version, this creates a private revision state while the existing `published.md` remains public; only a later explicit publish replaces it.
 - Repository state stores at most one explicit active entry in `content/.active-entry.json`. New-entry and explicit selection update it. Translation, review, revision, and publication may use it only when context is unambiguous.
 - Never infer “active” merely from the newest timestamp. If conversational context and explicit active state conflict, or multiple drafts are plausible, ask which entry the author means. Use `pnpm entry:active -- show|set <slug>|clear` to inspect or change the explicit state.
 

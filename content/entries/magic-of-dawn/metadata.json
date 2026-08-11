@@ -7,7 +7,7 @@
   "status": "published",
   "createdAt": "2026-08-11T16:00:19+03:00",
   "submittedAt": "2026-08-11T16:00:19+03:00",
-  "publishedAt": "2026-08-11T16:10:15+03:00",
+  "publishedAt": "2026-08-11T16:34:43+03:00",
   "originalSha256": "a4e0913ab72c088a48263ab8bf1b4577e534d9b90362ac59a9f1562106edffe6",
   "publishedFrom": "draft",
   "tags": [
@@ -26,7 +26,7 @@
       "translatedAt": "2026-08-11T16:00:48+03:00",
       "translationMethod": "author",
       "submittedAt": "2026-08-11T16:00:48+03:00",
-      "publishedAt": "2026-08-11T16:10:15+03:00",
+      "publishedAt": "2026-08-11T16:34:44+03:00",
       "originalSha256": "d6796f97ecc92fe520b6cec4caf103a4f4f090183c583938562a2b8ec67f75f2",
       "publishedFrom": "draft",
       "tags": [
@@ -35,10 +35,10 @@
         "contemplation",
         "consciousness"
       ],
-      "publishedSha256": "d6796f97ecc92fe520b6cec4caf103a4f4f090183c583938562a2b8ec67f75f2",
+      "publishedSha256": "67f0c2208a37e053a1085f8c7beea32860156645af690a1d46f406c2f751b812",
       "authorDecision": "publish_current_draft"
     }
   },
-  "publishedSha256": "a4e0913ab72c088a48263ab8bf1b4577e534d9b90362ac59a9f1562106edffe6",
+  "publishedSha256": "fb176fabc7620e50a26b85da8d3c37aeea2bd3bf9d052425ec3efb02c55a33a1",
   "authorDecision": "publish_current_draft"
 }

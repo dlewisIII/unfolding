@@ -24,7 +24,6 @@ const metadata = await readMetadata(slug);
 const directory = lifecycleDirectory(slug, locale, metadata);
 const lifecycle = locale === metadata.originalLanguage ? metadata : metadata.translations?.[locale];
 if (!lifecycle) throw new Error(`No ${locale} lifecycle exists.`);
-if (lifecycle.status === "published") throw new Error("A published language version cannot be resubmitted.");
 const draft = await readFile(path.join(directory, "draft.md"), "utf8");
 if (!draft.trim()) throw new Error("Draft is empty.");
 const originalPath = path.join(directory, "original.md");
@@ -42,7 +41,10 @@ await writeJson(path.join(directory, "suggested-tags.json"), { schemaVersion: 1,
 const counts = review.checks.map((item) => `- **${item.category.replace("_", " ")}**: ${item.status}${item.explanation ? ` — ${item.explanation}` : ""}`);
 const details = review.issues.map((item) => `### ${item.category} · ${item.severity}\n\n${item.location.fragment ? `“${item.location.fragment}”` : `paragraph ${item.location.paragraph}`}\n\n${item.explanation}`);
 await writeFile(path.join(directory, "review.md"), `# Review\n\n${review.summary}\n\n${counts.join("\n")}\n${details.length ? `\n${details.join("\n\n")}` : ""}\n`, "utf8");
-if (locale === metadata.originalLanguage) await writeMetadata(slug, { ...metadata, status: "reviewed", submittedAt: reviewedAt, originalSha256 });
-else await writeMetadata(slug, { ...metadata, translations: { ...metadata.translations, [locale]: { ...lifecycle, status: "reviewed", submittedAt: reviewedAt, originalSha256 } } });
+const reviewedLifecycle = lifecycle.status === "published"
+  ? { ...lifecycle, revisionStatus: "reviewed", revisionSubmittedAt: reviewedAt, revisionDraftSha256: sha256(draft) }
+  : { ...lifecycle, status: "reviewed", submittedAt: reviewedAt, originalSha256 };
+if (locale === metadata.originalLanguage) await writeMetadata(slug, { ...metadata, ...reviewedLifecycle });
+else await writeMetadata(slug, { ...metadata, translations: { ...metadata.translations, [locale]: reviewedLifecycle } });
 const substantial = review.issues.filter((item) => item.status === "open" && ["major", "blocking"].includes(item.severity)).length;
 console.log(substantial ? `Review saved: ${substantial} substantial open issue(s).` : "Review saved: ready for publication from the review perspective; author decision is still required.");

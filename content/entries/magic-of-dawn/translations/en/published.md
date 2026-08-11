@@ -1,6 +1,6 @@
 What if the magic of dawn could be carried through the day?
 
-A sleepless night.
+A sleepless summer night.
 
 At daybreak, I opened the window. The freshness and coolness of the motionless air. Tree branches frozen as if in a still frame. Neither birdsong nor any other sound has yet broken the silence left by the night. The tops of the pines are lit by the sun’s rays passing through pink clouds. The sky is a clear, translucent blue, with a few light white clouds gently drifting towards me.
 

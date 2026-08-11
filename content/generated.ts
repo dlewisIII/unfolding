@@ -13,7 +13,7 @@ export const publishedEntries: PublishedEntry[] = [
         "slug": "magic-of-dawn",
         "title": "Что, если протянуть сквозь день магию утра?",
         "createdAt": "2026-08-11T16:00:19+03:00",
-        "publishedAt": "2026-08-11T16:10:15+03:00",
+        "publishedAt": "2026-08-11T16:34:43+03:00",
         "tags": [
           "творчество",
           "письмо",
@@ -21,15 +21,15 @@ export const publishedEntries: PublishedEntry[] = [
           "сознание"
         ],
         "externalLinks": [],
-        "excerpt": "Что, если протянуть сквозь день магию утра? Ночь без сна. На рассвете открыла окно. Свежесть и прохлада неподвижного воздуха. Ветви деревьев, замершие как в стоп-кадре. Ни пение птиц, ни какие-либо другие звуки…",
-        "body": "Что, если протянуть сквозь день магию утра? \n\nНочь без сна. \n\nНа рассвете открыла окно. Свежесть и прохлада неподвижного воздуха. Ветви деревьев, замершие как в стоп-кадре. Ни пение птиц, ни какие-либо другие звуки ещё не нарушают тишину прошедшей ночи. Верхушки сосен подсвечены солнечными лучами, проходящими сквозь розовые облака. Небо прозрачно-голубое с несколькими легкими белыми тучками, мягко плывущими в мою сторону. \n\nЧто отличает это время суток от других часов дня? Почему так легко созерцание? Почему сознание замирает вместе с природой? В чем эта магия?\n"
+        "excerpt": "Что, если протянуть сквозь день магию утра? Летняя ночь без сна. На рассвете открыла окно. Свежесть и прохлада неподвижного воздуха. Ветви деревьев, замершие как в стоп-кадре. Ни пение птиц, ни какие-либо други…",
+        "body": "Что, если протянуть сквозь день магию утра? \n\nЛетняя ночь без сна. \n\nНа рассвете открыла окно. Свежесть и прохлада неподвижного воздуха. Ветви деревьев, замершие как в стоп-кадре. Ни пение птиц, ни какие-либо другие звуки ещё не нарушают тишину прошедшей ночи. Верхушки сосен подсвечены солнечными лучами, проходящими сквозь розовые облака. Небо прозрачно-голубое с несколькими легкими белыми тучками, мягко плывущими в мою сторону. \n\nЧто отличает это время суток от других часов дня? Почему так легко созерцание? Почему сознание замирает вместе с природой? В чем эта магия?\n"
       },
       "en": {
         "locale": "en",
         "slug": "magic-of-dawn",
         "title": "What if the magic of dawn could be carried through the day?",
         "createdAt": "2026-08-11T16:00:19+03:00",
-        "publishedAt": "2026-08-11T16:10:15+03:00",
+        "publishedAt": "2026-08-11T16:34:44+03:00",
         "tags": [
           "creative work",
           "writing",
@@ -37,8 +37,8 @@ export const publishedEntries: PublishedEntry[] = [
           "consciousness"
         ],
         "externalLinks": [],
-        "excerpt": "What if the magic of dawn could be carried through the day? A sleepless night. At daybreak, I opened the window. The freshness and coolness of the motionless air. Tree branches frozen as if in a still frame. Ne…",
-        "body": "What if the magic of dawn could be carried through the day?\n\nA sleepless night.\n\nAt daybreak, I opened the window. The freshness and coolness of the motionless air. Tree branches frozen as if in a still frame. Neither birdsong nor any other sound has yet broken the silence left by the night. The tops of the pines are lit by the sun’s rays passing through pink clouds. The sky is a clear, translucent blue, with a few light white clouds gently drifting towards me.\n\nWhat distinguishes this time of day from all the other hours? Why does contemplation come so effortlessly? Why does consciousness grow still along with nature? What is this magic?\n"
+        "excerpt": "What if the magic of dawn could be carried through the day? A sleepless summer night. At daybreak, I opened the window. The freshness and coolness of the motionless air. Tree branches frozen as if in a still fr…",
+        "body": "What if the magic of dawn could be carried through the day?\n\nA sleepless summer night.\n\nAt daybreak, I opened the window. The freshness and coolness of the motionless air. Tree branches frozen as if in a still frame. Neither birdsong nor any other sound has yet broken the silence left by the night. The tops of the pines are lit by the sun’s rays passing through pink clouds. The sky is a clear, translucent blue, with a few light white clouds gently drifting towards me.\n\nWhat distinguishes this time of day from all the other hours? Why does contemplation come so effortlessly? Why does consciousness grow still along with nature? What is this magic?\n"
       }
     }
   },

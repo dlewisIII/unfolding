@@ -1,6 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { lifecycleDirectory, readMetadata, resolveEntry, setActiveEntry } from "./lib/content.mjs";
+import { lifecycleDirectory, localDateTime, readMetadata, resolveEntry, setActiveEntry, writeMetadata } from "./lib/content.mjs";
 
 const args = process.argv.slice(2);
 const slug = await resolveEntry(args[0]);
@@ -11,7 +11,11 @@ const metadata = await readMetadata(slug);
 const directory = lifecycleDirectory(slug, locale, metadata);
 const lifecycle = locale === metadata.originalLanguage ? metadata : metadata.translations?.[locale];
 if (!lifecycle) throw new Error(`No ${locale} lifecycle exists. Create a translation first.`);
-if (lifecycle.status === "published") throw new Error("Published text is immutable; create an explicit new editorial workflow before changing it.");
 await writeFile(path.join(directory, "draft.md"), await readFile(path.resolve(args[fromIndex + 1])));
+if (lifecycle.status === "published") {
+  const revised = { ...lifecycle, revisionStatus: "draft", revisionStartedAt: localDateTime() };
+  if (locale === metadata.originalLanguage) await writeMetadata(slug, { ...metadata, ...revised });
+  else await writeMetadata(slug, { ...metadata, translations: { ...metadata.translations, [locale]: revised } });
+}
 await setActiveEntry(slug);
-console.log(`Draft updated without changing the immutable original: ${slug} (${locale})`);
+console.log(`Draft updated without changing immutable original or published text: ${slug} (${locale})`);
