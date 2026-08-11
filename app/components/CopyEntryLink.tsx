@@ -19,7 +19,9 @@ export function CopyEntryLink({ locale, canonicalPath }: { locale: Locale; canon
   }
 
   return <span className="copy-entry-action">
-    <button type="button" onClick={copyLink} aria-label={text.copyLink} title={text.copyLink}>⌁</button>
+    <button type="button" onClick={copyLink} aria-label={text.copyLink} title={text.copyLink}>
+      <span className="chain-link-icon" aria-hidden="true" />
+    </button>
     <span className="copy-entry-status" role="status" aria-live="polite">{copied ? text.linkCopied : ""}</span>
   </span>;
 }

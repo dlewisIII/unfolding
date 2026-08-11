@@ -67,8 +67,12 @@ test("keeps permanent entry pages and localized copy-link actions", async () => 
   assert.equal(russian.status, 200);
   assert.match(englishHtml, /rel="canonical" href="https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/en\/entries\/limits-of-scientific-description"/i);
   assert.match(englishHtml, /aria-label="Copy link"/i);
+  assert.match(englishHtml, /href="\/en" target="_top">← Notes<\/a>/i);
+  assert.match(englishHtml, /class="chain-link-icon"/i);
   assert.match(englishHtml, /11 August 2026 · 02:58/i);
   assert.match(russianHtml, /aria-label="Скопировать ссылку"/i);
+  assert.match(russianHtml, /href="\/ru" target="_top">← Записи<\/a>/i);
+  assert.doesNotMatch(englishHtml, />⌁<\/button>/i);
   assert.match(russianHtml, /11 августа 2026 · 02:58/i);
   assert.match(englishHtml, /hreflang="ru"/i);
   assert.match(russianHtml, /hreflang="en"/i);
