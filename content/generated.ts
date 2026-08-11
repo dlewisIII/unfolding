@@ -5,6 +5,52 @@ export type PublishedVersion = { locale: Locale; slug: string; title: string | n
 export type PublishedEntry = { id: string; originalLanguage: Locale; versions: Partial<Record<Locale, PublishedVersion>>; };
 export const publishedEntries: PublishedEntry[] = [
   {
+    "id": "07491c92-d8d4-47de-aa3e-e07bbe918103",
+    "originalLanguage": "en",
+    "versions": {
+      "en": {
+        "locale": "en",
+        "slug": "implication-chain",
+        "title": "Implication Chain",
+        "createdAt": "2026-08-11T04:01:47+03:00",
+        "publishedAt": "2026-08-11T04:39:55+03:00",
+        "tags": [
+          "propositional logic",
+          "conditional proof",
+          "modus ponens"
+        ],
+        "externalLinks": [
+          {
+            "id": "aae6a7b2-a15c-4547-b1d1-ab0afb9f7dd3",
+            "type": "github",
+            "url": "https://github.com/avikulova/study-math/blob/main/logic/proofs/implication-chain.md",
+            "label": "GitHub"
+          }
+        ],
+        "excerpt": "Implication Chain Statement Suppose that 1. P \\rightarrow Q, 2. Q \\rightarrow R. Then P \\rightarrow R. Strategy Our goal is to prove an implication. A natural approach is to assume its antecedent, derive the co…",
+        "body": "# Implication Chain\n\n## Statement\n\nSuppose that\n\n1. $P \\rightarrow Q$,\n2. $Q \\rightarrow R$.\n\nThen\n\n$$\nP \\rightarrow R.\n$$\n\n## Strategy\n\nOur goal is to prove an implication.\nA natural approach is to assume its antecedent, derive the consequent using the given premises, and then apply Conditional Proof.\n\n## Proof\n\nAssume $P$.\n\nFrom $P \\rightarrow Q$ and $P$, by Modus Ponens, we obtain $Q$.\n\nFrom $Q \\rightarrow R$ and $Q$, by Modus Ponens, we obtain $R$.\n\nTherefore,\n\n$$\nP \\rightarrow R,\n$$\n\nby Conditional Proof.\n\n$\\square$\n\n## Remarks\n\nThis proof illustrates how Conditional Proof is often combined with inference rules such as Modus Ponens.\n"
+      },
+      "ru": {
+        "locale": "ru",
+        "slug": "implication-chain",
+        "title": null,
+        "createdAt": "2026-08-11T04:01:47+03:00",
+        "publishedAt": "2026-08-11T04:39:56+03:00",
+        "tags": [],
+        "externalLinks": [
+          {
+            "id": "aae6a7b2-a15c-4547-b1d1-ab0afb9f7dd3",
+            "type": "github",
+            "url": "https://github.com/avikulova/study-math/blob/main/logic/proofs/implication-chain.md",
+            "label": "GitHub"
+          }
+        ],
+        "excerpt": "Цепочка импликаций Утверждение Предположим, что 1. P \\rightarrow Q, 2. Q \\rightarrow R. Тогда P \\rightarrow R. Стратегия Наша цель состоит в том, чтобы доказать импликацию. Для этого предположим P, выведем R из…",
+        "body": "# Цепочка импликаций\n\n## Утверждение\n\nПредположим, что\n\n1. $P \\rightarrow Q$,\n2. $Q \\rightarrow R$.\n\nТогда\n\n$$\nP \\rightarrow R.\n$$\n\n## Стратегия\n\nНаша цель состоит в том, чтобы доказать импликацию. Для этого предположим $P$, выведем $R$ из данных посылок, а затем применим правило введения импликации.\n\n## Доказательство\n\nПредположим $P$.\n\nИз $P \\rightarrow Q$ и $P$ по правилу отделения (modus ponens) получаем $Q$.\n\nИз $Q \\rightarrow R$ и $Q$ по правилу отделения (modus ponens) получаем $R$.\n\nСледовательно,\n\n$$\nP \\rightarrow R.\n$$\n\nЭто следует по правилу введения импликации.\n\n$\\square$\n\n## Замечания\n\nЭто доказательство показывает, как правило введения импликации может сочетаться с правилом отделения (modus ponens).\n"
+      }
+    }
+  },
+  {
     "id": "4621bd84-17fb-404e-9d13-dff8c80357ff",
     "originalLanguage": "ru",
     "versions": {
