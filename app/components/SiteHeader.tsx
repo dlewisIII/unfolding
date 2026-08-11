@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ThemeControl } from "./ThemeControl";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { copy, type Locale } from "../i18n";
@@ -11,20 +10,20 @@ export function SiteHeader({ locale, alternateRoutes }: { locale: Locale; altern
   return (
     <header className="site-header">
       <nav className="top-nav" aria-label="Primary navigation">
-        <Link className="home-link" href={`/${locale}`} aria-label={locale === "ru" ? "Главная" : "Home"} title={locale === "ru" ? "Главная" : "Home"}>
+        <a className="home-link" href={`/${locale}`} target="_top" aria-label={locale === "ru" ? "Главная" : "Home"} title={locale === "ru" ? "Главная" : "Home"}>
           <span className="home-icon" aria-hidden="true" />
-        </Link>
-        <Link href={`/${locale}/about`}>{text.about}</Link>
-        <Link href={`/${locale}/search`}>{text.search}</Link>
+        </a>
+        <a href={`/${locale}/about`} target="_top">{text.about}</a>
+        <a href={`/${locale}/search`} target="_top">{text.search}</a>
         <div className="nav-controls">
           <LanguageSwitcher locale={locale} alternateRoutes={alternateRoutes} />
           <ThemeControl locale={locale} />
         </div>
       </nav>
       <div className="journal-identity">
-        <Link className="wordmark" href={`/${locale}`} aria-label="UNFOLDING">
+        <a className="wordmark" href={`/${locale}`} target="_top" aria-label="UNFOLDING">
           <span className="wordmark-art" aria-hidden="true" dangerouslySetInnerHTML={{ __html: wordmarkSvg }} />
-        </Link>
+        </a>
         <div className="identity-rule" aria-hidden="true" />
         <ul className="concept-coordinates" aria-label="Conceptual coordinates">
           <li>Phenomenology</li>

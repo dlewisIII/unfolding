@@ -39,7 +39,7 @@ test("renders both indexable journal homes and published bilingual entries", asy
   assert.match(html, /target="_blank"[^>]+aria-label="Open entry"/i);
   assert.match(html, /href="\/en\/about"/i);
   assert.match(html, /href="\/en\/search"/i);
-  assert.match(html, /href="\/en" class="home-link"[^>]+aria-label="Home"/i);
+  assert.match(html, /class="home-link" href="\/en"[^>]+aria-label="Home"/i);
   assert.match(html, /href="\/ru"/i);
   assert.match(html, /aria-label="UNFOLDING"/i);
   assert.match(html, /viewBox="0 0 1041 125"/i);
@@ -57,7 +57,7 @@ test("renders both indexable journal homes and published bilingual entries", asy
   assert.match(russianHtml, /Научное открытие может начаться с факта/i);
   assert.match(russianHtml, /href="\/ru\/entries\/limits-of-scientific-description"/i);
   assert.match(russianHtml, /11 августа 2026 · 02:58/i);
-  assert.match(russianHtml, /href="\/ru" class="home-link"[^>]+aria-label="Главная"/i);
+  assert.match(russianHtml, /class="home-link" href="\/ru"[^>]+aria-label="Главная"/i);
 });
 
 test("keeps permanent entry pages and localized copy-link actions", async () => {
@@ -71,11 +71,11 @@ test("keeps permanent entry pages and localized copy-link actions", async () => 
   assert.equal(russian.status, 200);
   assert.match(englishHtml, /rel="canonical" href="https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/en\/entries\/limits-of-scientific-description"/i);
   assert.match(englishHtml, /aria-label="Copy link"/i);
-  assert.match(englishHtml, /href="\/en">← Notes<\/a>/i);
+  assert.match(englishHtml, /href="\/en" target="_top">← Notes<\/a>/i);
   assert.match(englishHtml, /class="chain-link-icon"/i);
   assert.match(englishHtml, /11 August 2026 · 02:58/i);
   assert.match(russianHtml, /aria-label="Скопировать ссылку"/i);
-  assert.match(russianHtml, /href="\/ru">← Записи<\/a>/i);
+  assert.match(russianHtml, /href="\/ru" target="_top">← Записи<\/a>/i);
   assert.doesNotMatch(englishHtml, />⌁<\/button>/i);
   assert.match(russianHtml, /11 августа 2026 · 02:58/i);
   assert.match(englishHtml, /hreflang="ru"/i);
@@ -93,7 +93,7 @@ test("renders a saved theme before the document is painted", async () => {
   const html = await response.text();
   assert.match(html, /<html lang="en" data-theme="dark"/i);
   assert.match(html, /<meta name="theme-color" content="#171717"/i);
-  assert.doesNotMatch(html, /target="_top"/i);
+  assert.match(html, /target="_top"/i);
 });
 
 test("renders localized About and Search routes", async () => {

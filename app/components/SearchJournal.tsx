@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 import type { PublishedVersion } from "@/content/generated";
 import { copy, type Locale } from "../i18n";
 
@@ -34,7 +33,7 @@ export function SearchJournal({ entries, locale }: { entries: PublishedVersion[]
         <ol className="search-results">
           {results.map((entry) => (
             <li key={entry.slug}>
-              <Link href={`/${locale}/entries/${entry.slug}`}>{entry.title || entry.excerpt || "UNFOLDING"}</Link>
+              <a href={`/${locale}/entries/${entry.slug}`} target="_top">{entry.title || entry.excerpt || "UNFOLDING"}</a>
               {entry.excerpt && <p>{entry.excerpt}</p>}
               {entry.tags.length > 0 && <span>{entry.tags.join(" · ")}</span>}
             </li>

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
@@ -56,7 +55,7 @@ export default async function EntryPage({ params }: Props) {
   const renderedBody = withoutDuplicateLeadingTitle(version.body, displayTitle);
 
   return <main>
-    <nav className="entry-nav"><Link href={`/${rawLocale}`}>{text.back}</Link><CopyEntryLink locale={rawLocale} canonicalPath={canonicalPath} /></nav>
+    <nav className="entry-nav"><a href={`/${rawLocale}`} target="_top">{text.back}</a><CopyEntryLink locale={rawLocale} canonicalPath={canonicalPath} /></nav>
     <article>
       <header className="entry-header"><time className="entry-time" dateTime={version.createdAt}>{date}</time>{displayTitle ? <h1>{displayTitle}</h1> : null}</header>
       <div className="prose entry-content"><ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>{renderedBody}</ReactMarkdown></div>
