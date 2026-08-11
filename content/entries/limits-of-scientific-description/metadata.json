@@ -15,6 +15,7 @@
     "эпистемология",
     "модели реальности"
   ],
+  "externalLinks": [],
   "translations": {
     "en": {
       "locale": "en",
@@ -22,6 +23,7 @@
       "slug": "limits-of-scientific-description",
       "status": "published",
       "translatedAt": "2026-08-11T03:11:39+03:00",
+      "translationMethod": "agent",
       "submittedAt": "2026-08-11T03:14:22+03:00",
       "publishedAt": "2026-08-11T03:15:39+03:00",
       "originalSha256": "5ff526145f344207de9b63671cea39e2a56b96ec4a711f7622666c133075ef25",

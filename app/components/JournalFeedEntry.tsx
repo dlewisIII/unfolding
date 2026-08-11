@@ -7,6 +7,7 @@ import remarkMath from "remark-math";
 import type { PublishedVersion } from "@/content/generated";
 import { copy, type Locale } from "../i18n";
 import { formatEntryDate, journalPreview } from "../lib/entry-display.mjs";
+import { ExternalLinks } from "./ExternalLinks";
 
 export function JournalFeedEntry({ entry, locale }: { entry: PublishedVersion; locale: Locale }) {
   const [expanded, setExpanded] = useState(false);
@@ -29,6 +30,7 @@ export function JournalFeedEntry({ entry, locale }: { entry: PublishedVersion; l
     {entry.title ? <h2><a href={permalink} target="_top">{entry.title}</a></h2> : null}
     <div className="prose feed-entry-body"><ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>{expanded ? entry.body : preview.body}</ReactMarkdown></div>
     {preview.truncated && <button className="inline-entry-toggle" type="button" aria-expanded={expanded} onClick={expanded ? collapse : () => setExpanded(true)}>{expanded ? text.collapse : text.readMore}</button>}
+    {(!preview.truncated || expanded) && <ExternalLinks links={entry.externalLinks} ariaLabel={text.externalLinks} />}
     {entry.tags.length > 0 && <ul className="tags" aria-label={text.tags}>{entry.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>}
   </article>;
 }

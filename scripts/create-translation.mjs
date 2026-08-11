@@ -8,7 +8,9 @@ const slug = await resolveEntry(args[0]);
 const locale = args[1];
 const fromIndex = args.indexOf("--from");
 const titleIndex = args.indexOf("--title");
-if (!slug || !locale || fromIndex < 0 || !args[fromIndex + 1]) throw new Error("Usage: pnpm entry:translate <slug|--active> <ru|en> --from <text-file> [--title <title>]");
+const methodIndex = args.indexOf("--method");
+const translationMethod = methodIndex >= 0 ? args[methodIndex + 1] : null;
+if (!slug || !locale || fromIndex < 0 || !args[fromIndex + 1] || !["author", "agent"].includes(translationMethod)) throw new Error("Usage: pnpm entry:translate <slug|--active> <ru|en> --from <text-file> --method <author|agent> [--title <approved-title>]");
 assertLocale(locale);
 const metadata = await readMetadata(slug);
 if (locale === metadata.originalLanguage) throw new Error(`${locale} is the original language, not a translation.`);
@@ -27,6 +29,7 @@ await writeMetadata(slug, {
       slug: metadata.slug,
       status: "draft",
       translatedAt: localDateTime(),
+      translationMethod,
       submittedAt: null,
       publishedAt: null,
       originalSha256: null,

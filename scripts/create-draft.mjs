@@ -31,6 +31,7 @@ await writeJson(path.join(directory, "metadata.json"), {
   originalSha256: null,
   publishedFrom: null,
   tags: [],
+  externalLinks: [],
   translations: {},
 });
 await setActiveEntry(slug);

@@ -28,16 +28,21 @@ test("keeps one root identity and independent immutable language lifecycles", as
   const revisedRu = path.join(workspace, "ru-revised.txt");
   const reviewInput = path.join(workspace, "review-input.json");
   const tagsInput = path.join(workspace, "tags-input.json");
+  const titleInput = path.join(workspace, "title-input.json");
+  const linksInput = path.join(workspace, "links-input.json");
   await writeFile(ruSource, "Исходный текст.\n", "utf8");
   await writeFile(enSource, "Original translation.\n", "utf8");
   await writeFile(revisedRu, "Исправленный автором текст.\n", "utf8");
   await writeFile(reviewInput, JSON.stringify(review), "utf8");
   await writeFile(tagsInput, JSON.stringify({ tags: ["experience"], rationale: "From the text." }), "utf8");
+  await writeFile(titleInput, JSON.stringify({ source: "generated", options: [{ title: "A possible title", rationale: "Concise." }] }), "utf8");
+  await writeFile(linksInput, JSON.stringify({ externalLinks: [{ type: "github", url: "https://github.com/example/repository/blob/main/proof.md", label: "Repository proof" }] }), "utf8");
 
   await run(process.execPath, [script("create-draft.mjs"), "ru", "first-note", "--from", ruSource], { cwd: workspace });
   const root = JSON.parse(await readFile(path.join(workspace, "content/entries/first-note/metadata.json"), "utf8"));
   assert.equal(root.originalLanguage, "ru");
   assert.equal(root.title, null);
+  assert.deepEqual(root.externalLinks, []);
   assert.equal(await readFile(path.join(workspace, "content/entries/first-note/draft.md"), "utf8"), "Исходный текст.\n");
 
   await run(process.execPath, [script("submit-review.mjs"), "first-note", "ru", reviewInput, tagsInput], { cwd: workspace });
@@ -46,17 +51,24 @@ test("keeps one root identity and independent immutable language lifecycles", as
   assert.equal((JSON.parse(await readFile(path.join(workspace, "content/entries/first-note/review.json"), "utf8"))).checks.length, 5);
   assert.equal((JSON.parse(await readFile(path.join(workspace, "content/entries/first-note/suggested-tags.json"), "utf8"))).tags[0], "experience");
   assert.equal(root.tags.length, 0);
+  await run(process.execPath, [script("suggest-title.mjs"), "--active", "ru", titleInput], { cwd: workspace });
+  assert.equal((JSON.parse(await readFile(path.join(workspace, "content/entries/first-note/suggested-title.json"), "utf8"))).options[0].title, "A possible title");
+  assert.equal((JSON.parse(await readFile(path.join(workspace, "content/entries/first-note/metadata.json"), "utf8"))).title, null);
+  await run(process.execPath, [script("set-external-links.mjs"), "--active", "--from", linksInput], { cwd: workspace });
+  assert.equal((JSON.parse(await readFile(path.join(workspace, "content/entries/first-note/metadata.json"), "utf8"))).externalLinks[0].url, "https://github.com/example/repository/blob/main/proof.md");
+  assert.equal(await readFile(path.join(workspace, "content/entries/first-note/draft.md"), "utf8"), "Исходный текст.\n");
 
   await run(process.execPath, [script("update-draft.mjs"), "--active", "ru", "--from", revisedRu], { cwd: workspace });
   await run(process.execPath, [script("submit-review.mjs"), "--active", "ru", reviewInput, tagsInput], { cwd: workspace });
   assert.equal(await readFile(path.join(workspace, "content/entries/first-note/original.md"), "utf8"), sealedRu);
 
-  await run(process.execPath, [script("create-translation.mjs"), "--active", "en", "--from", enSource], { cwd: workspace });
+  await run(process.execPath, [script("create-translation.mjs"), "--active", "en", "--from", enSource, "--method", "author"], { cwd: workspace });
   const translated = JSON.parse(await readFile(path.join(workspace, "content/entries/first-note/metadata.json"), "utf8"));
   assert.equal(translated.id, root.id);
   assert.equal(translated.createdAt, root.createdAt);
   assert.equal(translated.originalLanguage, "ru");
   assert.ok(translated.translations.en.translatedAt);
+  assert.equal(translated.translations.en.translationMethod, "author");
   assert.equal(translated.translations.en.status, "draft");
   assert.rejects(readFile(path.join(workspace, "content/entries/first-note/translations/en/published.md"), "utf8"));
 

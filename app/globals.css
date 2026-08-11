@@ -172,6 +172,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .feed-entry-body > :last-child { margin-bottom: 0; }
 .inline-entry-toggle { margin-top: 15px; padding: 0; border: 0; border-bottom: 1px solid var(--subtle-border); background: transparent; color: var(--secondary-text); font-family: var(--sans); font-size: 12px; letter-spacing: .035em; cursor: pointer; }
 .inline-entry-toggle:hover { color: var(--primary-text); border-color: currentColor; }
+.external-links { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 25px; color: var(--secondary-text); font-family: var(--sans); font-size: 12px; letter-spacing: .025em; }
+.external-links a:hover { color: var(--primary-text); }
 .tags { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 19px 0 0; padding: 0; list-style: none; color: var(--tags); font-family: var(--sans); font-size: 12px; letter-spacing: .04em; }
 .tags li::before { content: "#"; opacity: .55; }
 .empty-state { padding: 58px 0 106px; }

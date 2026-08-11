@@ -7,6 +7,7 @@ import { publishedEntries } from "@/content/generated";
 import { copy, isLocale, siteUrl, type Locale } from "../../../i18n";
 import { CopyEntryLink } from "../../../components/CopyEntryLink";
 import { formatEntryDate } from "../../../lib/entry-display.mjs";
+import { ExternalLinks } from "../../../components/ExternalLinks";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -56,6 +57,7 @@ export default async function EntryPage({ params }: Props) {
     <article>
       <header className="entry-header"><time className="entry-time" dateTime={version.createdAt}>{date}</time>{version.title ? <h1>{version.title}</h1> : null}</header>
       <div className="prose"><ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>{version.body}</ReactMarkdown></div>
+      <ExternalLinks links={version.externalLinks} ariaLabel={text.externalLinks} />
       {version.tags.length > 0 && <footer className="entry-taxonomy"><h2>{text.tags}</h2><ul className="tags">{version.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul></footer>}
     </article>
   </main>;

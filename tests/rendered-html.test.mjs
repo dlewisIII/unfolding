@@ -104,13 +104,14 @@ test("publishes robots and sitemap discovery files", async () => {
 });
 
 test("keeps review records structured and connections independent", async () => {
-  const [reviewSchema, connectionSchema, workflow, explore, languageSwitcher, syncScript] = await Promise.all([
+  const [reviewSchema, connectionSchema, workflow, explore, languageSwitcher, syncScript, externalLinks] = await Promise.all([
     readFile(new URL("../content/schemas/review.schema.json", import.meta.url), "utf8"),
     readFile(new URL("../content/schemas/connection.schema.json", import.meta.url), "utf8"),
     readFile(new URL("../docs/CONTENT_WORKFLOW.md", import.meta.url), "utf8"),
     readFile(new URL("../docs/EXPLORE_CONCEPT.md", import.meta.url), "utf8"),
     readFile(new URL("../app/components/LanguageSwitcher.tsx", import.meta.url), "utf8"),
     readFile(new URL("../scripts/sync-content.mjs", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/ExternalLinks.tsx", import.meta.url), "utf8"),
   ]);
   assert.match(reviewSchema, /factual_claims/);
   assert.match(reviewSchema, /confidence/);
@@ -122,4 +123,6 @@ test("keeps review records structured and connections independent", async () => 
   assert.match(await readFile(new URL("../docs/BILINGUAL_ARCHITECTURE.md", import.meta.url), "utf8"), /one stable `id`[\s\S]*originalLanguage[\s\S]*No translation is generated or published automatically/i);
   assert.match(languageSwitcher, /is-unavailable[\s\S]*Translation not published/i);
   assert.match(syncScript, /translation\.status !== "published"/i);
+  assert.match(externalLinks, /link\.type === "github" \? "GitHub ↗"/i);
+  assert.doesNotMatch(syncScript, /translationMethod/);
 });
