@@ -5,6 +5,8 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import { publishedEntries } from "@/content/generated";
 import { copy, isLocale, siteUrl, type Locale } from "../../../i18n";
+import { CopyEntryLink } from "../../../components/CopyEntryLink";
+import { formatEntryDate } from "../../../lib/entry-display.mjs";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -46,10 +48,11 @@ export default async function EntryPage({ params }: Props) {
   const version = entry?.versions[rawLocale];
   if (!entry || !version) notFound();
   const text = copy[rawLocale];
-  const date = new Intl.DateTimeFormat(rawLocale, { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" }).format(new Date(version.createdAt));
+  const date = formatEntryDate(version.createdAt, rawLocale);
+  const canonicalPath = `/${rawLocale}/entries/${version.slug}`;
 
   return <main>
-    <nav className="entry-nav"><a href={`/${rawLocale}`} target="_top">{text.back}</a></nav>
+    <nav className="entry-nav"><a href={`/${rawLocale}`} target="_top">{text.back}</a><CopyEntryLink locale={rawLocale} canonicalPath={canonicalPath} /></nav>
     <article>
       <header className="entry-header"><time className="entry-time" dateTime={version.createdAt}>{date}</time>{version.title ? <h1>{version.title}</h1> : null}</header>
       <div className="prose"><ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>{version.body}</ReactMarkdown></div>

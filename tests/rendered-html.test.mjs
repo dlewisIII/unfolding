@@ -31,6 +31,8 @@ test("renders both indexable journal homes and published bilingual entries", asy
   assert.match(html, /lang="en"/i);
   assert.match(html, /A scientific discovery may begin with a fact/i);
   assert.match(html, /href="\/en\/entries\/limits-of-scientific-description"/i);
+  assert.match(html, /11 August 2026 · 02:58/i);
+  assert.match(html, /target="_blank"[^>]+aria-label="Open entry"/i);
   assert.match(html, /href="\/en\/about"/i);
   assert.match(html, /href="\/en\/search"/i);
   assert.match(html, /class="home-link" href="\/en"[^>]+aria-label="Home"/i);
@@ -50,7 +52,26 @@ test("renders both indexable journal homes and published bilingual entries", asy
   assert.match(russianHtml, /lang="ru"/i);
   assert.match(russianHtml, /Научное открытие может начаться с факта/i);
   assert.match(russianHtml, /href="\/ru\/entries\/limits-of-scientific-description"/i);
+  assert.match(russianHtml, /11 августа 2026 · 02:58/i);
   assert.match(russianHtml, /class="home-link" href="\/ru"[^>]+aria-label="Главная"/i);
+});
+
+test("keeps permanent entry pages and localized copy-link actions", async () => {
+  const [english, russian] = await Promise.all([
+    render("/en/entries/limits-of-scientific-description"),
+    render("/ru/entries/limits-of-scientific-description"),
+  ]);
+  const englishHtml = await english.text();
+  const russianHtml = await russian.text();
+  assert.equal(english.status, 200);
+  assert.equal(russian.status, 200);
+  assert.match(englishHtml, /rel="canonical" href="https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/en\/entries\/limits-of-scientific-description"/i);
+  assert.match(englishHtml, /aria-label="Copy link"/i);
+  assert.match(englishHtml, /11 August 2026 · 02:58/i);
+  assert.match(russianHtml, /aria-label="Скопировать ссылку"/i);
+  assert.match(russianHtml, /11 августа 2026 · 02:58/i);
+  assert.match(englishHtml, /hreflang="ru"/i);
+  assert.match(russianHtml, /hreflang="en"/i);
 });
 
 test("renders localized About and Search routes", async () => {
