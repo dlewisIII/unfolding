@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
@@ -29,7 +30,7 @@ export function JournalFeedEntry({ entry, locale }: { entry: PublishedVersion; l
       <time dateTime={entry.createdAt}>{formatEntryDate(entry.createdAt, locale)}</time>
       <a className="open-entry-link" href={permalink} target="_blank" rel="noopener noreferrer" aria-label={text.openEntry} title={text.openEntry}>↗</a>
     </div>
-    {displayTitle ? <h2 className="feed-entry-title"><a href={permalink} target="_top">{displayTitle}</a></h2> : null}
+    {displayTitle ? <h2 className="feed-entry-title"><Link href={permalink}>{displayTitle}</Link></h2> : null}
     <div className="prose entry-content feed-entry-body"><ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>{expanded ? renderedBody : preview.body}</ReactMarkdown></div>
     {preview.truncated && <button className="inline-entry-toggle" type="button" aria-expanded={expanded} onClick={expanded ? collapse : () => setExpanded(true)}>{expanded ? text.collapse : text.readMore}</button>}
     {(!preview.truncated || expanded) && <ExternalLinks links={entry.externalLinks} ariaLabel={text.externalLinks} />}

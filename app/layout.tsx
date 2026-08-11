@@ -12,7 +12,7 @@ import "@fontsource-variable/inter/wght.css";
 import "katex/dist/katex.min.css";
 import "./globals.css";
 
-const themeBoot = `(function(){try{var t=localStorage.getItem('unfolding-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);else document.documentElement.removeAttribute('data-theme')}catch(e){}})()`;
+const themeBoot = `(function(){try{var e=document.documentElement,t=localStorage.getItem('unfolding-theme');if(t==='light'||t==='dark')e.setAttribute('data-theme',t);requestAnimationFrame(function(){e.setAttribute('data-theme-ready','')})}catch(e){}})()`;
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
@@ -38,6 +38,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const requestHeaders = await headers();
   const headerLocale = requestHeaders.get("x-unfolding-locale") ?? "en";
   const locale: Locale = isLocale(headerLocale) ? headerLocale : "en";
+  const headerTheme = requestHeaders.get("x-unfolding-theme");
+  const theme = headerTheme === "light" || headerTheme === "dark" ? headerTheme : undefined;
   const alternateRoutes = Object.fromEntries(publishedEntries.flatMap((entry) => {
     const en = entry.versions.en;
     const ru = entry.versions.ru;
@@ -47,7 +49,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     return routes;
   }));
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} data-theme={theme} suppressHydrationWarning>
       <head><script dangerouslySetInnerHTML={{ __html: themeBoot }} /></head>
       <body>
         <div className="site-shell">

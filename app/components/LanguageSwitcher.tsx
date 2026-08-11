@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import type { Locale } from "../i18n";
 
 type AlternateRoutes = Record<string, Partial<Record<Locale, string>>>;
@@ -31,7 +32,7 @@ export function LanguageSwitcher({ locale, alternateRoutes }: { locale: Locale; 
             {active ? (
               <span className="language-option is-active" aria-current="page">{label}</span>
             ) : route ? (
-              <a className="language-option" href={route} target="_top" hrefLang={target} onClick={() => remember(target)}>{label}</a>
+              <Link className="language-option" href={route} hrefLang={target} onClick={() => remember(target)}>{label}</Link>
             ) : (
               <span className="language-option is-unavailable" aria-disabled="true" title={locale === "ru" ? "Перевод не опубликован" : "Translation not published"}>{label}</span>
             )}

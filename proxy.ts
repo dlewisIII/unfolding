@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const locales = new Set(["en", "ru"]);
+const themes = new Set(["light", "dark"]);
 
 function preferredLocale(request: NextRequest) {
   const saved = request.cookies.get("unfolding-language")?.value;
@@ -21,6 +22,8 @@ export function proxy(request: NextRequest) {
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-unfolding-locale", firstSegment);
+  const theme = request.cookies.get("unfolding-theme")?.value;
+  if (theme && themes.has(theme)) requestHeaders.set("x-unfolding-theme", theme);
   return NextResponse.next({ request: { headers: requestHeaders } });
 }
 

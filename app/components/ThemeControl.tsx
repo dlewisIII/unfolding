@@ -10,6 +10,11 @@ function applyTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme;
 }
 
+function rememberTheme(theme: Theme) {
+  localStorage.setItem("unfolding-theme", theme);
+  document.cookie = `unfolding-theme=${theme}; Max-Age=31536000; Path=/; SameSite=Lax`;
+}
+
 export function ThemeControl({ locale }: { locale: Locale }) {
   const [theme, setTheme] = useState<Theme>("light");
 
@@ -24,7 +29,7 @@ export function ThemeControl({ locale }: { locale: Locale }) {
   function choose(next: Theme) {
     setTheme(next);
     applyTheme(next);
-    localStorage.setItem("unfolding-theme", next);
+    rememberTheme(next);
   }
 
   return (

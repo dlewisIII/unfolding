@@ -102,8 +102,8 @@ body {
   font-size: 17px;
   line-height: 1.7;
   text-rendering: optimizeLegibility;
-  transition: background-color .18s ease, color .18s ease;
 }
+:root[data-theme-ready] body { transition: background-color .18s ease, color .18s ease; }
 body::before {
   content: "";
   position: fixed;
