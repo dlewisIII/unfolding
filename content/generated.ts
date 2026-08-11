@@ -10,7 +10,7 @@ export const publishedEntries: PublishedEntry[] = [
       "ru": {
         "locale": "ru",
         "slug": "limits-of-scientific-description",
-        "title": null,
+        "title": "Что, если факт не вписывается в теорию?",
         "createdAt": "2026-08-11T02:58:41+03:00",
         "publishedAt": "2026-08-11T03:15:39+03:00",
         "tags": [
@@ -24,7 +24,7 @@ export const publishedEntries: PublishedEntry[] = [
       "en": {
         "locale": "en",
         "slug": "limits-of-scientific-description",
-        "title": null,
+        "title": "What if a fact does not fit the theory?",
         "createdAt": "2026-08-11T02:58:41+03:00",
         "publishedAt": "2026-08-11T03:15:39+03:00",
         "tags": [],

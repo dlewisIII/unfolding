@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "id": "4621bd84-17fb-404e-9d13-dff8c80357ff",
   "slug": "limits-of-scientific-description",
-  "title": null,
+  "title": "Что, если факт не вписывается в теорию?",
   "originalLanguage": "ru",
   "status": "published",
   "createdAt": "2026-08-11T02:58:41+03:00",
@@ -18,7 +18,7 @@
   "translations": {
     "en": {
       "locale": "en",
-      "title": null,
+      "title": "What if a fact does not fit the theory?",
       "slug": "limits-of-scientific-description",
       "status": "published",
       "translatedAt": "2026-08-11T03:11:39+03:00",
