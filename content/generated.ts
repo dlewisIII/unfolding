@@ -71,7 +71,7 @@ export const publishedEntries: PublishedEntry[] = [
       "ru": {
         "locale": "ru",
         "slug": "implication-chain",
-        "title": null,
+        "title": "Цепочка импликаций",
         "createdAt": "2026-08-11T04:01:47+03:00",
         "publishedAt": "2026-08-11T04:39:56+03:00",
         "tags": [

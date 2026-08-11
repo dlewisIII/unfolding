@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const locales = ["en", "ru"] as const;
 export type Locale = (typeof locales)[number];
 export const siteUrl = "https://unfolding.day";
+export const authorName = "Anastasia";
 
 export function localePath(locale: Locale, suffix = "") {
   return locale === "ru" ? `/ru${suffix}` : suffix || "/";
