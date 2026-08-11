@@ -27,6 +27,7 @@
   --wordmark: "Italiana", Didot, "Bodoni 72", serif;
   --display: "Cormorant Garamond", Iowan Old Style, Georgia, serif;
   --sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --reading-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -161,7 +162,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .feed-entry h2 { margin: 10px 0 13px; color: var(--primary-text); font-family: var(--display); font-size: clamp(35px, 6vw, 48px); font-weight: 400; line-height: 1.06; letter-spacing: -.02em; }
 .feed-entry h2 a { background-image: linear-gradient(var(--links), var(--links)); background-size: 0 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .25s ease; }
 .feed-entry h2 a:hover { background-size: 100% 1px; }
-.excerpt { margin: 0; color: var(--reading-text); font-size: 16.5px; font-weight: 400; line-height: 1.72; }
+.excerpt { margin: 0; color: var(--reading-text); font-family: var(--reading-sans); font-size: 15px; font-weight: 400; line-height: 1.68; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 19px 0 0; padding: 0; list-style: none; color: var(--tags); font-family: var(--sans); font-size: 12px; letter-spacing: .04em; }
 .tags li::before { content: "#"; opacity: .55; }
 .empty-state { padding: 58px 0 106px; }
@@ -174,7 +175,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .entry-header { margin-bottom: 58px; }
 .entry-header h1 { margin: 13px 0 0; color: var(--primary-text); font-family: var(--display); font-size: clamp(44px, 8vw, 66px); font-weight: 400; line-height: 1; letter-spacing: -.02em; }
 .quiet-page > h1 { margin: 0; color: var(--primary-text); font-family: var(--display); font-size: clamp(34px, 5vw, 46px); font-weight: 400; line-height: 1.05; letter-spacing: -.018em; }
-.prose { color: var(--reading-text); font-family: var(--sans); font-size: 16.5px; font-weight: 400; line-height: 1.74; }
+.prose { color: var(--reading-text); font-family: var(--reading-sans); font-size: 15px; font-weight: 400; line-height: 1.68; }
 .prose > * + * { margin-top: 1.25em; }
 .prose h2, .prose h3 { margin-top: 2.2em; color: var(--primary-text); font-family: var(--display); line-height: 1.1; font-weight: 400; }
 .prose strong { color: var(--primary-text); font-weight: 400; }
@@ -203,7 +204,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .search-results { margin: 52px 0 0; padding: 0; list-style: none; }
 .search-results li { padding: 30px 0; border-top: 1px solid var(--subtle-border); }
 .search-results a { color: var(--primary-text); font-family: var(--display); font-size: 32px; font-weight: 400; line-height: 1.08; }
-.search-results p { margin: 8px 0; color: var(--body-soft); }
+.search-results p { margin: 8px 0; color: var(--body-soft); font-family: var(--reading-sans); font-size: 15px; font-weight: 400; line-height: 1.68; }
 .search-results span { color: var(--tags); font-family: var(--sans); font-size: 12px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
 
@@ -226,7 +227,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   .entry-header { margin-bottom: 42px; }
   .quiet-page { padding: 48px 0 82px; }
   .about-copy, .search-tool { margin-top: 32px; }
-  .prose { font-size: 16px; line-height: 1.7; }
+  .prose, .excerpt { font-size: 15px; line-height: 1.68; }
 }
 
 @media (max-width: 410px) {
