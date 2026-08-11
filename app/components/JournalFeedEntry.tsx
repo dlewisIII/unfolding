@@ -27,9 +27,9 @@ export function JournalFeedEntry({ entry, locale }: { entry: PublishedVersion; l
   return <article className="feed-entry" ref={articleRef}>
     <div className="entry-meta-line">
       <time dateTime={entry.createdAt}>{formatEntryDate(entry.createdAt, locale)}</time>
-      <a className="open-entry-link" href={permalink} target="_blank" rel="noopener noreferrer" aria-label={text.openEntry} title={text.openEntry}>↗</a>
+      <a className="open-entry-link" href={permalink} aria-label={text.openEntry} title={text.openEntry}>→</a>
     </div>
-    {displayTitle ? <h2 className="feed-entry-title"><a href={permalink} target="_top">{displayTitle}</a></h2> : null}
+    {displayTitle ? <h2 className="feed-entry-title"><a href={permalink}>{displayTitle}</a></h2> : null}
     <div className="prose entry-content feed-entry-body"><ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>{expanded ? renderedBody : preview.body}</ReactMarkdown></div>
     {preview.truncated && <button className="inline-entry-toggle" type="button" aria-expanded={expanded} onClick={expanded ? collapse : () => setExpanded(true)}>{expanded ? text.collapse : text.readMore}</button>}
     {(!preview.truncated || expanded) && <ExternalLinks links={entry.externalLinks} ariaLabel={text.externalLinks} />}

@@ -36,10 +36,11 @@ test("renders both indexable journal homes and published bilingual entries", asy
   assert.match(html, /<h2>Statement<\/h2>[\s\S]*Suppose that[\s\S]*P[\s\S]*Q[\s\S]*Strategy[\s\S]*Proof/i);
   assert.match(html, /href="\/en\/entries\/limits-of-scientific-description"/i);
   assert.match(html, /11 August 2026 · 02:58/i);
-  assert.match(html, /target="_blank"[^>]+aria-label="Open entry"/i);
+  assert.match(html, /class="open-entry-link" href="\/en\/entries\/magic-of-dawn" aria-label="Open entry"[^>]*>→<\/a>/i);
   assert.match(html, /href="\/en\/about"/i);
   assert.match(html, /href="\/en\/search"/i);
   assert.match(html, /class="home-link" href="\/en"[^>]+aria-label="Home"/i);
+  assert.doesNotMatch(html, /target="_top"|target="_blank"/i);
   assert.match(html, /href="\/ru"/i);
   assert.match(html, /aria-label="UNFOLDING"/i);
   assert.match(html, /viewBox="0 0 1041 125"/i);
@@ -71,11 +72,11 @@ test("keeps permanent entry pages and localized copy-link actions", async () => 
   assert.equal(russian.status, 200);
   assert.match(englishHtml, /rel="canonical" href="https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/en\/entries\/limits-of-scientific-description"/i);
   assert.match(englishHtml, /aria-label="Copy link"/i);
-  assert.match(englishHtml, /href="\/en" target="_top">← Notes<\/a>/i);
+  assert.match(englishHtml, /href="\/en">← Notes<\/a>/i);
   assert.match(englishHtml, /class="chain-link-icon"/i);
   assert.match(englishHtml, /11 August 2026 · 02:58/i);
   assert.match(russianHtml, /aria-label="Скопировать ссылку"/i);
-  assert.match(russianHtml, /href="\/ru" target="_top">← Записи<\/a>/i);
+  assert.match(russianHtml, /href="\/ru">← Записи<\/a>/i);
   assert.doesNotMatch(englishHtml, />⌁<\/button>/i);
   assert.match(russianHtml, /11 августа 2026 · 02:58/i);
   assert.match(englishHtml, /hreflang="ru"/i);
@@ -85,6 +86,7 @@ test("keeps permanent entry pages and localized copy-link actions", async () => 
   assert.match(implication, /<header class="entry-header">[\s\S]*<h1>Implication Chain<\/h1><\/header>/i);
   assert.match(implication, /class="prose entry-content"/i);
   assert.doesNotMatch(implication, /class="prose entry-content"><h1>Implication Chain<\/h1>/i);
+  assert.match(implication, /href="https:\/\/github\.com\/avikulova\/study-math\/blob\/main\/logic\/proofs\/implication-chain\.md" target="_blank" rel="noopener noreferrer">GitHub ↗<\/a>/i);
 });
 
 test("renders a saved theme before the document is painted", async () => {
@@ -93,7 +95,12 @@ test("renders a saved theme before the document is painted", async () => {
   const html = await response.text();
   assert.match(html, /<html lang="en" data-theme="dark"/i);
   assert.match(html, /<meta name="theme-color" content="#171717"/i);
-  assert.match(html, /target="_top"/i);
+  assert.doesNotMatch(html, /target="_top"/i);
+});
+
+test("enables MPA view transitions as a progressive enhancement", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /@view-transition\s*\{\s*navigation:\s*auto;\s*\}/i);
 });
 
 test("renders localized About and Search routes", async () => {
