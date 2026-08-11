@@ -32,6 +32,14 @@ export function withoutDuplicateLeadingH1(markdown, displayTitle) {
   return match[3].replace(/^\n+/, "");
 }
 
+export function withoutDuplicateLeadingTitle(markdown, displayTitle) {
+  const withoutH1 = withoutDuplicateLeadingH1(markdown, displayTitle);
+  if (!displayTitle || withoutH1 !== markdown) return withoutH1;
+  const match = markdown.match(/^(\uFEFF?\s*([^\n]+?)\s*\n)(?:\s*\n)([\s\S]*)$/);
+  if (!match || /^\s*#/.test(match[2]) || normalizeTitle(match[2]) !== normalizeTitle(displayTitle)) return markdown;
+  return match[3];
+}
+
 export function splitMarkdownBlocks(markdown) {
   const blocks = [];
   let current = [];

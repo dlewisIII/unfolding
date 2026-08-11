@@ -6,7 +6,7 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import type { PublishedVersion } from "@/content/generated";
 import { copy, type Locale } from "../i18n";
-import { entryDisplayTitle, formatEntryDate, journalPreview, withoutDuplicateLeadingH1 } from "../lib/entry-display.mjs";
+import { entryDisplayTitle, formatEntryDate, journalPreview, withoutDuplicateLeadingTitle } from "../lib/entry-display.mjs";
 import { ExternalLinks } from "./ExternalLinks";
 
 export function JournalFeedEntry({ entry, locale }: { entry: PublishedVersion; locale: Locale }) {
@@ -15,7 +15,7 @@ export function JournalFeedEntry({ entry, locale }: { entry: PublishedVersion; l
   const text = copy[locale];
   const permalink = `/${locale}/entries/${entry.slug}`;
   const displayTitle = entryDisplayTitle(entry.title, entry.body);
-  const renderedBody = withoutDuplicateLeadingH1(entry.body, displayTitle);
+  const renderedBody = withoutDuplicateLeadingTitle(entry.body, displayTitle);
   const preview = journalPreview(renderedBody);
 
   function collapse() {

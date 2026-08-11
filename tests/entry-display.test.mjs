@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { entryDisplayTitle, formatEntryDate, journalPreview, splitMarkdownBlocks, withoutDuplicateLeadingH1 } from "../app/lib/entry-display.mjs";
+import { entryDisplayTitle, formatEntryDate, journalPreview, splitMarkdownBlocks, withoutDuplicateLeadingH1, withoutDuplicateLeadingTitle } from "../app/lib/entry-display.mjs";
 
 test("formats the stored local calendar time without timezone conversion", () => {
   assert.equal(formatEntryDate("2026-08-11T02:58:41+03:00", "ru"), "11 августа 2026 · 02:58");
@@ -61,6 +61,12 @@ test("uses a leading author H1 as a visual fallback and suppresses only a matchi
   assert.equal(entryDisplayTitle("Approved title", markdown), "Approved title");
   assert.equal(withoutDuplicateLeadingH1(markdown, "Implication Chain"), "## Statement\n\nSuppose that P.");
   assert.equal(withoutDuplicateLeadingH1(markdown, "Different title"), markdown);
+});
+
+test("suppresses a matching first plain-text title paragraph without changing other body text", () => {
+  const markdown = "What if the magic of dawn could be carried through the day?\n\nA sleepless night.";
+  assert.equal(withoutDuplicateLeadingTitle(markdown, "What if the magic of dawn could be carried through the day?"), "A sleepless night.");
+  assert.equal(withoutDuplicateLeadingTitle(markdown, "The Magic of Dawn"), markdown);
 });
 
 test("shows short entries in full", () => {

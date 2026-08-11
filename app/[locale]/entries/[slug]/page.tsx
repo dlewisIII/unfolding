@@ -6,7 +6,7 @@ import remarkMath from "remark-math";
 import { publishedEntries } from "@/content/generated";
 import { copy, isLocale, siteUrl, type Locale } from "../../../i18n";
 import { CopyEntryLink } from "../../../components/CopyEntryLink";
-import { entryDisplayTitle, formatEntryDate, withoutDuplicateLeadingH1 } from "../../../lib/entry-display.mjs";
+import { entryDisplayTitle, formatEntryDate, withoutDuplicateLeadingTitle } from "../../../lib/entry-display.mjs";
 import { ExternalLinks } from "../../../components/ExternalLinks";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
@@ -52,7 +52,7 @@ export default async function EntryPage({ params }: Props) {
   const date = formatEntryDate(version.createdAt, rawLocale);
   const canonicalPath = `/${rawLocale}/entries/${version.slug}`;
   const displayTitle = entryDisplayTitle(version.title, version.body);
-  const renderedBody = withoutDuplicateLeadingH1(version.body, displayTitle);
+  const renderedBody = withoutDuplicateLeadingTitle(version.body, displayTitle);
 
   return <main>
     <nav className="entry-nav"><a href={`/${rawLocale}`} target="_top">{text.back}</a><CopyEntryLink locale={rawLocale} canonicalPath={canonicalPath} /></nav>
