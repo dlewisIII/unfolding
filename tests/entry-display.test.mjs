@@ -26,9 +26,27 @@ test("truncates only between complete markdown blocks", () => {
   assert.match(blocks[3], /^```[\s\S]*```$/);
   const preview = journalPreview(markdown);
   assert.equal(preview.truncated, true);
-  assert.equal(preview.body, blocks.slice(0, 6).join("\n\n"));
-  assert.match(preview.body, /diagram\.png[\s\S]*x\^2 \+ y\^2[\s\S]*const answer = 42/);
-  assert.doesNotMatch(preview.body, /Fourth paragraph/);
+  assert.equal(preview.body, blocks.slice(0, 2).join("\n\n"));
+  assert.match(preview.body, /diagram\.png/);
+  assert.doesNotMatch(preview.body, /x\^2 \+ y\^2|const answer = 42|Fourth paragraph/);
+});
+
+test("keeps the complete initial mathematical statement and stops before Strategy", () => {
+  const markdown = [
+    "## Statement",
+    "Suppose that",
+    "1. $P \\rightarrow Q$,\n2. $Q \\rightarrow R$.",
+    "Then",
+    "$$\nP \\rightarrow R.\n$$",
+    "## Strategy",
+    "Assume P and derive R.",
+    "## Proof",
+    "Assume $P$.",
+  ].join("\n\n");
+  const preview = journalPreview(markdown);
+  assert.equal(preview.truncated, true);
+  assert.match(preview.body, /^## Statement[\s\S]*1\. \$P[\s\S]*P \\rightarrow R\.\n\$\$$/);
+  assert.doesNotMatch(preview.body, /## Strategy|## Proof/);
 });
 
 test("keeps a list together even when its items contain blank lines", () => {

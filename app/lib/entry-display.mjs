@@ -1,28 +1,15 @@
-const MIN_PREVIEW_PROSE_BLOCKS = 2;
-const IDEAL_PREVIEW_PROSE_BLOCKS = 3;
-const MIN_PREVIEW_CHARACTERS = 350;
-const MAX_PREVIEW_CHARACTERS = 900;
+const MAX_PREVIEW_MEANINGFUL_BLOCKS = 2;
 
 function isListBlock(block) {
   return /^\s*(?:[-+*]|\d+[.)])\s+/m.test(block);
 }
 
-function isProseBlock(block) {
-  const trimmed = block.trim();
-  return !/^(?:#{1,6}\s|```|~~~|\$\$|!\[|[-+*]\s|\d+[.)]\s)/.test(trimmed);
+function isHeadingBlock(block) {
+  return /^\s*#{1,6}\s+/.test(block);
 }
 
-function plainTextLength(block) {
-  return block
-    .replace(/```[\s\S]*?```|~~~[\s\S]*?~~~/g, "")
-    .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1")
-    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
-    .replace(/\$+/g, "")
-    .replace(/^\s*(?:#{1,6}|>|[-+*]|\d+[.)])\s+/gm, "")
-    .replace(/[*_`~]/g, "")
-    .replace(/\\(?:rightarrow|square)\b/g, "→")
-    .replace(/\s+/g, " ")
-    .trim().length;
+function isMajorSection(block) {
+  return /^\s*##(?!#)\s+/.test(block);
 }
 
 function normalizeTitle(value) {
@@ -94,17 +81,20 @@ export function splitMarkdownBlocks(markdown) {
 
 export function journalPreview(markdown) {
   const blocks = splitMarkdownBlocks(markdown);
+  if (!blocks.length) return { body: markdown, truncated: false };
+
+  if (isMajorSection(blocks[0])) {
+    const nextSection = blocks.findIndex((block, index) => index > 0 && isMajorSection(block));
+    if (nextSection > 0) return { body: blocks.slice(0, nextSection).join("\n\n"), truncated: true };
+  }
+
   const selected = [];
-  let characters = 0;
-  let proseBlocks = 0;
+  let meaningfulBlocks = 0;
   for (const block of blocks) {
-    const blockCharacters = plainTextLength(block);
-    const projected = characters + blockCharacters;
-    if (selected.length && proseBlocks >= MIN_PREVIEW_PROSE_BLOCKS && projected > MAX_PREVIEW_CHARACTERS) break;
+    if (selected.length && meaningfulBlocks > 0 && isMajorSection(block)) break;
     selected.push(block);
-    characters = projected;
-    if (isProseBlock(block)) proseBlocks += 1;
-    if (proseBlocks >= IDEAL_PREVIEW_PROSE_BLOCKS && characters >= MIN_PREVIEW_CHARACTERS) break;
+    if (!isHeadingBlock(block)) meaningfulBlocks += 1;
+    if (meaningfulBlocks >= MAX_PREVIEW_MEANINGFUL_BLOCKS) break;
   }
   return { body: selected.join("\n\n"), truncated: selected.length < blocks.length };
 }
