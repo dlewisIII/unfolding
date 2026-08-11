@@ -38,7 +38,7 @@ export const copy = {
     copyLink: "Copy link",
     linkCopied: "Link copied",
     externalLinks: "External links",
-    footer: "Written and edited by Anastasia",
+    footer: "Written and edited by Anastasia · © 2026 Unfolding",
     description: "A personal journal of inquiry, observation, and creation.",
   },
   ru: {
@@ -65,7 +65,7 @@ export const copy = {
     copyLink: "Скопировать ссылку",
     linkCopied: "Ссылка скопирована",
     externalLinks: "Внешние ссылки",
-    footer: "Written and edited by Anastasia",
+    footer: "Written and edited by Anastasia · © 2026 Unfolding",
     description: "Личный журнал исследования, наблюдения и творчества.",
   },
 } as const;
