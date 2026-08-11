@@ -23,13 +23,14 @@ test("negotiates the first locale without geolocation", async () => {
   assert.equal(saved.headers.get("location"), "/en");
 });
 
-test("renders both indexable journal homes without starter UI", async () => {
+test("renders both indexable journal homes and published bilingual entries", async () => {
   const response = await render("/en");
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /<title>Unfolding<\/title>/i);
   assert.match(html, /lang="en"/i);
-  assert.match(html, /The first page is still unwritten/i);
+  assert.match(html, /A scientific discovery may begin with a fact/i);
+  assert.match(html, /href="\/en\/entries\/limits-of-scientific-description"/i);
   assert.match(html, /href="\/en\/about"/i);
   assert.match(html, /href="\/en\/search"/i);
   assert.match(html, /class="home-link" href="\/en"[^>]+aria-label="Home"/i);
@@ -47,7 +48,8 @@ test("renders both indexable journal homes without starter UI", async () => {
   const russianHtml = await russianResponse.text();
   assert.equal(russianResponse.status, 200);
   assert.match(russianHtml, /lang="ru"/i);
-  assert.match(russianHtml, /Первая страница ещё не написана/i);
+  assert.match(russianHtml, /Научное открытие может начаться с факта/i);
+  assert.match(russianHtml, /href="\/ru\/entries\/limits-of-scientific-description"/i);
   assert.match(russianHtml, /class="home-link" href="\/ru"[^>]+aria-label="Главная"/i);
 });
 
@@ -76,7 +78,8 @@ test("publishes robots and sitemap discovery files", async () => {
   assert.match(sitemap, /https:\/\/unfolding-journal\.davidlewisiii\.chatgpt\.site\/en\/about/i);
   assert.match(sitemap, /hreflang="en"/i);
   assert.match(sitemap, /hreflang="ru"/i);
-  assert.doesNotMatch(sitemap, /\/entries\//i);
+  assert.match(sitemap, /\/en\/entries\/limits-of-scientific-description/i);
+  assert.match(sitemap, /\/ru\/entries\/limits-of-scientific-description/i);
 });
 
 test("keeps review records structured and connections independent", async () => {

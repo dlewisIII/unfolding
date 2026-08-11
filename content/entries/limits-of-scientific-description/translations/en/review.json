@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 2,
+  "entryId": "4621bd84-17fb-404e-9d13-dff8c80357ff",
+  "locale": "en",
+  "reviewedAt": "2026-08-11T03:14:22+03:00",
+  "originalSha256": "5ff526145f344207de9b63671cea39e2a56b96ec4a711f7622666c133075ef25",
+  "draftSha256": "e67bcee74517f04645b95e76b219aa5e939ecf6700594187fd3f1564fbfe6acb",
+  "summary": "The revised English version is clear, natural, and logically coherent. The phrase ‘well established’ more precisely expresses the epistemic status of the fact, and ‘wrong’ reads more naturally here than ‘erroneous’. No substantial issues were found.",
+  "checks": [
+    {
+      "category": "language",
+      "status": "reviewed",
+      "explanation": "Grammar, syntax, word choice, and register are natural and correct."
+    },
+    {
+      "category": "clarity",
+      "status": "reviewed",
+      "explanation": "The revision clearly distinguishes a well-established fact from the possible incompleteness of its theoretical description."
+    },
+    {
+      "category": "logic",
+      "status": "reviewed",
+      "explanation": "The argument progresses consistently from an unexplained fact to the possibility of a broader explanatory framework."
+    },
+    {
+      "category": "factual_claims",
+      "status": "reviewed",
+      "explanation": "The modal wording remains appropriately cautious and does not introduce an unsupported specific empirical claim."
+    },
+    {
+      "category": "mathematics",
+      "status": "not_applicable",
+      "explanation": "The text contains no mathematical claims or calculations."
+    }
+  ],
+  "issues": []
+}

@@ -31,7 +31,7 @@ export default async function LocaleHome({ params }: Props) {
           <article className="feed-entry" key={entry.slug}>
             <time dateTime={entry.createdAt}>{new Intl.DateTimeFormat(locale, { day: "numeric", month: "long", year: "numeric" }).format(new Date(entry.createdAt))}</time>
             {entry.title ? <h2><a href={`/${locale}/entries/${entry.slug}`} target="_top">{entry.title}</a></h2> : null}
-            {entry.excerpt && <p className="excerpt">{entry.excerpt}</p>}
+            {entry.excerpt && <p className="excerpt">{entry.title ? entry.excerpt : <a href={`/${locale}/entries/${entry.slug}`} target="_top">{entry.excerpt}</a>}</p>}
             {entry.tags.length > 0 && <ul className="tags" aria-label={text.tags}>{entry.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>}
           </article>
         ))}

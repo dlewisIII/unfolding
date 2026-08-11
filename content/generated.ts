@@ -2,4 +2,35 @@
 export type Locale = "en" | "ru";
 export type PublishedVersion = { locale: Locale; slug: string; title: string | null; createdAt: string; publishedAt: string; tags: string[]; excerpt: string; body: string; };
 export type PublishedEntry = { id: string; originalLanguage: Locale; versions: Partial<Record<Locale, PublishedVersion>>; };
-export const publishedEntries: PublishedEntry[] = [];
+export const publishedEntries: PublishedEntry[] = [
+  {
+    "id": "4621bd84-17fb-404e-9d13-dff8c80357ff",
+    "originalLanguage": "ru",
+    "versions": {
+      "ru": {
+        "locale": "ru",
+        "slug": "limits-of-scientific-description",
+        "title": null,
+        "createdAt": "2026-08-11T02:58:41+03:00",
+        "publishedAt": "2026-08-11T03:15:39+03:00",
+        "tags": [
+          "философия науки",
+          "эпистемология",
+          "модели реальности"
+        ],
+        "excerpt": "Научное открытие может начаться с факта, который не вписывается в существующую картину мира. Если сам факт реален, а существующее описание реальности не позволяет его объяснить, это не обязательно означает, что…",
+        "body": "Научное открытие может начаться с факта, который не вписывается в существующую картину мира. Если сам факт реален, а существующее описание реальности не позволяет его объяснить, это не обязательно означает, что факт ошибочен. Возможно, неполным является само описание. Мне кажется интересной мысль, что существующая теория может быть совершенно верной в пределах той области, которую она описывает, и при этом оставаться лишь одной гранью более общей картины реальности.\n"
+      },
+      "en": {
+        "locale": "en",
+        "slug": "limits-of-scientific-description",
+        "title": null,
+        "createdAt": "2026-08-11T02:58:41+03:00",
+        "publishedAt": "2026-08-11T03:15:39+03:00",
+        "tags": [],
+        "excerpt": "A scientific discovery may begin with a fact that does not fit into the existing picture of the world. If the fact itself is well established, but the existing description of reality cannot explain it, this doe…",
+        "body": "A scientific discovery may begin with a fact that does not fit into the existing picture of the world. If the fact itself is well established, but the existing description of reality cannot explain it, this does not necessarily mean that the fact is wrong. Perhaps it is the description itself that is incomplete. I find it interesting to consider that an existing theory may be entirely correct within the domain it describes, while still remaining only one facet of a broader picture of reality.\n"
+      }
+    }
+  }
+];
