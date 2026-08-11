@@ -30,6 +30,10 @@ test("renders both indexable journal homes and published bilingual entries", asy
   assert.match(html, /<title>Unfolding<\/title>/i);
   assert.match(html, /lang="en"/i);
   assert.match(html, /A scientific discovery may begin with a fact/i);
+  assert.match(html, /<h2 class="feed-entry-title"><a href="\/en\/entries\/implication-chain"[^>]*>Implication Chain<\/a><\/h2>/i);
+  assert.match(html, /class="prose entry-content feed-entry-body"/i);
+  assert.doesNotMatch(html, /class="prose entry-content feed-entry-body"><h1>Implication Chain<\/h1>/i);
+  assert.match(html, /<h2>Statement<\/h2>[\s\S]*Suppose that[\s\S]*P[\s\S]*Q[\s\S]*Strategy[\s\S]*Proof/i);
   assert.match(html, /href="\/en\/entries\/limits-of-scientific-description"/i);
   assert.match(html, /11 August 2026 · 02:58/i);
   assert.match(html, /target="_blank"[^>]+aria-label="Open entry"/i);
@@ -76,6 +80,11 @@ test("keeps permanent entry pages and localized copy-link actions", async () => 
   assert.match(russianHtml, /11 августа 2026 · 02:58/i);
   assert.match(englishHtml, /hreflang="ru"/i);
   assert.match(russianHtml, /hreflang="en"/i);
+
+  const implication = await render("/en/entries/implication-chain").then((response) => response.text());
+  assert.match(implication, /<header class="entry-header">[\s\S]*<h1>Implication Chain<\/h1><\/header>/i);
+  assert.match(implication, /class="prose entry-content"/i);
+  assert.doesNotMatch(implication, /class="prose entry-content"><h1>Implication Chain<\/h1>/i);
 });
 
 test("renders localized About and Search routes", async () => {

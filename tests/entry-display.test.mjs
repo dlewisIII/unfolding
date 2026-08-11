@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { formatEntryDate, journalPreview, splitMarkdownBlocks } from "../app/lib/entry-display.mjs";
+import { entryDisplayTitle, formatEntryDate, journalPreview, splitMarkdownBlocks, withoutDuplicateLeadingH1 } from "../app/lib/entry-display.mjs";
 
 test("formats the stored local calendar time without timezone conversion", () => {
   assert.equal(formatEntryDate("2026-08-11T02:58:41+03:00", "ru"), "11 августа 2026 · 02:58");
@@ -11,19 +11,38 @@ test("formats the stored local calendar time without timezone conversion", () =>
 
 test("truncates only between complete markdown blocks", () => {
   const markdown = [
-    "First paragraph.",
+    `First paragraph. ${"A".repeat(180)}`,
     "![A diagram](diagram.png)",
     "$$\nx^2 + y^2 = z^2\n$$",
     "```js\nconst answer = 42;\n```",
+    `Second paragraph. ${"B".repeat(180)}`,
+    `Third paragraph. ${"C".repeat(180)}`,
+    "Fourth paragraph should remain outside the preview.",
   ].join("\n\n");
   const blocks = splitMarkdownBlocks(markdown);
-  assert.equal(blocks.length, 4);
+  assert.equal(blocks.length, 7);
   assert.match(blocks[1], /^!\[/);
   assert.match(blocks[2], /^\$\$[\s\S]*\$\$$/);
   assert.match(blocks[3], /^```[\s\S]*```$/);
   const preview = journalPreview(markdown);
   assert.equal(preview.truncated, true);
-  assert.equal(preview.body, blocks.slice(0, 3).join("\n\n"));
+  assert.equal(preview.body, blocks.slice(0, 6).join("\n\n"));
+  assert.match(preview.body, /diagram\.png[\s\S]*x\^2 \+ y\^2[\s\S]*const answer = 42/);
+  assert.doesNotMatch(preview.body, /Fourth paragraph/);
+});
+
+test("keeps a list together even when its items contain blank lines", () => {
+  const blocks = splitMarkdownBlocks("Before.\n\n1. First item.\n\n2. Second item.\n\nAfter.");
+  assert.equal(blocks.length, 3);
+  assert.match(blocks[1], /1\. First item\.\n\n2\. Second item\./);
+});
+
+test("uses a leading author H1 as a visual fallback and suppresses only a matching duplicate", () => {
+  const markdown = "# Implication Chain\n\n## Statement\n\nSuppose that P.";
+  assert.equal(entryDisplayTitle(null, markdown), "Implication Chain");
+  assert.equal(entryDisplayTitle("Approved title", markdown), "Approved title");
+  assert.equal(withoutDuplicateLeadingH1(markdown, "Implication Chain"), "## Statement\n\nSuppose that P.");
+  assert.equal(withoutDuplicateLeadingH1(markdown, "Different title"), markdown);
 });
 
 test("shows short entries in full", () => {

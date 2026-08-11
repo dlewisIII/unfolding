@@ -6,7 +6,7 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import type { PublishedVersion } from "@/content/generated";
 import { copy, type Locale } from "../i18n";
-import { formatEntryDate, journalPreview } from "../lib/entry-display.mjs";
+import { entryDisplayTitle, formatEntryDate, journalPreview, withoutDuplicateLeadingH1 } from "../lib/entry-display.mjs";
 import { ExternalLinks } from "./ExternalLinks";
 
 export function JournalFeedEntry({ entry, locale }: { entry: PublishedVersion; locale: Locale }) {
@@ -14,7 +14,9 @@ export function JournalFeedEntry({ entry, locale }: { entry: PublishedVersion; l
   const articleRef = useRef<HTMLElement>(null);
   const text = copy[locale];
   const permalink = `/${locale}/entries/${entry.slug}`;
-  const preview = journalPreview(entry.body);
+  const displayTitle = entryDisplayTitle(entry.title, entry.body);
+  const renderedBody = withoutDuplicateLeadingH1(entry.body, displayTitle);
+  const preview = journalPreview(renderedBody);
 
   function collapse() {
     const top = articleRef.current?.getBoundingClientRect().top ?? 0;
@@ -27,8 +29,8 @@ export function JournalFeedEntry({ entry, locale }: { entry: PublishedVersion; l
       <time dateTime={entry.createdAt}>{formatEntryDate(entry.createdAt, locale)}</time>
       <a className="open-entry-link" href={permalink} target="_blank" rel="noopener noreferrer" aria-label={text.openEntry} title={text.openEntry}>↗</a>
     </div>
-    {entry.title ? <h2><a href={permalink} target="_top">{entry.title}</a></h2> : null}
-    <div className="prose feed-entry-body"><ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>{expanded ? entry.body : preview.body}</ReactMarkdown></div>
+    {displayTitle ? <h2 className="feed-entry-title"><a href={permalink} target="_top">{displayTitle}</a></h2> : null}
+    <div className="prose entry-content feed-entry-body"><ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>{expanded ? renderedBody : preview.body}</ReactMarkdown></div>
     {preview.truncated && <button className="inline-entry-toggle" type="button" aria-expanded={expanded} onClick={expanded ? collapse : () => setExpanded(true)}>{expanded ? text.collapse : text.readMore}</button>}
     {(!preview.truncated || expanded) && <ExternalLinks links={entry.externalLinks} ariaLabel={text.externalLinks} />}
     {entry.tags.length > 0 && <ul className="tags" aria-label={text.tags}>{entry.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>}

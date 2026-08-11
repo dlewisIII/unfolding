@@ -6,7 +6,7 @@ import remarkMath from "remark-math";
 import { publishedEntries } from "@/content/generated";
 import { copy, isLocale, siteUrl, type Locale } from "../../../i18n";
 import { CopyEntryLink } from "../../../components/CopyEntryLink";
-import { formatEntryDate } from "../../../lib/entry-display.mjs";
+import { entryDisplayTitle, formatEntryDate, withoutDuplicateLeadingH1 } from "../../../lib/entry-display.mjs";
 import { ExternalLinks } from "../../../components/ExternalLinks";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
@@ -51,12 +51,14 @@ export default async function EntryPage({ params }: Props) {
   const text = copy[rawLocale];
   const date = formatEntryDate(version.createdAt, rawLocale);
   const canonicalPath = `/${rawLocale}/entries/${version.slug}`;
+  const displayTitle = entryDisplayTitle(version.title, version.body);
+  const renderedBody = withoutDuplicateLeadingH1(version.body, displayTitle);
 
   return <main>
     <nav className="entry-nav"><a href={`/${rawLocale}`} target="_top">{text.back}</a><CopyEntryLink locale={rawLocale} canonicalPath={canonicalPath} /></nav>
     <article>
-      <header className="entry-header"><time className="entry-time" dateTime={version.createdAt}>{date}</time>{version.title ? <h1>{version.title}</h1> : null}</header>
-      <div className="prose"><ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>{version.body}</ReactMarkdown></div>
+      <header className="entry-header"><time className="entry-time" dateTime={version.createdAt}>{date}</time>{displayTitle ? <h1>{displayTitle}</h1> : null}</header>
+      <div className="prose entry-content"><ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>{renderedBody}</ReactMarkdown></div>
       <ExternalLinks links={version.externalLinks} ariaLabel={text.externalLinks} />
       {version.tags.length > 0 && <footer className="entry-taxonomy"><h2>{text.tags}</h2><ul className="tags">{version.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul></footer>}
     </article>

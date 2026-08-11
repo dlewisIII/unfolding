@@ -1,5 +1,49 @@
-const MAX_PREVIEW_BLOCKS = 3;
-const MAX_PREVIEW_CHARACTERS = 700;
+const MIN_PREVIEW_PROSE_BLOCKS = 2;
+const IDEAL_PREVIEW_PROSE_BLOCKS = 3;
+const MIN_PREVIEW_CHARACTERS = 350;
+const MAX_PREVIEW_CHARACTERS = 900;
+
+function isListBlock(block) {
+  return /^\s*(?:[-+*]|\d+[.)])\s+/m.test(block);
+}
+
+function isProseBlock(block) {
+  const trimmed = block.trim();
+  return !/^(?:#{1,6}\s|```|~~~|\$\$|!\[|[-+*]\s|\d+[.)]\s)/.test(trimmed);
+}
+
+function plainTextLength(block) {
+  return block
+    .replace(/```[\s\S]*?```|~~~[\s\S]*?~~~/g, "")
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/\$+/g, "")
+    .replace(/^\s*(?:#{1,6}|>|[-+*]|\d+[.)])\s+/gm, "")
+    .replace(/[*_`~]/g, "")
+    .replace(/\\(?:rightarrow|square)\b/g, "→")
+    .replace(/\s+/g, " ")
+    .trim().length;
+}
+
+function normalizeTitle(value) {
+  return value.normalize("NFC").replace(/\s+/g, " ").trim();
+}
+
+export function leadingMarkdownH1(markdown) {
+  const match = markdown.match(/^\uFEFF?\s*#(?!#)\s+(.+?)\s*(?:\n|$)/);
+  return match ? normalizeTitle(match[1]) : null;
+}
+
+export function entryDisplayTitle(metadataTitle, markdown) {
+  return metadataTitle || leadingMarkdownH1(markdown);
+}
+
+export function withoutDuplicateLeadingH1(markdown, displayTitle) {
+  if (!displayTitle) return markdown;
+  const match = markdown.match(/^(\uFEFF?\s*#(?!#)\s+(.+?)\s*(?:\n|$))([\s\S]*)$/);
+  if (!match || normalizeTitle(match[2]) !== normalizeTitle(displayTitle)) return markdown;
+  return match[3].replace(/^\n+/, "");
+}
 
 export function splitMarkdownBlocks(markdown) {
   const blocks = [];
@@ -41,20 +85,26 @@ export function splitMarkdownBlocks(markdown) {
     current.push(line);
   }
   flush();
-  return blocks;
+  return blocks.reduce((merged, block) => {
+    if (merged.length && isListBlock(merged.at(-1)) && isListBlock(block)) merged[merged.length - 1] += `\n\n${block}`;
+    else merged.push(block);
+    return merged;
+  }, []);
 }
 
 export function journalPreview(markdown) {
   const blocks = splitMarkdownBlocks(markdown);
-  if (blocks.length <= MAX_PREVIEW_BLOCKS && markdown.length <= MAX_PREVIEW_CHARACTERS) return { body: markdown, truncated: false };
   const selected = [];
   let characters = 0;
+  let proseBlocks = 0;
   for (const block of blocks) {
-    if (selected.length >= MAX_PREVIEW_BLOCKS) break;
-    const projected = characters + block.length + (selected.length ? 2 : 0);
-    if (selected.length && projected > MAX_PREVIEW_CHARACTERS) break;
+    const blockCharacters = plainTextLength(block);
+    const projected = characters + blockCharacters;
+    if (selected.length && proseBlocks >= MIN_PREVIEW_PROSE_BLOCKS && projected > MAX_PREVIEW_CHARACTERS) break;
     selected.push(block);
     characters = projected;
+    if (isProseBlock(block)) proseBlocks += 1;
+    if (proseBlocks >= IDEAL_PREVIEW_PROSE_BLOCKS && characters >= MIN_PREVIEW_CHARACTERS) break;
   }
   return { body: selected.join("\n\n"), truncated: selected.length < blocks.length };
 }
