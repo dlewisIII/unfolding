@@ -36,7 +36,12 @@ export const publishedEntries: PublishedEntry[] = [
         "title": null,
         "createdAt": "2026-08-11T04:01:47+03:00",
         "publishedAt": "2026-08-11T04:39:56+03:00",
-        "tags": [],
+        "tags": [
+          "логика высказываний",
+          "введение импликации",
+          "правило отделения",
+          "modus ponens"
+        ],
         "externalLinks": [
           {
             "id": "aae6a7b2-a15c-4547-b1d1-ab0afb9f7dd3",
@@ -75,7 +80,11 @@ export const publishedEntries: PublishedEntry[] = [
         "title": "What if a fact does not fit the theory?",
         "createdAt": "2026-08-11T02:58:41+03:00",
         "publishedAt": "2026-08-11T03:15:39+03:00",
-        "tags": [],
+        "tags": [
+          "philosophy of science",
+          "epistemology",
+          "models of reality"
+        ],
         "externalLinks": [],
         "excerpt": "A scientific discovery may begin with a fact that does not fit into the existing picture of the world. If the fact itself is well established, but the existing description of reality cannot explain it, this doe…",
         "body": "A scientific discovery may begin with a fact that does not fit into the existing picture of the world. If the fact itself is well established, but the existing description of reality cannot explain it, this does not necessarily mean that the fact is wrong. Perhaps it is the description itself that is incomplete. I find it interesting to consider that an existing theory may be entirely correct within the domain it describes, while still remaining only one facet of a broader picture of reality.\n"

@@ -28,7 +28,11 @@
       "publishedAt": "2026-08-11T03:15:39+03:00",
       "originalSha256": "5ff526145f344207de9b63671cea39e2a56b96ec4a711f7622666c133075ef25",
       "publishedFrom": "draft",
-      "tags": [],
+      "tags": [
+        "philosophy of science",
+        "epistemology",
+        "models of reality"
+      ],
       "publishedSha256": "e67bcee74517f04645b95e76b219aa5e939ecf6700594187fd3f1564fbfe6acb",
       "authorDecision": "publish_current_draft"
     }

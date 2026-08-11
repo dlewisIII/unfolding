@@ -35,7 +35,12 @@
       "publishedAt": "2026-08-11T04:39:56+03:00",
       "originalSha256": "dab99f3c733960902a8c3eb6b0b1c69b9ce07b4022e9d09855972d1e337cc646",
       "publishedFrom": "draft",
-      "tags": [],
+      "tags": [
+        "логика высказываний",
+        "введение импликации",
+        "правило отделения",
+        "modus ponens"
+      ],
       "publishedSha256": "a68db58a1fe3e088bc6b2a2edb90d55263a46c14ccfbe56e5b45d112b00f9ea3",
       "authorDecision": "publish_current_draft"
     }
