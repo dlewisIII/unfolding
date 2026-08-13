@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 2,
+  "entryId": "f1a50836-75f9-4c68-9ea2-a0fbd3f14d3f",
+  "locale": "ru",
+  "reviewedAt": "2026-08-13T03:30:08+03:00",
+  "originalSha256": "697b366fe8b4c02f00d9fc65a0daa4a9be31c1cd59fd7d0f005e03e0c4d8238c",
+  "draftSha256": "a2165d6bc0bf19134118670508220ba9462c824bb92c3e0b364d348359d944fe",
+  "summary": "Авторские правки внесены в рабочий draft. Заголовки и display-LaTeX теперь корректно размечены; языковые и ясностные замечания, отмеченные в предыдущем review, устранены. С точки зрения review запись готова к публикации после явного решения автора.",
+  "checks": [
+    {
+      "category": "language",
+      "status": "reviewed",
+      "explanation": "Согласование и проблемная Markdown-разметка в заголовках исправлены."
+    },
+    {
+      "category": "clarity",
+      "status": "reviewed",
+      "explanation": "Уточнена формулировка о психическом воздействии."
+    },
+    {
+      "category": "logic",
+      "status": "reviewed",
+      "explanation": "Гипотетический характер рассуждения сохранён."
+    },
+    {
+      "category": "factual_claims",
+      "status": "reviewed",
+      "explanation": "Психологический пример сформулирован как возможность, а не вероятностный прогноз."
+    },
+    {
+      "category": "mathematics",
+      "status": "reviewed",
+      "explanation": "Все display-выражения оформлены через \\[…\\] и пригодны для текущего Markdown-LaTeX rendering."
+    }
+  ],
+  "issues": []
+}

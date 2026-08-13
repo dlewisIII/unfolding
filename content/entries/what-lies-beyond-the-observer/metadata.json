@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 2,
+  "id": "f1a50836-75f9-4c68-9ea2-a0fbd3f14d3f",
+  "slug": "what-lies-beyond-the-observer",
+  "title": "Что находится за пределами наблюдателя?",
+  "originalLanguage": "ru",
+  "status": "published",
+  "createdAt": "2026-08-13T03:20:27+03:00",
+  "submittedAt": "2026-08-13T03:30:08+03:00",
+  "publishedAt": "2026-08-13T03:34:47+03:00",
+  "originalSha256": "697b366fe8b4c02f00d9fc65a0daa4a9be31c1cd59fd7d0f005e03e0c4d8238c",
+  "publishedFrom": "draft",
+  "tags": [
+    "философия",
+    "сознание",
+    "динамические системы",
+    "время",
+    "наблюдатель"
+  ],
+  "externalLinks": [],
+  "translations": {
+    "en": {
+      "locale": "en",
+      "title": "What Lies Beyond the Observer?",
+      "slug": "what-lies-beyond-the-observer",
+      "status": "published",
+      "translatedAt": "2026-08-13T03:29:49+03:00",
+      "translationMethod": "author",
+      "submittedAt": "2026-08-13T03:33:47+03:00",
+      "publishedAt": "2026-08-13T03:34:47+03:00",
+      "originalSha256": "744d1337e99c000fe3ebcf681c0df035551a79c0aa578391aa623f940545866c",
+      "publishedFrom": "draft",
+      "tags": [
+        "philosophy",
+        "consciousness",
+        "dynamic systems",
+        "time",
+        "observer"
+      ],
+      "publishedSha256": "b420e16b776779a30885ded6dd350b60821f6d38058dd8678535b9f6923fcef5",
+      "authorDecision": "publish_current_draft"
+    }
+  },
+  "publishedSha256": "a2165d6bc0bf19134118670508220ba9462c824bb92c3e0b364d348359d944fe",
+  "authorDecision": "publish_current_draft"
+}

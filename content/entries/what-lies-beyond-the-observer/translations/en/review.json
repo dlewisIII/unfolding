@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 2,
+  "entryId": "f1a50836-75f9-4c68-9ea2-a0fbd3f14d3f",
+  "locale": "en",
+  "reviewedAt": "2026-08-13T03:33:47+03:00",
+  "originalSha256": "744d1337e99c000fe3ebcf681c0df035551a79c0aa578391aa623f940545866c",
+  "draftSha256": "b420e16b776779a30885ded6dd350b60821f6d38058dd8678535b9f6923fcef5",
+  "summary": "The English translation now has the same Markdown hierarchy and display-LaTeX presentation as the revised Russian version. The supplied English wording is preserved; only structural Markdown and the corresponding mathematical notation were restored. The translation is ready for publication from the review perspective after the author’s explicit decision.",
+  "checks": [
+    {
+      "category": "language",
+      "status": "reviewed",
+      "explanation": "The English prose remains fluent and preserves the reflective register of the supplied translation."
+    },
+    {
+      "category": "clarity",
+      "status": "reviewed",
+      "explanation": "Markdown section headings now make the conceptual structure explicit."
+    },
+    {
+      "category": "logic",
+      "status": "reviewed",
+      "explanation": "Hypothetical and conditional framing is retained."
+    },
+    {
+      "category": "factual_claims",
+      "status": "reviewed",
+      "explanation": "The translation retains the source text’s level of qualification for empirical and experiential examples."
+    },
+    {
+      "category": "mathematics",
+      "status": "reviewed",
+      "explanation": "All display expressions now use Markdown-LaTeX delimiters and preserve the intended illustrative structure."
+    }
+  ],
+  "issues": []
+}
