@@ -133,9 +133,18 @@ test("renders \\[…\\] display math through KaTeX", async () => {
   for (const html of [english, russian]) {
     assert.match(html, /class="katex-display"/i);
     assert.doesNotMatch(html, /<p>\[\s*\\text\{/i);
+    assert.doesNotMatch(html, /katex-stretchy fbox/i);
   }
   assert.match(english, /annotation encoding="application\/x-tex">\\text\{information about an event\}/i);
   assert.match(russian, /annotation encoding="application\/x-tex">\\text\{информация о событии\}/i);
+});
+
+test("keeps authorial emphasis visible in entry prose", async () => {
+  const html = await render("/ru/entries/what-lies-beyond-the-observer").then((response) => response.text());
+  assert.match(html, /<strong>расширение области реальности, доступной осознанию<\/strong>/i);
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.prose strong\s*\{[^}]*font-weight:\s*550/i);
+  assert.match(css, /\.entry-content h2\s*\{[^}]*font-size:\s*23px/i);
 });
 
 test("renders a saved theme before the document is painted", async () => {

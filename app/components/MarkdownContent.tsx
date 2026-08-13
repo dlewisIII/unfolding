@@ -37,7 +37,12 @@ export function normalizeDisplayMathDelimiters(markdown: string) {
   // An incomplete delimiter remains literal authorial text rather than being
   // silently converted into malformed display math.
   if (bufferedBracketMath) normalized.push(...bufferedBracketMath);
-  return normalized.join("\n");
+  return normalized
+    .join("\n")
+    // KaTeX has no glyph metrics for Cyrillic. In a \boxed{\text{…}} statement,
+    // that can collapse the box edge into the text. A text-only statement is
+    // displayed as centered display text; mathematical boxes remain unchanged.
+    .replace(/\\boxed\{\\text\{([^{}]+)\}\}/g, "\\text{$1}");
 }
 
 export function MarkdownContent({ children }: { children: string }) {

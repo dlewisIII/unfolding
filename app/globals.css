@@ -202,7 +202,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .prose { color: var(--primary-text); font-family: var(--reading-sans); font-size: 14px; font-variation-settings: "wght" 350; font-weight: 350; letter-spacing: -.006em; line-height: 1.7; }
 .prose > * + * { margin-top: 1.25em; }
 .prose h2, .prose h3 { margin-top: 2.2em; color: var(--primary-text); font-family: var(--display); line-height: 1.1; font-weight: 400; }
-.prose strong { color: var(--primary-text); font-weight: 400; }
+.prose strong { color: var(--primary-text); font-weight: 550; }
 .prose a { color: var(--links); border-bottom: 1px solid currentColor; }
 .prose blockquote { margin-left: 0; padding-left: 24px; border-left: 2px solid var(--subtle-border); color: var(--body-soft); font-style: italic; }
 .prose pre { overflow-x: auto; padding: 20px 22px; background: var(--code-background); color: var(--code-text); border-radius: 2px; font-size: 14px; line-height: 1.6; }
@@ -211,7 +211,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .prose img { display: block; width: 100%; height: auto; margin: 2.2em 0; }
 .prose .katex, .prose .katex-display { color: var(--math-text); }
 .prose .katex-display { overflow-x: auto; overflow-y: hidden; padding: .5em 0; }
-.entry-content h2 { margin: 26px 0 9px; color: var(--primary-text); font-family: var(--display); font-size: 20px; font-weight: 500; line-height: 1.28; letter-spacing: -.006em; }
+.entry-content h2 { margin: 26px 0 9px; color: var(--primary-text); font-family: var(--display); font-size: 23px; font-weight: 500; line-height: 1.24; letter-spacing: -.006em; }
 .entry-content h3 { margin: 21px 0 7px; color: var(--body-soft); font-family: var(--display); font-size: 16px; font-weight: 500; line-height: 1.32; letter-spacing: 0; }
 .entry-content p { margin: 0 0 12px; }
 .entry-content ul,
@@ -266,7 +266,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   .quiet-page { padding: 48px 0 82px; }
   .about-copy, .search-tool { margin-top: 32px; }
   .prose, .excerpt { font-size: 14px; line-height: 1.7; }
-  .entry-content h2 { margin-top: 23px; margin-bottom: 8px; font-size: 18px; line-height: 1.3; }
+  .entry-content h2 { margin-top: 23px; margin-bottom: 8px; font-size: 21px; line-height: 1.26; }
   .entry-content h3 { margin-top: 19px; margin-bottom: 6px; font-size: 15px; line-height: 1.34; }
   .entry-content p { margin-bottom: 11px; }
   .entry-content ul, .entry-content ol { margin-bottom: 12px; }
