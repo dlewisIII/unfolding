@@ -26,9 +26,8 @@ test("truncates only between complete markdown blocks", () => {
   assert.match(blocks[3], /^```[\s\S]*```$/);
   const preview = journalPreview(markdown);
   assert.equal(preview.truncated, true);
-  assert.equal(preview.body, blocks.slice(0, 2).join("\n\n"));
-  assert.match(preview.body, /diagram\.png/);
-  assert.doesNotMatch(preview.body, /x\^2 \+ y\^2|const answer = 42|Fourth paragraph/);
+  assert.equal(preview.body, blocks[0]);
+  assert.doesNotMatch(preview.body, /diagram\.png|x\^2 \+ y\^2|const answer = 42|Fourth paragraph/);
 });
 
 test("keeps the complete initial mathematical statement and stops before Strategy", () => {

@@ -1,4 +1,4 @@
-const MAX_PREVIEW_MEANINGFUL_BLOCKS = 2;
+const MAX_PREVIEW_MEANINGFUL_BLOCKS = 1;
 
 function isListBlock(block) {
   return /^\s*(?:[-+*]|\d+[.)])\s+/m.test(block);
