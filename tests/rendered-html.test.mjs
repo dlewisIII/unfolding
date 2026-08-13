@@ -119,6 +119,25 @@ test("keeps permanent entry pages and localized copy-link actions", async () => 
   assert.match(implication, /href="https:\/\/github\.com\/avikulova\/study-math\/blob\/main\/logic\/proofs\/implication-chain\.md" target="_blank" rel="noopener noreferrer">GitHub ↗<\/a>/i);
 });
 
+test("renders $$ display math through KaTeX", async () => {
+  const html = await render("/entries/implication-chain").then((response) => response.text());
+  assert.match(html, /class="katex-display"/i);
+  assert.match(html, /annotation encoding="application\/x-tex">P \\rightarrow R\.?<\/annotation>/i);
+});
+
+test("renders \\[…\\] display math through KaTeX", async () => {
+  const [english, russian] = await Promise.all([
+    render("/entries/what-lies-beyond-the-observer").then((response) => response.text()),
+    render("/ru/entries/what-lies-beyond-the-observer").then((response) => response.text()),
+  ]);
+  for (const html of [english, russian]) {
+    assert.match(html, /class="katex-display"/i);
+    assert.doesNotMatch(html, /<p>\[\s*\\text\{/i);
+  }
+  assert.match(english, /annotation encoding="application\/x-tex">\\text\{information about an event\}/i);
+  assert.match(russian, /annotation encoding="application\/x-tex">\\text\{информация о событии\}/i);
+});
+
 test("renders a saved theme before the document is painted", async () => {
   const response = await render("/", { cookie: "unfolding-theme=dark" });
   assert.equal(response.status, 200);

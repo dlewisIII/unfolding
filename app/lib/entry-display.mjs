@@ -44,7 +44,7 @@ export function splitMarkdownBlocks(markdown) {
   const blocks = [];
   let current = [];
   let fence = null;
-  let displayMath = false;
+  let displayMath = null;
   const flush = () => {
     if (current.length) blocks.push(current.join("\n").trimEnd());
     current = [];
@@ -59,7 +59,7 @@ export function splitMarkdownBlocks(markdown) {
     }
     if (displayMath) {
       current.push(line);
-      if (trimmed.endsWith("$$")) displayMath = false;
+      if ((displayMath === "dollar" && trimmed.endsWith("$$")) || (displayMath === "bracket" && trimmed === "\\]")) displayMath = null;
       continue;
     }
     const fenceMatch = trimmed.match(/^(`{3,}|~{3,})/);
@@ -70,7 +70,12 @@ export function splitMarkdownBlocks(markdown) {
     }
     if (trimmed.startsWith("$$")) {
       current.push(line);
-      if (!(trimmed.length > 2 && trimmed.endsWith("$$"))) displayMath = true;
+      if (!(trimmed.length > 2 && trimmed.endsWith("$$"))) displayMath = "dollar";
+      continue;
+    }
+    if (trimmed === "\\[") {
+      current.push(line);
+      displayMath = "bracket";
       continue;
     }
     if (!trimmed) {

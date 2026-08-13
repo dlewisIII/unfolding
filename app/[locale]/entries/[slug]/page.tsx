@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import ReactMarkdown from "react-markdown";
-import rehypeKatex from "rehype-katex";
-import remarkMath from "remark-math";
 import { publishedEntries } from "@/content/generated";
 import { authorName, copy, isLocale, localePath, siteUrl, type Locale } from "../../../i18n";
 import { CopyEntryLink } from "../../../components/CopyEntryLink";
 import { entryDisplayTitle, formatEntryDate, withoutDuplicateLeadingTitle } from "../../../lib/entry-display.mjs";
 import { ExternalLinks } from "../../../components/ExternalLinks";
+import { MarkdownContent } from "../../../components/MarkdownContent";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -75,7 +73,7 @@ export default async function EntryPage({ params }: Props) {
     <nav className="entry-nav"><a href={localePath(rawLocale)}>{text.back}</a><CopyEntryLink locale={rawLocale} canonicalPath={canonicalPath} /></nav>
     <article>
       <header className="entry-header"><time className="entry-time" dateTime={version.createdAt}>{date}</time>{displayTitle ? <h1>{displayTitle}</h1> : null}</header>
-      <div className="prose entry-content"><ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>{renderedBody}</ReactMarkdown></div>
+      <div className="prose entry-content"><MarkdownContent>{renderedBody}</MarkdownContent></div>
       <ExternalLinks links={version.externalLinks} ariaLabel={text.externalLinks} />
       {version.tags.length > 0 && <footer className="entry-taxonomy"><h2>{text.tags}</h2><ul className="tags">{version.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul></footer>}
     </article>
