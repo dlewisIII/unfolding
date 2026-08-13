@@ -147,7 +147,7 @@ test("keeps authorial emphasis visible in entry prose", async () => {
   assert.match(russian, /<strong>расширение области реальности, доступной осознанию<\/strong>/i);
   assert.match(english, /<strong>an expansion of the region of reality accessible to awareness<\/strong>/i);
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
-  assert.match(css, /\.prose strong\s*\{[^}]*font-weight:\s*550/i);
+  assert.match(css, /\.prose strong\s*\{[^}]*font-weight:\s*600/i);
   assert.match(css, /\.entry-content h2\s*\{[^}]*font-size:\s*23px/i);
 });
 

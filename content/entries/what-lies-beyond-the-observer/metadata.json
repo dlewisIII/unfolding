@@ -27,7 +27,7 @@
       "translatedAt": "2026-08-13T03:29:49+03:00",
       "translationMethod": "author",
       "submittedAt": "2026-08-13T03:33:47+03:00",
-      "publishedAt": "2026-08-13T04:01:56+03:00",
+      "publishedAt": "2026-08-13T04:07:15+03:00",
       "originalSha256": "744d1337e99c000fe3ebcf681c0df035551a79c0aa578391aa623f940545866c",
       "publishedFrom": "draft",
       "tags": [
@@ -37,7 +37,7 @@
         "time",
         "observer"
       ],
-      "publishedSha256": "5f99385fcba33d1adbf643f8cd6123dc4d2482a4a31ffe0d7c428ce18d79d6bb",
+      "publishedSha256": "3416dd4ced7df7bf3ad72cd3195fb79bcbf0732ac199aeeb77d6f2efef93fff2",
       "authorDecision": "publish_current_draft"
     }
   },

@@ -150,6 +150,6 @@ Personality becomes an object.
 
 Finally, the very division of the world into observer and observed becomes an object.
 
-And if even this division can be seen—
+And if even this division can be seen,
 
 **what lies beyond the observer?**
