@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "entryId": "f1a50836-75f9-4c68-9ea2-a0fbd3f14d3f",
   "locale": "en",
-  "reviewedAt": "2026-08-13T03:33:47+03:00",
+  "reviewedAt": "2026-08-13T04:01:55+03:00",
   "originalSha256": "744d1337e99c000fe3ebcf681c0df035551a79c0aa578391aa623f940545866c",
-  "draftSha256": "b420e16b776779a30885ded6dd350b60821f6d38058dd8678535b9f6923fcef5",
+  "draftSha256": "5f99385fcba33d1adbf643f8cd6123dc4d2482a4a31ffe0d7c428ce18d79d6bb",
   "summary": "The English translation now has the same Markdown hierarchy and display-LaTeX presentation as the revised Russian version. The supplied English wording is preserved; only structural Markdown and the corresponding mathematical notation were restored. The translation is ready for publication from the review perspective after the author’s explicit decision.",
   "checks": [
     {

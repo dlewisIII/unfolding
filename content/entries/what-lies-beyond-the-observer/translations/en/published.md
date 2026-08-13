@@ -4,7 +4,7 @@ The life of an individual, of humanity as a whole, of all living nature on plane
 
 The evolution of a system over time can be represented as a trajectory through its state space, and its entire history as a collection of “cross-sections” of the same system together with the relations between them. (In another model, time itself could also be incorporated into the structure being described rather than treated merely as an external parameter. But we will deliberately leave that model aside for now.) One important property of time is the resolution of its scale: it allows us to determine how frequently to take “snapshots of reality” for different systems, distinguishing relatively stable parameters from variables that change at different characteristic rates.
 
-Thus, a dynamic system can be represented as a static structure of higher dimensionality.
+Thus, **a dynamic system can be represented as a static structure of higher dimensionality**.
 
 When we watch a film recorded on physical film stock, we experience it as continuous motion. Yet the film itself contains only a finite number of frames, rapidly replacing one another and thereby producing the impression of continuity.
 
@@ -36,7 +36,7 @@ The system therefore becomes a multilevel network of overlapping systems.
 
 A person simultaneously belongs to bodily, familial, informational, economic, ecological, and planetary systems.
 
-The boundary of a model is not the boundary of causality.
+**The boundary of a model is not the boundary of causality.**
 
 We can conditionally study a limited system and place everything beyond it into the category of “force majeure, circumstances beyond our control, miracles, and magic.” In other words, we can agree in advance that certain variables have been excluded from our map—but their exclusion from the model does not mean that they cease to affect the system. Naturally, the wider the boundaries we choose, the larger the body of data involved. Any holistic description of a system within a particular boundary will therefore remain a special case of some wider frame of reference.
 
@@ -48,7 +48,7 @@ A person may know nothing about an event and still find themselves inside its co
 
 Consider the widespread broadcast of some piece of news affecting large numbers of people. People become frightened, and their behavior changes. Among them lives someone who has heard nothing about the news, yet that person now finds themselves inside an already altered system. They are highly likely to pick up on the tension of those around them and, for reasons they cannot identify, begin to feel anxious themselves. And the original news report may even turn out to be false.
 
-What affects the person, then, is no longer the original event but the state of other elements within the system—a state produced by information about an event that either lies outside the boundaries of the system under consideration or never occurred at all.
+What affects the person, then, is no longer the original event but **the state of other elements within the system**—a state produced by information about an event that either lies outside the boundaries of the system under consideration or never occurred at all.
 
 Thus:
 
@@ -66,7 +66,7 @@ When we study the system we call “a human being,” information therefore beco
 
 Many practices within traditional teachings are aimed at increasing awareness.
 
-Yoga, concentration, contemplation, the cessation of inner dialogue, deep meditation—all of these can be understood as ways of changing how much of the system becomes accessible to the observer.
+Yoga, concentration, contemplation, the cessation of inner dialogue, deep meditation—all of these can be understood as ways of changing **how much of the system becomes accessible to the observer**.
 
 Ordinary consciousness is extremely selective. An enormous number of processes unfold simultaneously, yet only a small fraction of them enters the field of explicit awareness.
 
@@ -74,7 +74,7 @@ Practice gradually changes this boundary.
 
 A person begins to notice the body where previously it went unnoticed. To detect an emotion as it arises, before it turns into action. To observe a thought instead of automatically identifying with it. To notice relationships between their own state and the state of the surrounding environment. What once merely acted upon them now becomes observable.
 
-In this sense, the “expansion of consciousness” is not necessarily the acquisition of something new, but an expansion of the region of reality accessible to awareness.
+In this sense, the “expansion of consciousness” is not necessarily the acquisition of something new, but **an expansion of the region of reality accessible to awareness**.
 
 But at this point another transition begins.
 
@@ -132,11 +132,11 @@ within which the point of observation changes.
 
 The fundamental question then takes a different form:
 
-Why does consciousness experience an ordered sequence of static states as a flow?
+**Why does consciousness experience an ordered sequence of static states as a flow?**
 
 In ordinary consciousness, past, present, and future appear almost self-evident as properties of reality. Yet in deep meditation, the experience of time can change together with the mode of observation itself. The present moment ceases to feel like an infinitely thin boundary between a past that no longer exists and a future that does not yet exist; instead, a sense of being “outside time” may arise.
 
-And so the question of time gradually becomes a question about the observer.
+And so **the question of time gradually becomes a question about the observer**.
 
 We began by trying to construct a map of a dynamic system. We then discovered that the boundaries of that system depend on the position from which it is observed. Next, we saw that a vast part of the system affects the subject while remaining outside conscious awareness. Practices of awareness begin to expand the domain of what can be observed. Yet in the process, more and more of what was previously called “I” moves to the side of the observed.
 
@@ -152,4 +152,4 @@ Finally, the very division of the world into observer and observed becomes an ob
 
 And if even this division can be seen—
 
-what lies beyond the observer?
+**what lies beyond the observer?**
