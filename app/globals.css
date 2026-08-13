@@ -202,7 +202,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .prose { color: var(--primary-text); font-family: var(--reading-sans); font-size: 14px; font-variation-settings: "wght" 350; font-weight: 350; letter-spacing: -.006em; line-height: 1.7; }
 .prose > * + * { margin-top: 1.25em; }
 .prose h2, .prose h3 { margin-top: 2.2em; color: var(--primary-text); font-family: var(--display); line-height: 1.1; font-weight: 400; }
-.prose strong { color: var(--primary-text); font-weight: 600; }
+.prose strong { color: var(--primary-text); font-variation-settings: "wght" 600; font-weight: 600; }
 .prose a { color: var(--links); border-bottom: 1px solid currentColor; }
 .prose blockquote { margin-left: 0; padding-left: 24px; border-left: 2px solid var(--subtle-border); color: var(--body-soft); font-style: italic; }
 .prose pre { overflow-x: auto; padding: 20px 22px; background: var(--code-background); color: var(--code-text); border-radius: 2px; font-size: 14px; line-height: 1.6; }
