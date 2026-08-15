@@ -5,6 +5,60 @@ export type PublishedVersion = { locale: Locale; slug: string; title: string | n
 export type PublishedEntry = { id: string; originalLanguage: Locale; versions: Partial<Record<Locale, PublishedVersion>>; };
 export const publishedEntries: PublishedEntry[] = [
   {
+    "id": "fbbdb355-3e3f-4cc8-8c34-960c32f0bb38",
+    "originalLanguage": "ru",
+    "versions": {
+      "ru": {
+        "locale": "ru",
+        "slug": "circle-approximations-at-different-resolutions",
+        "title": "Площадь круга как предел конечных приближений",
+        "createdAt": "2026-08-15T04:13:03+03:00",
+        "publishedAt": "2026-08-15T04:54:51+03:00",
+        "tags": [
+          "математический анализ",
+          "предел последовательности",
+          "дискретное и непрерывное",
+          "границы модели",
+          "абсолютная и относительная ошибка"
+        ],
+        "externalLinks": [
+          {
+            "id": "5152cc3d-783c-474e-b054-bf12a8f375b3",
+            "type": "github",
+            "url": "https://github.com/avikulova/study-math/blob/main/calculus/circle-approximations.md",
+            "label": "Source material"
+          }
+        ],
+        "excerpt": "Площадь круга как предел конечных приближений Исследуем, как меняется точность приближения площади круга при разделении его на разное количество концентрических колец. Если мысленно разрезать и распрямить кольц…",
+        "body": "# Площадь круга как предел конечных приближений\n\nИсследуем, как меняется точность приближения площади круга при разделении его на разное количество концентрических колец.\n\nЕсли мысленно разрезать и распрямить кольцо, его можно приближённо представить в виде длинной полосы, близкой к трапеции. Заменим её прямоугольником, высота которого соответствует длине внутренней окружности кольца. При этом часть площади останется неучтённой, поэтому для каждого кольца мы получим значение меньше реального.\n\nСложим площади всех полученных прямоугольников, чтобы приблизить площадь всего круга.\n\n**Как увеличение числа колец повлияет на точность результата? Что будет, если делить круг на всё большее количество всё более тонких колец? Может ли последовательность приближений дать точную площадь круга, если каждое конечное приближение $S_n$ остаётся меньше $\\pi$?**\n\n## Построение приближения\n\nДля примера возьмём круг радиуса\n\n$$\nR=1\n$$\n\nи последовательно разделим его на $4$, $10$, $1\\,000$ и $1\\,000\\,000$ концентрических колец.\n\nЕсли круг разделён на $n$ одинаковых колец, толщина каждого кольца равна\n\n$$\n\\Delta r=\\frac{1}{n}.\n$$\n\nОбозначим внутренний радиус кольца через\n\n$$\nr_k=\\frac{k}{n},\n\\qquad k=0,1,\\ldots,n-1.\n$$\n\nТаким образом, внутренние радиусы колец:\n\n$$\n0,\\quad \\frac1n,\\quad \\frac2n,\\quad \\frac3n,\\quad\\ldots,\\quad\\frac{n-1}{n}.\n$$\n\nДлина внутренней окружности каждого кольца определяется как\n\n$$\nC=2\\pi r.\n$$\n\nПри замене кольца прямоугольником его высота равна длине внутренней окружности:\n\n$$\nh=2\\pi r,\n$$\n\nа ширина равна толщине кольца:\n\n$$\n\\Delta r=\\frac1n.\n$$\n\nСледовательно, площадь одного прямоугольника:\n\n$$\nA_{\\text{rect}}=2\\pi r\\Delta r.\n$$\n\nЧтобы получить приближение площади всего круга, складываем площади всех прямоугольников:\n\n$$\nS_n=\\sum_{k=0}^{n-1}2\\pi r_k\\Delta r.\n$$\n\nПодставляем внутренние радиусы:\n\n$$\nS_n=\n2\\pi\\frac1n\n\\left(\n0+\\frac1n+\\frac2n+\\cdots+\\frac{n-1}{n}\n\\right).\n$$\n\nВыносим $1/n$:\n\n$$\nS_n=\n\\frac{2\\pi}{n^2}\n(0+1+2+\\cdots+(n-1)).\n$$\n\nИспользуем\n\n$$\n0+1+2+\\cdots+(n-1)=\\frac{n(n-1)}2.\n$$\n\nТогда\n\n$$\n\\begin{aligned}\nS_n\n&=\\frac{2\\pi}{n^2}\\cdot\\frac{n(n-1)}2\\\\\n&=\\pi\\frac{n-1}{n}\\\\\n&=\\pi\\left(1-\\frac1n\\right).\n\\end{aligned}\n$$\n\n## Ошибка приближения\n\nДля понимания того, насколько результат отличается от реальной площади круга, вычислим абсолютную и относительную ошибки.\n\nАбсолютная ошибка показывает, насколько вычисленное значение отличается от точного:\n\n$$\nE_n=A-S_n.\n$$\n\nПоскольку при $R=1$\n\n$$\nA=\\pi,\n$$\n\nполучаем\n\n$$\nE_n=\\pi-S_n=\\frac{\\pi}{n}.\n$$\n\nОтносительная ошибка показывает, какую долю точного значения составляет абсолютная ошибка:\n\n$$\ne_n=\\frac{\\pi-S_n}{\\pi}.\n$$\n\nВ общем виде:\n\n$$\n\\text{relative error}\n=\n\\frac{\\text{absolute error}}{\\text{exact value}}.\n$$\n\nЭто общий принцип, а не специальная формула для площади круга.\n\nВ нашем случае:\n\n$$\n\\begin{aligned}\ne_n\n&=\\frac{\\pi-S_n}{\\pi}\\\\\n&=\\frac{\\pi/n}{\\pi}\\\\\n&=\\frac1n.\n\\end{aligned}\n$$\n\n## Результаты\n\n| $n$ | $\\Delta r$ | $S_n$ | $E_n$ | Relative error |\n| ---: | ---: | ---: | ---: | ---: |\n| $4$ | $1/4$ | $3\\pi/4$ | $\\pi/4$ | $25\\%$ |\n| $10$ | $1/10$ | $9\\pi/10$ | $\\pi/10$ | $10\\%$ |\n| $1\\,000$ | $1/1\\,000$ | $999\\pi/1\\,000$ | $\\pi/1\\,000$ | $0.1\\%$ |\n| $1\\,000\\,000$ | $1/1\\,000\\,000$ | $0.999999\\pi$ | $0.000001\\pi$ | $0.0001\\%$ |\n\nПри $n=1\\,000\\,000$ наше приближение учитывает **99.9999% площади**, а неучтёнными остаются всего **0.0001%**.\n\nЕсли увеличить $n$ в 10 раз, абсолютная и относительная ошибки уменьшаются в 10 раз.\n\n## Что происходит при конечном $n$?\n\nКакое бы большое значение $n$ мы ни выбрали, при любом конечном числе колец полученное значение остаётся меньше реальной площади.\n\nПоскольку\n\n$$\nA=\\pi R^2=\\pi\\cdot1^2=\\pi,\n$$\n\nа\n\n$$\nS_n=\\pi\\left(1-\\frac1n\\right),\n$$\n\nдля любого конечного $n$\n\n$$\n\\frac1n>0.\n$$\n\nСледовательно,\n\n$$\nS_n<\\pi=A.\n$$\n\nНи одно конечное приближение не становится точной площадью круга.\n\nПри $n=1$ получаем\n\n$$\nS_1=0.\n$$\n\nЭто не ошибка: единственный прямоугольник строится по внутреннему радиусу $r_0=0$, поэтому его высота и площадь равны нулю.\n\n## Предел\n\nПри этом, когда\n\n$$\nn\\to\\infty,\n$$\n\nимеем\n\n$$\n\\frac1n\\to0.\n$$\n\nПоэтому\n\n$$\n\\begin{aligned}\n\\lim_{n\\to\\infty}S_n\n&=\\lim_{n\\to\\infty}\\pi\\left(1-\\frac1n\\right)\\\\\n&=\\pi.\n\\end{aligned}\n$$\n\nВ последовательности\n\n$$\nS_1,S_2,S_3,\\ldots\n$$\n\nкаждое $S_n$ соответствует конечному числу колец. Отдельного элемента $S_\\infty$ в этой последовательности нет.\n\nПоэтому\n\n$$\n\\lim_{n\\to\\infty}S_n=\\pi\n$$\n\nне означает существование некоторого последнего бесконечно точного приближения. Это утверждение о поведении всей последовательности: увеличивая конечное $n$, мы можем сделать $S_n$ сколь угодно близким к $\\pi$.\n\n**Точная площадь круга не является одним из конечных приближений, а определяется как предел всей последовательности конечных приближений.**\n"
+      },
+      "en": {
+        "locale": "en",
+        "slug": "circle-approximations-at-different-resolutions",
+        "title": "The Area of a Circle as a Limit of Finite Approximations",
+        "createdAt": "2026-08-15T04:13:03+03:00",
+        "publishedAt": "2026-08-15T04:54:51+03:00",
+        "tags": [
+          "mathematical analysis",
+          "limit of a sequence",
+          "discrete and continuous",
+          "model boundaries",
+          "absolute and relative error"
+        ],
+        "externalLinks": [
+          {
+            "id": "5152cc3d-783c-474e-b054-bf12a8f375b3",
+            "type": "github",
+            "url": "https://github.com/avikulova/study-math/blob/main/calculus/circle-approximations.md",
+            "label": "Source material"
+          }
+        ],
+        "excerpt": "The Area of a Circle as a Limit of Finite Approximations We will investigate how the accuracy of an approximation to the area of a circle changes when the circle is divided into different numbers of concentric …",
+        "body": "# The Area of a Circle as a Limit of Finite Approximations\n\nWe will investigate how the accuracy of an approximation to the area of a circle changes when the circle is divided into different numbers of concentric rings.\n\nIf we mentally cut and straighten a ring, we can approximately represent it as a long strip resembling a trapezoid. We replace it with a rectangle whose height corresponds to the length of the ring's inner circumference. Part of the area is then left unaccounted for, so the value obtained for each ring is smaller than its actual area.\n\nWe add the areas of all these rectangles to approximate the area of the entire circle.\n\n**How does increasing the number of rings affect the accuracy of the result? What happens if we divide the circle into more and more increasingly thin rings? Can a sequence of approximations yield the exact area of the circle even though every finite approximation $S_n$ remains smaller than $\\pi$?**\n\n## Constructing the approximation\n\nAs an example, consider a circle of radius\n\n$$\nR=1.\n$$\n\nWe divide it successively into $4$, $10$, $1\\,000$, and $1\\,000\\,000$ concentric rings.\n\nIf the circle is divided into $n$ rings of equal thickness, the thickness of each ring is\n\n$$\n\\Delta r=\\frac{1}{n}.\n$$\n\nLet the inner radius of a ring be\n\n$$\nr_k=\\frac{k}{n},\n\\qquad k=0,1,\\ldots,n-1.\n$$\n\nThus, the inner radii of the rings are\n\n$$\n0,\\quad \\frac1n,\\quad \\frac2n,\\quad \\frac3n,\\quad\\ldots,\\quad\\frac{n-1}{n}.\n$$\n\nThe length of each ring's inner circumference is\n\n$$\nC=2\\pi r.\n$$\n\nWhen a ring is replaced by a rectangle, the rectangle's height equals the length of the inner circumference:\n\n$$\nh=2\\pi r,\n$$\n\nand its width equals the thickness of the ring:\n\n$$\n\\Delta r=\\frac1n.\n$$\n\nTherefore, the area of one rectangle is\n\n$$\nA_{\\text{rect}}=2\\pi r\\Delta r.\n$$\n\nTo approximate the area of the entire circle, we add the areas of all the rectangles:\n\n$$\nS_n=\\sum_{k=0}^{n-1}2\\pi r_k\\Delta r.\n$$\n\nSubstituting the inner radii gives\n\n$$\nS_n=\n2\\pi\\frac1n\n\\left(\n0+\\frac1n+\\frac2n+\\cdots+\\frac{n-1}{n}\n\\right).\n$$\n\nFactoring out $1/n$ gives\n\n$$\nS_n=\n\\frac{2\\pi}{n^2}\n(0+1+2+\\cdots+(n-1)).\n$$\n\nWe use\n\n$$\n0+1+2+\\cdots+(n-1)=\\frac{n(n-1)}2.\n$$\n\nThen\n\n$$\n\\begin{aligned}\nS_n\n&=\\frac{2\\pi}{n^2}\\cdot\\frac{n(n-1)}2\\\\\n&=\\pi\\frac{n-1}{n}\\\\\n&=\\pi\\left(1-\\frac1n\\right).\n\\end{aligned}\n$$\n\n## Approximation error\n\nTo understand how far the result is from the actual area of the circle, we calculate the absolute and relative errors.\n\nThe absolute error shows how far the calculated value is from the exact value:\n\n$$\nE_n=A-S_n.\n$$\n\nSince, for $R=1$,\n\n$$\nA=\\pi,\n$$\n\nwe obtain\n\n$$\nE_n=\\pi-S_n=\\frac{\\pi}{n}.\n$$\n\nThe relative error shows what fraction of the exact value is represented by the absolute error:\n\n$$\ne_n=\\frac{\\pi-S_n}{\\pi}.\n$$\n\nIn general,\n\n$$\n\\text{relative error}\n=\n\\frac{\\text{absolute error}}{\\text{exact value}}.\n$$\n\nThis is a general principle, not a formula specific to the area of a circle.\n\nIn our case,\n\n$$\n\\begin{aligned}\ne_n\n&=\\frac{\\pi-S_n}{\\pi}\\\\\n&=\\frac{\\pi/n}{\\pi}\\\\\n&=\\frac1n.\n\\end{aligned}\n$$\n\n## Results\n\n| $n$ | $\\Delta r$ | $S_n$ | $E_n$ | Relative error |\n| ---: | ---: | ---: | ---: | ---: |\n| $4$ | $1/4$ | $3\\pi/4$ | $\\pi/4$ | $25\\%$ |\n| $10$ | $1/10$ | $9\\pi/10$ | $\\pi/10$ | $10\\%$ |\n| $1\\,000$ | $1/1\\,000$ | $999\\pi/1\\,000$ | $\\pi/1\\,000$ | $0.1\\%$ |\n| $1\\,000\\,000$ | $1/1\\,000\\,000$ | $0.999999\\pi$ | $0.000001\\pi$ | $0.0001\\%$ |\n\nFor $n=1\\,000\\,000$, our approximation accounts for **99.9999% of the area**, leaving only **0.0001%** unaccounted for.\n\nIf $n$ is increased by a factor of 10, both the absolute and relative errors decrease by a factor of 10.\n\n## What happens for finite $n$?\n\nNo matter how large a value of $n$ we choose, for any finite number of rings the result remains smaller than the actual area.\n\nSince\n\n$$\nA=\\pi R^2=\\pi\\cdot1^2=\\pi,\n$$\n\nand\n\n$$\nS_n=\\pi\\left(1-\\frac1n\\right),\n$$\n\nfor every finite $n$,\n\n$$\n\\frac1n>0.\n$$\n\nTherefore,\n\n$$\nS_n<\\pi=A.\n$$\n\nNo finite approximation becomes the exact area of the circle.\n\nFor $n=1$, we obtain\n\n$$\nS_1=0.\n$$\n\nThis is not an error: the only rectangle is constructed using the inner radius $r_0=0$, so its height and area are both zero.\n\n## The limit\n\nHowever, when\n\n$$\nn\\to\\infty,\n$$\n\nwe have\n\n$$\n\\frac1n\\to0.\n$$\n\nTherefore,\n\n$$\n\\begin{aligned}\n\\lim_{n\\to\\infty}S_n\n&=\\lim_{n\\to\\infty}\\pi\\left(1-\\frac1n\\right)\\\\\n&=\\pi.\n\\end{aligned}\n$$\n\nIn the sequence\n\n$$\nS_1,S_2,S_3,\\ldots,\n$$\n\neach $S_n$ corresponds to a finite number of rings. There is no separate element $S_\\infty$ in this sequence.\n\nThus,\n\n$$\n\\lim_{n\\to\\infty}S_n=\\pi\n$$\n\ndoes not mean that there is some final, infinitely accurate approximation. It is a statement about the behavior of the entire sequence: by increasing the finite value of $n$, we can make $S_n$ arbitrarily close to $\\pi$.\n\n**The exact area of the circle is not one of the finite approximations. It is defined as the limit of the entire sequence of finite approximations.**\n"
+      }
+    }
+  },
+  {
     "id": "f1a50836-75f9-4c68-9ea2-a0fbd3f14d3f",
     "originalLanguage": "ru",
     "versions": {
@@ -19,7 +73,9 @@ export const publishedEntries: PublishedEntry[] = [
           "сознание",
           "динамические системы",
           "время",
-          "наблюдатель"
+          "наблюдатель",
+          "дискретное и непрерывное",
+          "границы модели"
         ],
         "externalLinks": [],
         "excerpt": "Что находится за пределами наблюдателя? Жизнь человека, всего человечества, жизнь всей природы на планете Земля, солнечной системы, космоса и мироздание в целом можно представить как динамические системы. Что д…",
@@ -36,7 +92,9 @@ export const publishedEntries: PublishedEntry[] = [
           "consciousness",
           "dynamic systems",
           "time",
-          "observer"
+          "observer",
+          "discrete and continuous",
+          "model boundaries"
         ],
         "externalLinks": [],
         "excerpt": "What Lies Beyond the Observer? The life of an individual, of humanity as a whole, of all living nature on planet Earth, of the Solar System, the cosmos, and perhaps the universe as a whole can be understood as …",

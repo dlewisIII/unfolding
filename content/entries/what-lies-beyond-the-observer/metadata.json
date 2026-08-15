@@ -15,7 +15,9 @@
     "сознание",
     "динамические системы",
     "время",
-    "наблюдатель"
+    "наблюдатель",
+    "дискретное и непрерывное",
+    "границы модели"
   ],
   "externalLinks": [],
   "translations": {
@@ -35,7 +37,9 @@
         "consciousness",
         "dynamic systems",
         "time",
-        "observer"
+        "observer",
+        "discrete and continuous",
+        "model boundaries"
       ],
       "publishedSha256": "3416dd4ced7df7bf3ad72cd3195fb79bcbf0732ac199aeeb77d6f2efef93fff2",
       "authorDecision": "publish_current_draft"

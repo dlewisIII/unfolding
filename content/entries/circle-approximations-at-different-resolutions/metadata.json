@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "id": "fbbdb355-3e3f-4cc8-8c34-960c32f0bb38",
+  "slug": "circle-approximations-at-different-resolutions",
+  "title": "Площадь круга как предел конечных приближений",
+  "originalLanguage": "ru",
+  "status": "published",
+  "createdAt": "2026-08-15T04:13:03+03:00",
+  "submittedAt": "2026-08-15T04:27:48+03:00",
+  "publishedAt": "2026-08-15T04:54:51+03:00",
+  "originalSha256": "a6179bd81c63011e2aea2684e75e4ba362edfadae2923850f3e5b86081d03682",
+  "publishedFrom": "draft",
+  "tags": [
+    "математический анализ",
+    "предел последовательности",
+    "дискретное и непрерывное",
+    "границы модели",
+    "абсолютная и относительная ошибка"
+  ],
+  "externalLinks": [
+    {
+      "id": "5152cc3d-783c-474e-b054-bf12a8f375b3",
+      "type": "github",
+      "url": "https://github.com/avikulova/study-math/blob/main/calculus/circle-approximations.md",
+      "label": "Source material"
+    }
+  ],
+  "translations": {
+    "en": {
+      "locale": "en",
+      "title": "The Area of a Circle as a Limit of Finite Approximations",
+      "slug": "circle-approximations-at-different-resolutions",
+      "status": "published",
+      "translatedAt": "2026-08-15T04:29:07+03:00",
+      "translationMethod": "agent",
+      "submittedAt": "2026-08-15T04:29:07+03:00",
+      "publishedAt": "2026-08-15T04:54:51+03:00",
+      "originalSha256": "38821525a217fed65cc6a6503c46f6375fcb79dba3b120cd22ed067fd783a540",
+      "publishedFrom": "draft",
+      "tags": [
+        "mathematical analysis",
+        "limit of a sequence",
+        "discrete and continuous",
+        "model boundaries",
+        "absolute and relative error"
+      ],
+      "publishedSha256": "6f48bc108b53e97758acb1317e12d5fe759e2f5f69a8eff589c0add2419ec162",
+      "authorDecision": "publish_current_draft"
+    }
+  },
+  "publishedSha256": "358b0075107903adc6b506cf305c49f0c4b455a593c41f033303076e6a4ec1b8",
+  "authorDecision": "publish_current_draft"
+}
