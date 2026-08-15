@@ -1,4 +1,5 @@
-const MAX_PREVIEW_MEANINGFUL_BLOCKS = 1;
+const MAX_PREVIEW_MEANINGFUL_BLOCKS = 2;
+const MIN_PREVIEW_MEANINGFUL_CHARACTERS = 180;
 
 function isListBlock(block) {
   return /^\s*(?:[-+*]|\d+[.)])\s+/m.test(block);
@@ -103,11 +104,18 @@ export function journalPreview(markdown) {
 
   const selected = [];
   let meaningfulBlocks = 0;
+  let meaningfulCharacters = 0;
   for (const block of blocks) {
     if (selected.length && meaningfulBlocks > 0 && isMajorSection(block)) break;
     selected.push(block);
-    if (!isHeadingBlock(block)) meaningfulBlocks += 1;
-    if (meaningfulBlocks >= MAX_PREVIEW_MEANINGFUL_BLOCKS) break;
+    if (!isHeadingBlock(block)) {
+      meaningfulBlocks += 1;
+      meaningfulCharacters += block.length;
+    }
+    if (
+      meaningfulBlocks >= MAX_PREVIEW_MEANINGFUL_BLOCKS
+      || (meaningfulBlocks > 0 && meaningfulCharacters >= MIN_PREVIEW_MEANINGFUL_CHARACTERS)
+    ) break;
   }
   return { body: selected.join("\n\n"), truncated: selected.length < blocks.length };
 }

@@ -54,6 +54,18 @@ test("keeps a list together even when its items contain blank lines", () => {
   assert.match(blocks[1], /1\. First item\.\n\n2\. Second item\./);
 });
 
+test("includes a second paragraph when the opening paragraph is short", () => {
+  const markdown = [
+    "A sleepless summer night.",
+    "At daybreak, I opened the window. The freshness and coolness of the motionless air. Tree branches stood frozen as if in a still frame.",
+    "This third paragraph should remain outside the preview.",
+  ].join("\n\n");
+  const preview = journalPreview(markdown);
+  assert.equal(preview.truncated, true);
+  assert.match(preview.body, /^A sleepless summer night\.\n\nAt daybreak/);
+  assert.doesNotMatch(preview.body, /third paragraph/);
+});
+
 test("uses a leading author H1 as a visual fallback and suppresses only a matching duplicate", () => {
   const markdown = "# Implication Chain\n\n## Statement\n\nSuppose that P.";
   assert.equal(entryDisplayTitle(null, markdown), "Implication Chain");
