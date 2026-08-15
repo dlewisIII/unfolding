@@ -209,6 +209,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .prose code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .84em; }
 .prose :not(pre) > code { padding: .12em .32em; background: var(--code-background); color: var(--code-text); }
 .prose img { display: block; width: 100%; height: auto; margin: 2.2em 0; }
+.prose .table-scroll { width: 100%; margin: 1.5em 0; overflow-x: auto; overscroll-behavior-inline: contain; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+.prose table { width: max-content; min-width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.prose th,
+.prose td { padding: 9px 14px; border-bottom: 1px solid var(--subtle-border); white-space: nowrap; }
+.prose th { color: var(--primary-text); font-family: var(--sans); font-size: .82em; font-variation-settings: "wght" 600; font-weight: 600; letter-spacing: .015em; }
+.prose td { color: var(--body-soft); }
+.prose th:first-child,
+.prose td:first-child { padding-left: 0; }
+.prose th:last-child,
+.prose td:last-child { padding-right: 0; }
 .prose .katex, .prose .katex-display { color: var(--math-text); }
 .prose .katex-display { overflow-x: auto; overflow-y: hidden; padding: .5em 0; }
 .entry-content h2 { margin: 26px 0 9px; color: var(--primary-text); font-family: var(--display); font-size: 23px; font-weight: 500; line-height: 1.24; letter-spacing: -.006em; }
@@ -270,6 +280,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   .entry-content h3 { margin-top: 19px; margin-bottom: 6px; font-size: 15px; line-height: 1.34; }
   .entry-content p { margin-bottom: 11px; }
   .entry-content ul, .entry-content ol { margin-bottom: 12px; }
+  .prose .table-scroll { margin: 1.25em 0; }
+  .prose th, .prose td { padding: 8px 11px; }
   .entry-content .katex-display { margin-top: 10px; margin-bottom: 12px; }
 }
 

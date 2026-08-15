@@ -1,5 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
+import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 
 /**
@@ -46,5 +47,11 @@ export function normalizeDisplayMathDelimiters(markdown: string) {
 }
 
 export function MarkdownContent({ children }: { children: string }) {
-  return <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>{normalizeDisplayMathDelimiters(children)}</ReactMarkdown>;
+  return <ReactMarkdown
+    remarkPlugins={[remarkGfm, remarkMath]}
+    rehypePlugins={[rehypeKatex]}
+    components={{
+      table: ({ node: _node, ...props }) => <div className="table-scroll"><table {...props} /></div>,
+    }}
+  >{normalizeDisplayMathDelimiters(children)}</ReactMarkdown>;
 }
