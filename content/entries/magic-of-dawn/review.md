@@ -1,10 +1,10 @@
 # Review
 
-The revised Russian entry remains clear and contemplative. The added seasonal detail is natural and does not introduce a review concern.
+В русскую версию внесена одна точная авторская замена: «Ни пение птиц, ни какие-либо другие звуки» заменено на «Ни пение птиц, никакие другие звуки». Остальной текст не изменён. Существенных открытых замечаний нет; ревизия готова к публикации после явного решения автора.
 
-- **language**: reviewed — «Летняя ночь без сна» is natural and fits the observational rhythm.
-- **clarity**: reviewed — The seasonal detail makes the opening image more specific.
-- **logic**: reviewed — This is reflective writing rather than a formal argument.
-- **factual claims**: not_applicable — The entry presents direct experience and open questions.
-- **mathematics**: not_applicable — No mathematical content.
+- **language**: reviewed — Новая конструкция «ни пение птиц, никакие другие звуки» грамматически согласована со сказуемым «не нарушают» и сохраняет авторский ритм.
+- **clarity**: reviewed — Смысл предложения остался однозначным: утреннюю тишину пока не нарушает ни один звук.
+- **logic**: reviewed — Замена не меняет последовательность или внутреннюю логику записи.
+- **factual claims**: not_applicable — Изменённый фрагмент является авторским описанием переживания, а не внешним проверяемым утверждением.
+- **mathematics**: not_applicable — В записи нет математических утверждений или вычислений.
 

@@ -7,7 +7,7 @@
   "status": "published",
   "createdAt": "2026-08-11T16:00:19+03:00",
   "submittedAt": "2026-08-11T16:00:19+03:00",
-  "publishedAt": "2026-08-11T16:34:43+03:00",
+  "publishedAt": "2026-08-15T05:31:46+03:00",
   "originalSha256": "a4e0913ab72c088a48263ab8bf1b4577e534d9b90362ac59a9f1562106edffe6",
   "publishedFrom": "draft",
   "tags": [
@@ -39,6 +39,6 @@
       "authorDecision": "publish_current_draft"
     }
   },
-  "publishedSha256": "fb176fabc7620e50a26b85da8d3c37aeea2bd3bf9d052425ec3efb02c55a33a1",
+  "publishedSha256": "9c0f29b9a7230ecda7af53e5d3de7984bb03263e55080551488bd526d016d5c0",
   "authorDecision": "publish_current_draft"
 }

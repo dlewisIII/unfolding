@@ -2,35 +2,35 @@
   "schemaVersion": 2,
   "entryId": "2502f97d-e27a-4c57-b44f-0e196e2103bd",
   "locale": "ru",
-  "reviewedAt": "2026-08-11T16:33:34+03:00",
+  "reviewedAt": "2026-08-15T05:31:45+03:00",
   "originalSha256": "a4e0913ab72c088a48263ab8bf1b4577e534d9b90362ac59a9f1562106edffe6",
-  "draftSha256": "fb176fabc7620e50a26b85da8d3c37aeea2bd3bf9d052425ec3efb02c55a33a1",
-  "summary": "The revised Russian entry remains clear and contemplative. The added seasonal detail is natural and does not introduce a review concern.",
+  "draftSha256": "9c0f29b9a7230ecda7af53e5d3de7984bb03263e55080551488bd526d016d5c0",
+  "summary": "В русскую версию внесена одна точная авторская замена: «Ни пение птиц, ни какие-либо другие звуки» заменено на «Ни пение птиц, никакие другие звуки». Остальной текст не изменён. Существенных открытых замечаний нет; ревизия готова к публикации после явного решения автора.",
   "checks": [
     {
       "category": "language",
       "status": "reviewed",
-      "explanation": "«Летняя ночь без сна» is natural and fits the observational rhythm."
+      "explanation": "Новая конструкция «ни пение птиц, никакие другие звуки» грамматически согласована со сказуемым «не нарушают» и сохраняет авторский ритм."
     },
     {
       "category": "clarity",
       "status": "reviewed",
-      "explanation": "The seasonal detail makes the opening image more specific."
+      "explanation": "Смысл предложения остался однозначным: утреннюю тишину пока не нарушает ни один звук."
     },
     {
       "category": "logic",
       "status": "reviewed",
-      "explanation": "This is reflective writing rather than a formal argument."
+      "explanation": "Замена не меняет последовательность или внутреннюю логику записи."
     },
     {
       "category": "factual_claims",
       "status": "not_applicable",
-      "explanation": "The entry presents direct experience and open questions."
+      "explanation": "Изменённый фрагмент является авторским описанием переживания, а не внешним проверяемым утверждением."
     },
     {
       "category": "mathematics",
       "status": "not_applicable",
-      "explanation": "No mathematical content."
+      "explanation": "В записи нет математических утверждений или вычислений."
     }
   ],
   "issues": []
