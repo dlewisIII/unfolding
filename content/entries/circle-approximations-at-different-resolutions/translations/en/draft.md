@@ -99,7 +99,17 @@ S_n=
 (0+1+2+\cdots+(n-1)).
 $$
 
-We use
+The sum in parentheses can be simplified by writing it once in ascending order and once in descending order:
+
+$$
+0+1+2+\cdots+(n-2)+(n-1)
+$$
+
+$$
+(n-1)+(n-2)+(n-3)+\cdots+1+0
+$$
+
+Adding the two rows term by term gives $n$ terms, each equal to $n-1$. Thus two copies of the original sum equal $n(n-1)$, so
 
 $$
 0+1+2+\cdots+(n-1)=\frac{n(n-1)}2.

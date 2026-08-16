@@ -2,35 +2,35 @@
   "schemaVersion": 2,
   "entryId": "fbbdb355-3e3f-4cc8-8c34-960c32f0bb38",
   "locale": "en",
-  "reviewedAt": "2026-08-16T03:52:57+03:00",
+  "reviewedAt": "2026-08-16T04:07:47+03:00",
   "originalSha256": "38821525a217fed65cc6a6503c46f6375fcb79dba3b120cd22ed067fd783a540",
-  "draftSha256": "943a91daab21cce7e3828d6fc662d667ba2433fc92ec085b783a9f07503b7e72",
-  "summary": "The clarification correctly introduces the left Riemann sum and explicitly explains the index k, the inner radius r_k, the interval width, and the meaning of the summation notation. The remainder of the derivation is unchanged. No substantial open issues were found; from the review perspective, the draft is ready for publication after a separate explicit author decision.",
+  "draftSha256": "d1e38012c7899a12c930fb8cc0723c388945c18a64ad66ed2db17bf458997a0d",
+  "summary": "A short derivation of the sum from 0 to n−1 has been added by pairing its ascending and descending forms. The explanation correctly accounts for the factors n and n−1 and leaves the subsequent derivation of S_n unchanged. No substantial open issues were found; the draft is ready for publication from the review perspective after a separate explicit author decision.",
   "checks": [
     {
       "category": "language",
       "status": "reviewed",
-      "explanation": "The English wording is grammatical and uses the standard term “left Riemann sum” correctly."
+      "explanation": "The English is grammatical and uses natural terminology for adding two rows term by term."
     },
     {
       "category": "clarity",
       "status": "reviewed",
-      "explanation": "The added passage explicitly defines k, r_k, and Δr and explains what the summation sign instructs the reader to do."
+      "explanation": "The two orderings and their term-by-term sum make the origin of n(n−1)/2 explicit."
     },
     {
       "category": "logic",
       "status": "reviewed",
-      "explanation": "The clarification leads naturally into the existing substitution of the inner radii and does not alter the derivation."
+      "explanation": "The explanation appears between factoring out 1/n and the existing substitution of the finite-sum identity, preserving the derivation's sequence."
     },
     {
       "category": "factual_claims",
       "status": "not_applicable",
-      "explanation": "The change contains no empirical or historical claims."
+      "explanation": "The change consists only of mathematical reasoning and introduces no empirical or historical claims."
     },
     {
       "category": "mathematics",
       "status": "reviewed",
-      "explanation": "The sum from k=0 to n−1 is the left Riemann sum for 2πr on [0,1], with r_k=k/n and Δr=1/n."
+      "explanation": "Adding the ascending and descending rows produces n pairs equal to n−1; dividing the resulting equality by 2 correctly yields n(n−1)/2."
     }
   ],
   "issues": []
