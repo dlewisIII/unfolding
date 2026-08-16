@@ -4,27 +4,48 @@
   "slug": "how-local-errors-accumulate",
   "title": "How Local Errors Accumulate",
   "originalLanguage": "en",
-  "status": "reviewed",
+  "status": "published",
   "createdAt": "2026-08-16T06:50:24+03:00",
-  "submittedAt": "2026-08-16T06:50:25+03:00",
-  "publishedAt": null,
+  "submittedAt": "2026-08-16T06:55:12+03:00",
+  "publishedAt": "2026-08-16T06:55:14+03:00",
   "originalSha256": "fea83fb83192d3640f121952b5b733d923cdc51f2c1824de7a42524b912ac20b",
-  "publishedFrom": null,
-  "tags": [],
-  "externalLinks": [],
+  "publishedFrom": "draft",
+  "tags": [
+    "mathematical analysis",
+    "Riemann sums",
+    "absolute and relative error",
+    "limit of a sequence"
+  ],
+  "externalLinks": [
+    {
+      "id": "ced9f5e2-9f9a-4f75-9310-2fed23d05830",
+      "type": "github",
+      "url": "https://github.com/avikulova/study-math/blob/main/calculus/exact-annulus-vs-rectangle.md",
+      "label": "Source material"
+    }
+  ],
   "translations": {
     "ru": {
       "locale": "ru",
       "title": "Как накапливаются локальные ошибки",
       "slug": "how-local-errors-accumulate",
-      "status": "reviewed",
+      "status": "published",
       "translatedAt": "2026-08-16T06:50:25+03:00",
       "translationMethod": "author",
-      "submittedAt": "2026-08-16T06:50:25+03:00",
-      "publishedAt": null,
+      "submittedAt": "2026-08-16T06:55:12+03:00",
+      "publishedAt": "2026-08-16T06:55:15+03:00",
       "originalSha256": "3b0b21d13c94dad70046a036d664174e527caa0ad31f1339c11246d2f0030fce",
-      "publishedFrom": null,
-      "tags": []
+      "publishedFrom": "draft",
+      "tags": [
+        "математический анализ",
+        "суммы Римана",
+        "абсолютная и относительная ошибка",
+        "предел последовательности"
+      ],
+      "publishedSha256": "88c6fecb8c62e7410216392f3ae0adddddfbbaabc82a1c693046967256e398aa",
+      "authorDecision": "publish_current_draft"
     }
-  }
+  },
+  "publishedSha256": "69c0b734a92950859efb8f7d10c76115822bffa2fdc14631b7ec55770b8a9030",
+  "authorDecision": "publish_current_draft"
 }

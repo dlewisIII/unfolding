@@ -2,10 +2,10 @@
   "schemaVersion": 2,
   "entryId": "cb5cf5c3-7209-41ae-ab64-b3446dd68442",
   "locale": "en",
-  "reviewedAt": "2026-08-16T06:50:25+03:00",
+  "reviewedAt": "2026-08-16T06:55:12+03:00",
   "originalSha256": "fea83fb83192d3640f121952b5b733d923cdc51f2c1824de7a42524b912ac20b",
-  "draftSha256": "fea83fb83192d3640f121952b5b733d923cdc51f2c1824de7a42524b912ac20b",
-  "summary": "The mathematical derivation and the local-to-global error argument are correct. One minor domain qualification would make the relative-error statement fully precise. Ready for publication from the review perspective; author decision is still required.",
+  "draftSha256": "69c0b734a92950859efb8f7d10c76115822bffa2fdc14631b7ec55770b8a9030",
+  "summary": "The mathematical derivation and the local-to-global error argument are correct. The domain condition for the relative-error ratio is now explicit. Ready for publication from the review perspective; author decision is still required.",
   "checks": [
     {
       "category": "language",
@@ -33,17 +33,5 @@
       "explanation": "The annulus expansion, per-ring error, accumulated error, and limits are correct."
     }
   ],
-  "issues": [
-    {
-      "id": "issue-1",
-      "category": "mathematics",
-      "location": {
-        "fragment": "For a fixed $r$"
-      },
-      "explanation": "For full precision, this should specify a fixed $r>0$. At $r=0$, the rectangular area is zero, so the displayed relative-error ratio is undefined.",
-      "severity": "minor",
-      "status": "open",
-      "confidence": 0.99
-    }
-  ]
+  "issues": []
 }
