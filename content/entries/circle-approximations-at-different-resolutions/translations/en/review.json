@@ -2,35 +2,35 @@
   "schemaVersion": 2,
   "entryId": "fbbdb355-3e3f-4cc8-8c34-960c32f0bb38",
   "locale": "en",
-  "reviewedAt": "2026-08-16T04:07:47+03:00",
+  "reviewedAt": "2026-08-16T05:01:04+03:00",
   "originalSha256": "38821525a217fed65cc6a6503c46f6375fcb79dba3b120cd22ed067fd783a540",
-  "draftSha256": "d1e38012c7899a12c930fb8cc0723c388945c18a64ad66ed2db17bf458997a0d",
-  "summary": "A short derivation of the sum from 0 to n−1 has been added by pairing its ascending and descending forms. The explanation correctly accounts for the factors n and n−1 and leaves the subsequent derivation of S_n unchanged. No substantial open issues were found; the draft is ready for publication from the review perspective after a separate explicit author decision.",
+  "draftSha256": "f7b0e8e556c8f51a29d37d71144d049d06f3c25a2bd9a57e810b1c4e0c6f9ee2",
+  "summary": "The final editorial revision clarifies the experiment's purpose, connects the circle construction to the broader idea of finite approximations, removes a redundant relative-error sentence, fixes the inline r_0 = 0 expression, and makes the conclusion more exploratory. All recently added mathematical explanations and formulas are preserved. No substantial open issues were found; the draft is ready for publication from the review perspective after a separate explicit author decision.",
   "checks": [
     {
       "category": "language",
       "status": "reviewed",
-      "explanation": "The English is grammatical and uses natural terminology for adding two rows term by term."
+      "explanation": "The English is grammatical and natural, with a consistent expository tone across the revised introduction and conclusion."
     },
     {
       "category": "clarity",
       "status": "reviewed",
-      "explanation": "The two orderings and their term-by-term sum make the origin of n(n−1)/2 explicit."
+      "explanation": "The introduction now distinguishes the known area formula from the purpose of the experiment, while the conclusion clearly separates finite approximations from the exact sequence limit."
     },
     {
       "category": "logic",
       "status": "reviewed",
-      "explanation": "The explanation appears between factoring out 1/n and the existing substitution of the finite-sum identity, preserving the derivation's sequence."
+      "explanation": "The progression from a known exact value through finite approximations, error analysis, and limiting behavior is coherent; removing the redundant sentence does not disrupt the derivation."
     },
     {
       "category": "factual_claims",
       "status": "not_applicable",
-      "explanation": "The change consists only of mathematical reasoning and introduces no empirical or historical claims."
+      "explanation": "The entry is a mathematical exposition and does not depend on external empirical or historical claims."
     },
     {
       "category": "mathematics",
       "status": "reviewed",
-      "explanation": "Adding the ascending and descending rows produces n pairs equal to n−1; dividing the resulting equality by 2 correctly yields n(n−1)/2."
+      "explanation": "All formulas, the left Riemann sum, the definitions of r_k and Δr, the finite-sum derivation, the error calculations, and the limiting argument are preserved and correct; r_0 = 0 is contained in one inline-math span."
     }
   ],
   "issues": []

@@ -1,12 +1,22 @@
 # The Area of a Circle as a Limit of Finite Approximations
 
-We will investigate how the accuracy of an approximation to the area of a circle changes when the circle is divided into different numbers of concentric rings.
+We already know the exact area of a circle:
 
-If we mentally cut and straighten a ring, we can approximately represent it as a long strip resembling a trapezoid. We replace it with a rectangle whose height corresponds to the length of the ring's inner circumference. Part of the area is then left unaccounted for, so the value obtained for each ring is smaller than its actual area.
+$$
+A=\pi R^2.
+$$
 
-We add the areas of all these rectangles to approximate the area of the entire circle.
+So the purpose of this experiment is not to derive the familiar formula again. Instead, we can use the circle as a case where the exact answer is already known and ask a different question: **can we recover that exact value from a sequence of finite approximations?**
 
-**How does increasing the number of rings affect the accuracy of the result? What happens if we divide the circle into more and more increasingly thin rings? Can a sequence of approximations yield the exact area of the circle even though every finite approximation $S_n$ remains smaller than $\pi$?**
+One way to do this is to divide the circle into concentric rings. If we mentally cut and straighten a ring, we can approximately represent it as a long strip resembling a trapezoid. We replace it with a rectangle whose height corresponds to the length of the ring's inner circumference. Part of the area is then left unaccounted for, so the value obtained for each ring is smaller than its actual area.
+
+We add the areas of all these rectangles to approximate the area of the entire circle. **This transforms the geometry of the circle into a sum of simple rectangular areas.**
+
+The same idea extends far beyond circles: when the boundary of a region is curved and its area cannot be obtained by a simple geometric formula, we can divide it into increasingly small pieces, sum finite approximations, and study what happens as their size approaches zero.
+
+Here, because we already know the exact answer, we can watch this process happen and compare every approximation with $\pi R^2$.
+
+**How does increasing the number of rings affect the accuracy of the result? What happens as the rings become increasingly thin? Can a sequence of finite approximations recover the exact area of the circle even though every finite approximation $S_n$ remains smaller than the exact area?**
 
 ## Constructing the approximation
 
@@ -162,8 +172,6 @@ $$
 \frac{\text{absolute error}}{\text{exact value}}.
 $$
 
-This is a general principle, not a formula specific to the area of a circle.
-
 In our case,
 
 $$
@@ -224,7 +232,7 @@ $$
 S_1=0.
 $$
 
-This is not an error: the only rectangle is constructed using the inner radius $r_0=0$, so its height and area are both zero.
+This is not an error: the only rectangle is constructed using the inner radius $r_0 = 0$, so its height and area are both zero.
 
 ## The limit
 
@@ -266,4 +274,4 @@ $$
 
 does not mean that there is some final, infinitely accurate approximation. It is a statement about the behavior of the entire sequence: by increasing the finite value of $n$, we can make $S_n$ arbitrarily close to $\pi$.
 
-**The exact area of the circle is not one of the finite approximations. It is defined as the limit of the entire sequence of finite approximations.**
+**So we can see that no finite approximation in the sequence gives the exact area of the circle. Yet the sequence itself has an exact limit. The exact value is determined not by a final infinitely precise approximation, but by the limiting behavior of the sequence of finite approximations.**
