@@ -81,3 +81,9 @@ Do not translate mathematical terminology mechanically. If several established R
 Only an explicit author instruction semantically equivalent to “Publish”, “Опубликовать”, “Publish as is”, or “Опубликовать как есть” authorizes publication. New entry, translation, revision, and review never create `published.md` or set a lifecycle to published. Publish the intended locale with `pnpm entry:publish <slug|--active> <locale> (--as-is|--from-draft)`. If locale or entry is genuinely ambiguous, ask one short question first.
 
 Publishing one locale does not publish the other. An explicit instruction to publish both locales authorizes two lifecycle publications and the bilingual tag-bundle behavior above. Both versions retain the same root `id` and `createdAt`; `translatedAt`, `submittedAt`, and `publishedAt` are lifecycle history only and never replace the root date.
+
+## Production deployment workflow
+
+GitHub push does not deploy Unfolding to production automatically. After pushing the exact validated production commit, immediately run the Sites production deployment workflow for that same commit: push it to the configured Sites source repository, package the validated build, save exactly one Sites version, deploy that version to production, and poll the Sites deployment directly until it succeeds or fails.
+
+Do not wait for, poll, or diagnose a GitHub-triggered deployment after the GitHub push. No such automatic production deployment is expected. Preserve all existing production validation gates before the push and all final production page checks after Sites reports a successful deployment. When several prepared content commits belong to one requested release, include them in one pushed head and create one Sites version and one production deployment.
