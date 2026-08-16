@@ -19,7 +19,8 @@ export const publishedEntries: PublishedEntry[] = [
           "предел последовательности",
           "дискретное и непрерывное",
           "границы модели",
-          "абсолютная и относительная ошибка"
+          "абсолютная и относительная ошибка",
+          "суммы Римана"
         ],
         "externalLinks": [
           {
@@ -43,7 +44,8 @@ export const publishedEntries: PublishedEntry[] = [
           "limit of a sequence",
           "discrete and continuous",
           "model boundaries",
-          "absolute and relative error"
+          "absolute and relative error",
+          "Riemann sums"
         ],
         "externalLinks": [
           {

@@ -61,11 +61,25 @@ $$
 A_{\text{rect}}=2\pi r\Delta r.
 $$
 
-To approximate the area of the entire circle, we add the areas of all the rectangles:
+To approximate the area of the entire circle, we add the areas of all the rectangles (using a left Riemann sum, since in our case the height of each rectangle is determined by the value of the function at the left endpoint of each interval):
 
 $$
 S_n=\sum_{k=0}^{n-1}2\pi r_k\Delta r.
 $$
+
+Here $k$ indexes the rings from $0$ to $n-1$. For each ring, its inner radius is
+
+$$
+r_k=\frac{k}{n},
+$$
+
+and the width of each interval is
+
+$$
+\Delta r=\frac{1}{n}.
+$$
+
+The summation notation expresses the same operation performed for every ring: calculate the area of its rectangle and add all the resulting areas.
 
 Substituting the inner radii gives
 

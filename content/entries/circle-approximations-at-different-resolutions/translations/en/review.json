@@ -2,35 +2,35 @@
   "schemaVersion": 2,
   "entryId": "fbbdb355-3e3f-4cc8-8c34-960c32f0bb38",
   "locale": "en",
-  "reviewedAt": "2026-08-15T04:52:46+03:00",
+  "reviewedAt": "2026-08-16T03:52:57+03:00",
   "originalSha256": "38821525a217fed65cc6a6503c46f6375fcb79dba3b120cd22ed067fd783a540",
-  "draftSha256": "6f48bc108b53e97758acb1317e12d5fe759e2f5f69a8eff589c0add2419ec162",
-  "summary": "The translation preserves the structure, formulas, error calculations, and distinction between a sequence limit and a nonexistent final element. The English is clear and mathematically accurate. No substantial open issues were found; from the review perspective, this version is ready for publication after the author's explicit decision.",
+  "draftSha256": "943a91daab21cce7e3828d6fc662d667ba2433fc92ec085b783a9f07503b7e72",
+  "summary": "The clarification correctly introduces the left Riemann sum and explicitly explains the index k, the inner radius r_k, the interval width, and the meaning of the summation notation. The remainder of the derivation is unchanged. No substantial open issues were found; from the review perspective, the draft is ready for publication after a separate explicit author decision.",
   "checks": [
     {
       "category": "language",
       "status": "reviewed",
-      "explanation": "The English is grammatical, natural, and appropriate for an introductory mathematical exposition."
+      "explanation": "The English wording is grammatical and uses the standard term “left Riemann sum” correctly."
     },
     {
       "category": "clarity",
       "status": "reviewed",
-      "explanation": "The construction defines r_k and the summation bounds, explains the n=1 case, and separates finite approximations from their limiting behavior."
+      "explanation": "The added passage explicitly defines k, r_k, and Δr and explains what the summation sign instructs the reader to do."
     },
     {
       "category": "logic",
       "status": "reviewed",
-      "explanation": "The progression from finite lower estimates through error decay to the limit is coherent, and the limit is not identified with an element of the sequence."
+      "explanation": "The clarification leads naturally into the existing substitution of the inner radii and does not alter the derivation."
     },
     {
       "category": "factual_claims",
       "status": "not_applicable",
-      "explanation": "The entry is a mathematical construction and does not rely on empirical or historical claims."
+      "explanation": "The change contains no empirical or historical claims."
     },
     {
       "category": "mathematics",
       "status": "reviewed",
-      "explanation": "The derivation of S_n=π(1−1/n), E_n=π/n, e_n=1/n, the table values, the strict lower bound, and the limit are all correct."
+      "explanation": "The sum from k=0 to n−1 is the left Riemann sum for 2πr on [0,1], with r_k=k/n and Δr=1/n."
     }
   ],
   "issues": []

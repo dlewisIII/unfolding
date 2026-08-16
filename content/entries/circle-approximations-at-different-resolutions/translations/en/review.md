@@ -1,10 +1,10 @@
 # Review
 
-The translation preserves the structure, formulas, error calculations, and distinction between a sequence limit and a nonexistent final element. The English is clear and mathematically accurate. No substantial open issues were found; from the review perspective, this version is ready for publication after the author's explicit decision.
+The clarification correctly introduces the left Riemann sum and explicitly explains the index k, the inner radius r_k, the interval width, and the meaning of the summation notation. The remainder of the derivation is unchanged. No substantial open issues were found; from the review perspective, the draft is ready for publication after a separate explicit author decision.
 
-- **language**: reviewed — The English is grammatical, natural, and appropriate for an introductory mathematical exposition.
-- **clarity**: reviewed — The construction defines r_k and the summation bounds, explains the n=1 case, and separates finite approximations from their limiting behavior.
-- **logic**: reviewed — The progression from finite lower estimates through error decay to the limit is coherent, and the limit is not identified with an element of the sequence.
-- **factual claims**: not_applicable — The entry is a mathematical construction and does not rely on empirical or historical claims.
-- **mathematics**: reviewed — The derivation of S_n=π(1−1/n), E_n=π/n, e_n=1/n, the table values, the strict lower bound, and the limit are all correct.
+- **language**: reviewed — The English wording is grammatical and uses the standard term “left Riemann sum” correctly.
+- **clarity**: reviewed — The added passage explicitly defines k, r_k, and Δr and explains what the summation sign instructs the reader to do.
+- **logic**: reviewed — The clarification leads naturally into the existing substitution of the inner radii and does not alter the derivation.
+- **factual claims**: not_applicable — The change contains no empirical or historical claims.
+- **mathematics**: reviewed — The sum from k=0 to n−1 is the left Riemann sum for 2πr on [0,1], with r_k=k/n and Δr=1/n.
 
