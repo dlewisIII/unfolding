@@ -2,30 +2,30 @@
   "schemaVersion": 2,
   "entryId": "644e0198-40f4-41b3-84d9-b0c4968e7ace",
   "locale": "en",
-  "reviewedAt": "2026-08-18T10:32:59+03:00",
+  "reviewedAt": "2026-08-18T10:59:27+03:00",
   "originalSha256": "a2c93373f94c5abb1aee07f38e5a56e72ca528398894fc9456c422a74e2da20b",
-  "draftSha256": "1b21f868a05460a99b3f63788388a89fb9776f10b79eb17147ecbe3261336173",
-  "summary": "The source links have been corrected and the prior clarity issue is resolved. The entry remains clear, coherent, and appropriately qualified. There are no major or blocking open issues, so this version is ready for publication from the review perspective; author approval is still required.",
+  "draftSha256": "6f5f9e59c8cc8382bd4705a966c94871c4a78f91c735d1bdee73202a12b87486",
+  "summary": "The redundant in-body H1 has been removed while the approved metadata title remains intact. The entry is coherent and ready for publication from the review perspective; author approval is still required.",
   "checks": [
     {
       "category": "language",
       "status": "reviewed",
-      "explanation": "The English is fluent and consistent, with Sanskrit terms transliterated clearly."
+      "explanation": "Removing the H1 does not affect the fluency or consistency of the English text."
     },
     {
       "category": "clarity",
       "status": "reviewed",
-      "explanation": "The section structure is clear, and every bibliography item is now represented by a single valid Markdown link."
+      "explanation": "The entry now opens directly with the introductory sentence, avoiding duplication with the metadata title."
     },
     {
       "category": "logic",
       "status": "reviewed",
-      "explanation": "The progression from personal experience to the choice of system and study method is coherent."
+      "explanation": "The structure and progression of the entry remain coherent."
     },
     {
       "category": "factual_claims",
       "status": "reviewed",
-      "explanation": "Historical and textual claims are cautiously stated and supported by the listed academic sources; personal experiences are identified as subjective."
+      "explanation": "The revision changes no factual claims; the existing historical qualifications and source links remain intact."
     },
     {
       "category": "mathematics",

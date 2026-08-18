@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "entryId": "644e0198-40f4-41b3-84d9-b0c4968e7ace",
   "locale": "en",
-  "suggestedAt": "2026-08-18T10:32:59+03:00",
+  "suggestedAt": "2026-08-18T10:59:27+03:00",
   "tags": [
     "Patañjali's Yoga Sūtras",
     "yoga",
@@ -10,5 +10,5 @@
     "contemplative practice",
     "textual study"
   ],
-  "rationale": "Author-approved English tags."
+  "rationale": "Existing author-approved English tags remain applicable after removal of the in-body H1."
 }

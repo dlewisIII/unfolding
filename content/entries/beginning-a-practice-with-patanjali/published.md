@@ -1,5 +1,3 @@
-# Beginning a Practice with Patañjali
-
 I am beginning a systematic practice based on Patañjali's *Yoga Sūtras*.
 
 Why have I chosen this particular system? Why have I decided to focus my practice on a single system at all, when many systems lead toward the same goal and there is something wonderful about being able to combine practices from different traditions as one sees fit?

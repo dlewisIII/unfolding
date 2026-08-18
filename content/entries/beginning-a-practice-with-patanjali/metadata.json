@@ -7,7 +7,7 @@
   "status": "published",
   "createdAt": "2026-08-18T10:23:50+03:00",
   "submittedAt": "2026-08-18T10:32:59+03:00",
-  "publishedAt": "2026-08-18T10:46:25+03:00",
+  "publishedAt": "2026-08-18T11:00:08+03:00",
   "originalSha256": "a2c93373f94c5abb1aee07f38e5a56e72ca528398894fc9456c422a74e2da20b",
   "publishedFrom": "draft",
   "tags": [
@@ -27,7 +27,7 @@
       "translatedAt": "2026-08-18T10:31:22+03:00",
       "translationMethod": "author",
       "submittedAt": "2026-08-18T10:45:36+03:00",
-      "publishedAt": "2026-08-18T10:46:26+03:00",
+      "publishedAt": "2026-08-18T11:00:09+03:00",
       "originalSha256": "f10dda87316893004b525c0d56039f93821781c7fade77636ee8068a8ee3eaca",
       "publishedFrom": "draft",
       "tags": [
@@ -37,10 +37,10 @@
         "созерцательная практика",
         "текстологическое исследование"
       ],
-      "publishedSha256": "e91ed9f4e1be9a87a211cce596449e0ee5fafd24c9833823883752baecdfd040",
+      "publishedSha256": "d8798fe97a3f71d1ef809779e29a4fff3e539fc01f945ba995923a3ae3a41a22",
       "authorDecision": "publish_current_draft"
     }
   },
-  "publishedSha256": "1b21f868a05460a99b3f63788388a89fb9776f10b79eb17147ecbe3261336173",
+  "publishedSha256": "6f5f9e59c8cc8382bd4705a966c94871c4a78f91c735d1bdee73202a12b87486",
   "authorDecision": "publish_current_draft"
 }
