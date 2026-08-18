@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 2,
+  "entryId": "644e0198-40f4-41b3-84d9-b0c4968e7ace",
+  "locale": "en",
+  "reviewedAt": "2026-08-18T10:32:59+03:00",
+  "originalSha256": "a2c93373f94c5abb1aee07f38e5a56e72ca528398894fc9456c422a74e2da20b",
+  "draftSha256": "1b21f868a05460a99b3f63788388a89fb9776f10b79eb17147ecbe3261336173",
+  "summary": "The source links have been corrected and the prior clarity issue is resolved. The entry remains clear, coherent, and appropriately qualified. There are no major or blocking open issues, so this version is ready for publication from the review perspective; author approval is still required.",
+  "checks": [
+    {
+      "category": "language",
+      "status": "reviewed",
+      "explanation": "The English is fluent and consistent, with Sanskrit terms transliterated clearly."
+    },
+    {
+      "category": "clarity",
+      "status": "reviewed",
+      "explanation": "The section structure is clear, and every bibliography item is now represented by a single valid Markdown link."
+    },
+    {
+      "category": "logic",
+      "status": "reviewed",
+      "explanation": "The progression from personal experience to the choice of system and study method is coherent."
+    },
+    {
+      "category": "factual_claims",
+      "status": "reviewed",
+      "explanation": "Historical and textual claims are cautiously stated and supported by the listed academic sources; personal experiences are identified as subjective."
+    },
+    {
+      "category": "mathematics",
+      "status": "not_applicable",
+      "explanation": "The entry contains no mathematical argument or notation."
+    }
+  ],
+  "issues": []
+}
