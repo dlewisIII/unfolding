@@ -46,12 +46,34 @@ export function normalizeDisplayMathDelimiters(markdown: string) {
     .replace(/\\boxed\{\\text\{([^{}]+)\}\}/g, "\\text{$1}");
 }
 
+/**
+ * react-markdown intentionally does not render raw HTML. The journal sources
+ * sometimes carry explicit safe external anchors, so convert that narrow form
+ * to Markdown for rendering while leaving the stored author text untouched.
+ * The component override below restores the required browser attributes.
+ */
+export function normalizeExternalAnchors(markdown: string) {
+  return markdown.replace(
+    /<a\s+href="([^"]+)"\s+target="_blank"\s+rel="noopener noreferrer">([\s\S]*?)<\/a>/g,
+    (_match, href: string, label: string) => `[${label}](${href})`,
+  );
+}
+
 export function MarkdownContent({ children }: { children: string }) {
   return <ReactMarkdown
     remarkPlugins={[remarkGfm, remarkMath]}
     rehypePlugins={[rehypeKatex]}
     components={{
       table: ({ node: _node, ...props }) => <div className="table-scroll"><table {...props} /></div>,
+      a: ({ node: _node, href, ...props }) => {
+        const external = typeof href === "string" && /^(?:https?:)?\/\//i.test(href);
+        return <a
+          {...props}
+          href={href}
+          target={external ? "_blank" : undefined}
+          rel={external ? "noopener noreferrer" : undefined}
+        />;
+      },
     }}
-  >{normalizeDisplayMathDelimiters(children)}</ReactMarkdown>;
+  >{normalizeExternalAnchors(normalizeDisplayMathDelimiters(children))}</ReactMarkdown>;
 }

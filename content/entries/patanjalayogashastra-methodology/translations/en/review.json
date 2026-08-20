@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 2,
+  "entryId": "6d57878a-d8cc-4da0-8976-8920ca32e913",
+  "locale": "en",
+  "reviewedAt": "2026-08-21T01:35:42+03:00",
+  "originalSha256": "227cde12524934fb3688e9e9bdb36423d9d51324ea708841e6edf1a202828895",
+  "draftSha256": "6ff918b3478b68c2497153c055f5d577630f4721b6502119bb84599a66e2d1f5",
+  "summary": "Follow-up review after a single external-link replacement. The article text, link label, structure, and mathematical material are unchanged. The new URL points to the specified digital copy; the version is ready for publication from the review perspective.",
+  "checks": [
+    {
+      "category": "language",
+      "status": "reviewed",
+      "explanation": "The article text and English link label are unchanged."
+    },
+    {
+      "category": "clarity",
+      "status": "reviewed",
+      "explanation": "The URL replacement does not affect clarity."
+    },
+    {
+      "category": "logic",
+      "status": "reviewed",
+      "explanation": "The relationship between the label and the cited source is preserved."
+    },
+    {
+      "category": "factual_claims",
+      "status": "reviewed",
+      "explanation": "The new URL was checked as the specified digital copy of the printed edition."
+    },
+    {
+      "category": "mathematics",
+      "status": "not_applicable",
+      "explanation": "No mathematical statements or expressions were changed in this revision."
+    }
+  ],
+  "issues": []
+}

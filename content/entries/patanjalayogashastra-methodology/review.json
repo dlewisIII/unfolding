@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 2,
+  "entryId": "6d57878a-d8cc-4da0-8976-8920ca32e913",
+  "locale": "ru",
+  "reviewedAt": "2026-08-21T01:35:42+03:00",
+  "originalSha256": "9f71d8504c4df3c79b9a9fd84233a75286ae7be5ef5d595b79349cb7e748d6c3",
+  "draftSha256": "b3bc41c9c0e8f36d7af80944d59385a9a1ae2e1fc04c5a2ca120200af9c0e2ea",
+  "summary": "Повторная проверка после точечной замены одной внешней ссылки. Авторский текст, подпись ссылки, структура и математические фрагменты не изменены. Новая ссылка ведёт на указанную цифровую копию издания; версия готова к публикации с точки зрения проверки.",
+  "checks": [
+    {
+      "category": "language",
+      "status": "reviewed",
+      "explanation": "Текст и русская подпись ссылки не изменены."
+    },
+    {
+      "category": "clarity",
+      "status": "reviewed",
+      "explanation": "Замена URL не влияет на ясность текста."
+    },
+    {
+      "category": "logic",
+      "status": "reviewed",
+      "explanation": "Связь подписи с указанным источником сохранена."
+    },
+    {
+      "category": "factual_claims",
+      "status": "reviewed",
+      "explanation": "Проверено, что новая ссылка относится к цифровой копии указанного печатного издания."
+    },
+    {
+      "category": "mathematics",
+      "status": "not_applicable",
+      "explanation": "Математические утверждения и выражения в этой ревизии не изменялись."
+    }
+  ],
+  "issues": []
+}

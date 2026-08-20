@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 2,
+  "id": "6d57878a-d8cc-4da0-8976-8920ca32e913",
+  "slug": "patanjalayogashastra-methodology",
+  "title": "Методология исследования «Патанджала-йога-шастры»",
+  "originalLanguage": "ru",
+  "status": "published",
+  "createdAt": "2026-08-21T01:21:18+03:00",
+  "submittedAt": "2026-08-21T01:22:35+03:00",
+  "publishedAt": "2026-08-21T01:38:08+03:00",
+  "originalSha256": "9f71d8504c4df3c79b9a9fd84233a75286ae7be5ef5d595b79349cb7e748d6c3",
+  "publishedFrom": "draft",
+  "tags": [
+    "йога",
+    "Патанджали",
+    "санскрит",
+    "исследование текста"
+  ],
+  "externalLinks": [],
+  "translations": {
+    "en": {
+      "locale": "en",
+      "title": "Methodology for Studying the Pātañjalayogaśāstra",
+      "slug": "patanjalayogashastra-methodology",
+      "status": "published",
+      "translatedAt": "2026-08-21T01:23:51+03:00",
+      "translationMethod": "author",
+      "submittedAt": "2026-08-21T01:24:15+03:00",
+      "publishedAt": "2026-08-21T01:38:08+03:00",
+      "originalSha256": "227cde12524934fb3688e9e9bdb36423d9d51324ea708841e6edf1a202828895",
+      "publishedFrom": "draft",
+      "tags": [
+        "yoga",
+        "Patañjali",
+        "Sanskrit",
+        "textual study"
+      ],
+      "publishedSha256": "6ff918b3478b68c2497153c055f5d577630f4721b6502119bb84599a66e2d1f5",
+      "authorDecision": "publish_current_draft"
+    }
+  },
+  "publishedSha256": "b3bc41c9c0e8f36d7af80944d59385a9a1ae2e1fc04c5a2ca120200af9c0e2ea",
+  "authorDecision": "publish_current_draft"
+}
