@@ -25,4 +25,6 @@ pnpm build
 pnpm test
 ```
 
+For local content edits, `pnpm validate:math` checks only changed entry files that contain math. Run `pnpm validate:math:all` before publishing, merging, or deploying to production. The targeted command automatically switches to full-site validation when the Markdown/KaTeX rendering pipeline changes.
+
 The reader supports Markdown, inline math such as `$P \to Q$`, display math, code blocks, and images embedded in entry Markdown.

@@ -39,11 +39,11 @@ test("permanently redirects legacy English routes without changing their path or
   assert.equal(entry.headers.get("location"), "/entries/implication-chain?source=legacy");
 });
 
-test("redirects the legacy Sites hostname to the canonical domain", async () => {
+test("redirects the www hostname to the canonical domain", async () => {
   const [page, legacyEnglish, asset] = await Promise.all([
-    render("/about?source=legacy-host", { host: "unfolding-journal.davidlewisiii.chatgpt.site" }),
-    render("/en/entries/implication-chain?source=legacy-host", { host: "unfolding-journal.davidlewisiii.chatgpt.site" }),
-    render("/favicon.svg", { host: "unfolding-journal.davidlewisiii.chatgpt.site" }),
+    render("/about?source=legacy-host", { host: "www.unfolding.day" }),
+    render("/en/entries/implication-chain?source=legacy-host", { host: "www.unfolding.day" }),
+    render("/favicon.svg", { host: "www.unfolding.day" }),
   ]);
   assert.equal(page.status, 301);
   assert.equal(page.headers.get("location"), "https://unfolding.day/about?source=legacy-host");

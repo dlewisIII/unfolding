@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const themes = new Set(["light", "dark"]);
 const primaryHost = "unfolding.day";
-const legacyHosts = new Set(["www.unfolding.day", "unfolding-journal.davidlewisiii.chatgpt.site"]);
+const legacyHosts = new Set(["www.unfolding.day"]);
 
 function canonicalPath(pathname: string) {
   return pathname === "/en" ? "/" : pathname.startsWith("/en/") ? pathname.slice(3) || "/" : pathname;

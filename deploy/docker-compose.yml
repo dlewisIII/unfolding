@@ -1,0 +1,30 @@
+name: unfolding-production
+
+services:
+  app:
+    image: ${UNFOLDING_IMAGE:?Set UNFOLDING_IMAGE to the version being deployed}
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      HOSTNAME: 0.0.0.0
+    expose:
+      - "3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch(\"http://127.0.0.1:3000/\").then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    networks:
+      proxy:
+        aliases: [unfolding-production]
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    tmpfs:
+      - "/tmp:size=32m,mode=1777"
+
+networks:
+  proxy:
+    external: true
+    name: proxy

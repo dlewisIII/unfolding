@@ -78,12 +78,26 @@ Do not translate mathematical terminology mechanically. If several established R
 
 ## Publication gate
 
+For local content revisions, run `pnpm validate:math`. It validates only changed Markdown entry files that actually contain math. Do not run a full-site KaTeX pass for an ordinary local text or content edit.
+
+Run `pnpm validate:math:all` before publication, merge, or production deployment, and whenever the Markdown/KaTeX rendering pipeline changes. `pnpm entry:publish` includes this full-site validation automatically. A failed math validation blocks the corresponding publish, merge, or deployment step.
+
 Only an explicit author instruction semantically equivalent to “Publish”, “Опубликовать”, “Publish as is”, or “Опубликовать как есть” authorizes publication. New entry, translation, revision, and review never create `published.md` or set a lifecycle to published. Publish the intended locale with `pnpm entry:publish <slug|--active> <locale> (--as-is|--from-draft)`. If locale or entry is genuinely ambiguous, ask one short question first.
 
 Publishing one locale does not publish the other. An explicit instruction to publish both locales authorizes two lifecycle publications and the bilingual tag-bundle behavior above. Both versions retain the same root `id` and `createdAt`; `translatedAt`, `submittedAt`, and `publishedAt` are lifecycle history only and never replace the root date.
 
 ## Production deployment workflow
 
-GitHub push does not deploy Unfolding to production automatically. After pushing the exact validated production commit, immediately run the Sites production deployment workflow for that same commit: push it to the configured Sites source repository, package the validated build, save exactly one Sites version, deploy that version to production, and poll the Sites deployment directly until it succeeds or fails.
+### Preparation mode
 
-Do not wait for, poll, or diagnose a GitHub-triggered deployment after the GitHub push. No such automatic production deployment is expected. Preserve all existing production validation gates before the push and all final production page checks after Sites reports a successful deployment. When several prepared content commits belong to one requested release, include them in one pushed head and create one Sites version and one production deployment.
+Research, source checking, translation, semantic review, title approval, tags, link checks, and any meaningful editorial decision happen before publication. Do not defer those decisions to deployment.
+
+### Fast publish mode
+
+An explicit author instruction equivalent to “Publish” or “Опубликуй” authorizes the already-approved active RU/EN entry for Fast Publish. Use `pnpm publish:fast`. It performs deterministic preflight, one KaTeX validation, publication of both language lifecycles, content sync, a scoped Git commit and push, local linux/amd64 image build, VPS deployment, and compact HTTP checks.
+
+At this stage do not research, re-review, open a browser, start a dev server, load large tool schemas, read generated content or full articles, run Sites tooling, create a Sites version, push to a Sites source repository, deploy through Sites, poll Sites, or add precautionary checks after a successful preflight. Do not make content decisions. Fail fast and report the failed stage and relevant stderr. Do not rerun the whole pipeline automatically.
+
+Fast Publish records a Git-status baseline before publication. It commits only the active entry’s lifecycle changes and `content/generated.ts`, after an allowlist and `git diff --check`; it never stages the worktree broadly. It pushes only the explicitly configured production destination after validating branch, upstream, remote, and push URL. A commit or push failure stops before image build and VPS deployment. Existing dirty changes outside that scope remain untouched. `deploy:current` deliberately does not create a commit or push.
+
+Fast Publish updates only Unfolding on the VPS. It does not change Caddy, DNS, Marn, `proxy`, or application port exposure.
