@@ -4,12 +4,12 @@
   "slug": "beyond-the-human-form",
   "title": "За пределами человеческой формы",
   "originalLanguage": "ru",
-  "status": "reviewed",
+  "status": "published",
   "createdAt": "2026-10-18T23:38:17+03:00",
   "submittedAt": "2026-10-18T23:39:42+03:00",
-  "publishedAt": null,
+  "publishedAt": "2026-10-18T23:44:15+03:00",
   "originalSha256": "881e0f5f65a3b49d17d3e2e32ea935bf955e064b69202c7e130b6bf7ddfbe987",
-  "publishedFrom": null,
+  "publishedFrom": "draft",
   "tags": [
     "эпистемология",
     "восприятие",
@@ -23,20 +23,24 @@
       "locale": "en",
       "title": "Beyond the Human Form",
       "slug": "beyond-the-human-form",
-      "status": "reviewed",
+      "status": "published",
       "translatedAt": "2026-10-18T23:38:17+03:00",
       "translationMethod": "agent",
       "submittedAt": "2026-10-18T23:39:42+03:00",
-      "publishedAt": null,
+      "publishedAt": "2026-10-18T23:44:15+03:00",
       "originalSha256": "750605368a26cdfea2d6626fe33b948e94598858d400c656aea938325446dd74",
-      "publishedFrom": null,
+      "publishedFrom": "draft",
       "tags": [
         "epistemology",
         "perception",
         "mathematics",
         "models of reality",
         "consciousness"
-      ]
+      ],
+      "publishedSha256": "750605368a26cdfea2d6626fe33b948e94598858d400c656aea938325446dd74",
+      "authorDecision": "publish_current_draft"
     }
-  }
+  },
+  "publishedSha256": "881e0f5f65a3b49d17d3e2e32ea935bf955e064b69202c7e130b6bf7ddfbe987",
+  "authorDecision": "publish_current_draft"
 }

@@ -5,6 +5,46 @@ export type PublishedVersion = { locale: Locale; slug: string; title: string | n
 export type PublishedEntry = { id: string; originalLanguage: Locale; versions: Partial<Record<Locale, PublishedVersion>>; };
 export const publishedEntries: PublishedEntry[] = [
   {
+    "id": "8a02df21-fcad-4a6f-b2a1-bc98ad061f8c",
+    "originalLanguage": "ru",
+    "versions": {
+      "ru": {
+        "locale": "ru",
+        "slug": "beyond-the-human-form",
+        "title": "За пределами человеческой формы",
+        "createdAt": "2026-10-18T23:38:17+03:00",
+        "publishedAt": "2026-10-18T23:44:15+03:00",
+        "tags": [
+          "эпистемология",
+          "восприятие",
+          "математика",
+          "модели реальности",
+          "сознание"
+        ],
+        "externalLinks": [],
+        "excerpt": "За пределами человеческой формы Мы воспринимаем реальность через человеческое тело: видим, слышим, ощущаем температуру, прикосновения, движение. На основе этих ощущений и работы ума формируется наша картина мир…",
+        "body": "# За пределами человеческой формы\n\nМы воспринимаем реальность через человеческое тело: видим, слышим, ощущаем температуру, прикосновения, движение. На основе этих ощущений и работы ума формируется наша картина мира. Но насколько она отражает реальность такой, какая она есть?\n\nНаше зрение воспринимает лишь небольшой диапазон электромагнитного излучения. За его пределами существуют инфракрасные и ультрафиолетовые волны, которых мы не видим. Слух также ограничен определённым диапазоном частот. Некоторые животные способны слышать звуки, недоступные человеческому уху.\n\nМы видим свет далёких звёзд, преодолевший огромные расстояния за тысячи, миллионы и даже миллиарды лет. Некоторые из этих звёзд к моменту наблюдения могли уже перестать существовать.\n\nА как воспринимает окружающий мир дерево, у которого нет зрения и слуха, но которое реагирует на свет, влажность, температуру и химические сигналы? Насколько иной может быть реальность для существа с совершенно другой организацией восприятия?\n\nМы настолько привыкли к человеческому способу существования, что редко задумываемся, насколько многое в нашей картине мира определяется особенностями нашего восприятия.\n\nНо как познать реальность такой, какая она есть? Какие закономерности существуют независимо от наших органов чувств, ощущений и представлений? И насколько фундаментальны сами пространство, время и материя?\n\n**Математика как универсальный инструмент познания мира**\n\nВ отличие от непосредственного чувственного опыта, математика позволяет исследовать абстрактные структуры и отношения, не привязанные к конкретному способу восприятия. В математике я вижу возможность приблизиться к чему-то универсальному — к закономерностям, которые не зависят от человеческой формы.\n\nВозможно, за материальной реальностью лежат некие универсальные законы и принципы мироздания. И математика может оказаться не только способом приближения к пониманию **фундаментальной природы реальности, но и универсальным языком, позволяющим выразить это понимание и передать его не только другим людям, но, возможно, даже иным формам сознания, существующим за пределами человеческой формы.**\n"
+      },
+      "en": {
+        "locale": "en",
+        "slug": "beyond-the-human-form",
+        "title": "Beyond the Human Form",
+        "createdAt": "2026-10-18T23:38:17+03:00",
+        "publishedAt": "2026-10-18T23:44:15+03:00",
+        "tags": [
+          "epistemology",
+          "perception",
+          "mathematics",
+          "models of reality",
+          "consciousness"
+        ],
+        "externalLinks": [],
+        "excerpt": "Beyond the Human Form We perceive reality through the human body: we see, hear, and sense temperature, touch, and movement. Our picture of the world takes shape through these sensations and the activity of the …",
+        "body": "# Beyond the Human Form\n\nWe perceive reality through the human body: we see, hear, and sense temperature, touch, and movement. Our picture of the world takes shape through these sensations and the activity of the mind. But to what extent does it reflect reality as it actually is?\n\nHuman vision detects only a narrow band of the electromagnetic spectrum. Infrared and ultraviolet radiation lie beyond that range, invisible to us. Our hearing, too, is limited to a particular range of frequencies. Some animals can hear sounds that the human ear cannot detect.\n\nWe see light from distant stars that has travelled across vast distances for thousands, millions, and even billions of years. Some of those stars may have ceased to exist by the time we observe their light.\n\nHow does a tree perceive the world around it? It has neither sight nor hearing, yet it responds to light, moisture, temperature, and chemical signals. How different might reality be for a being with an entirely different way of perceiving its surroundings?\n\nWe are so accustomed to the human way of existing that we rarely consider how much of our picture of the world is shaped by the particularities of our perception.\n\nBut how can we know reality as it actually is? What patterns exist independently of our senses, sensations, and ideas? And how fundamental are space, time, and matter themselves?\n\n**Mathematics as a Universal Tool for Understanding the World**\n\nUnlike direct sensory experience, mathematics allows us to explore abstract structures and relationships that are not tied to any particular way of perceiving. In mathematics, I see a possibility of approaching something universal: patterns that do not depend on the human form.\n\nPerhaps certain universal laws and principles underlie material reality. And mathematics may prove to be not only a way of coming closer to understanding **the fundamental nature of reality, but also a universal language through which we can express that understanding and communicate it not only to other people, but perhaps even to other forms of consciousness existing beyond the human form.**\n"
+      }
+    }
+  },
+  {
     "id": "6d57878a-d8cc-4da0-8976-8920ca32e913",
     "originalLanguage": "ru",
     "versions": {
