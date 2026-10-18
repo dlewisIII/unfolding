@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 2,
+  "entryId": "8a02df21-fcad-4a6f-b2a1-bc98ad061f8c",
+  "locale": "en",
+  "reviewedAt": "2026-10-18T23:39:42+03:00",
+  "originalSha256": "750605368a26cdfea2d6626fe33b948e94598858d400c656aea938325446dd74",
+  "draftSha256": "750605368a26cdfea2d6626fe33b948e94598858d400c656aea938325446dd74",
+  "summary": "The English translation follows the Russian original closely in meaning, structure, and emphasis. All paragraphs, the subheading, and the bolded closing passage are present, and nothing of substance is added or dropped. Four small wording differences are noted for information; none needs correction. The version is ready for publication from the review perspective. Block numbers exclude the H1 title and count the bold subheading as block 7.",
+  "checks": [
+    {
+      "category": "language",
+      "status": "reviewed",
+      "explanation": "Grammar, punctuation, and register are natural and consistent. The Russian dash in block 8 became a colon, in line with the project's authorial style. Terminology is consistent: «закономерности» is rendered as patterns, «законы» as laws, «картина мира» as picture of the world. The softer “is shaped by” for «определяется» (block 5) is acceptable. Four small shifts are listed below."
+    },
+    {
+      "category": "clarity",
+      "status": "reviewed",
+      "explanation": "The English reads clearly and keeps the question-driven structure. The single Russian question about the tree is split into a question and a statement without changing the meaning."
+    },
+    {
+      "category": "logic",
+      "status": "reviewed",
+      "explanation": "The sequence of reasoning and its hedging (“perhaps”, “may prove”, “I see a possibility”) match the original."
+    },
+    {
+      "category": "factual_claims",
+      "status": "reviewed",
+      "explanation": "Factual statements are rendered faithfully and with the same accuracy as in the Russian original. The only nuance, light travelling for billions of years (block 3), is the same as in the original."
+    },
+    {
+      "category": "mathematics",
+      "status": "not_applicable",
+      "explanation": "The text contains no mathematical statements, formulas, or proofs."
+    }
+  ],
+  "issues": [
+    {
+      "id": "issue-1",
+      "category": "language",
+      "location": {
+        "paragraph": 4,
+        "fragment": "an entirely different way of perceiving its surroundings"
+      },
+      "explanation": "The original says «совершенно другой организацией восприятия» (a different organization of perception). “Way of perceiving its surroundings” loses the structural sense of organization and adds “surroundings”. The meaning stays close; “a completely different organization of perception” would be nearer to the original.",
+      "severity": "note",
+      "status": "open",
+      "confidence": 0.6
+    },
+    {
+      "id": "issue-2",
+      "category": "language",
+      "location": {
+        "paragraph": 6,
+        "fragment": "our senses, sensations, and ideas"
+      },
+      "explanation": "The Russian names three distinct levels: sense organs («органов чувств»), sensations, and mental representations («представлений»). “Senses, sensations” sounds almost synonymous in English, and “ideas” is somewhat weaker than “representations”. Not an error; “sense organs, sensations, and representations” would keep the distinction.",
+      "severity": "note",
+      "status": "open",
+      "confidence": 0.6
+    },
+    {
+      "id": "issue-3",
+      "category": "language",
+      "location": {
+        "paragraph": 7,
+        "fragment": "Mathematics as a Universal Tool for Understanding the World"
+      },
+      "explanation": "The Russian subheading says «познания» (knowing, cognition), while the English says “Understanding”. In block 6 «познать реальность» is rendered as “know reality”, so the key epistemic term moves between “know” and “understand”. The choice reads naturally; “Knowing” would only matter if the terminological link is wanted.",
+      "severity": "note",
+      "status": "open",
+      "confidence": 0.5
+    },
+    {
+      "id": "issue-4",
+      "category": "language",
+      "location": {
+        "paragraph": 9,
+        "fragment": "certain universal laws and principles underlie material reality"
+      },
+      "explanation": "«Лежат за материальной реальностью» means behind or beyond material reality, while “underlie” means lie beneath it as a foundation, so the spatial metaphor changes. «Мироздания» (of the universe) is also not carried over. The sense is preserved; “lie behind material reality” would be closer and would echo “beyond” in the title.",
+      "severity": "note",
+      "status": "open",
+      "confidence": 0.6
+    }
+  ]
+}
