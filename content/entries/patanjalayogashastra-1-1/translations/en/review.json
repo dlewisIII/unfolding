@@ -2,30 +2,30 @@
   "schemaVersion": 2,
   "entryId": "de798db4-28f6-4274-a2a1-7ad211f42762",
   "locale": "en",
-  "reviewedAt": "2026-10-25T23:41:23+03:00",
+  "reviewedAt": "2026-10-26T01:08:20+03:00",
   "originalSha256": "b9886f4ea6cf0d38fb55dcbbb1533602deaa98d676532b9bb1f4972ef692daa3",
-  "draftSha256": "01b9deddbceef3990c229fd7372f6c181f8f8e5396090f828e21c73b4336368c",
-  "summary": "Repeated review after the title and tags were approved. The only text change is the link in the introduction, which now points to the English methodology page (HTTP 200, lang=en). Devanāgarī, IAST and translations still match the English research edition character for character. The version is ready for publication from the review perspective.",
+  "draftSha256": "7466881cdbddb00682a398efe66d3fdb307a29ed74be39111494d341c7b0fd39",
+  "summary": "Revision of the published version: in the introduction, \"in the next article\" is replaced by \"in a separate note\" as decided by the author. The rest of the text, the translations and the apparatus are unchanged; the published text stays as it is until an explicit publication. No substantial issues.",
   "checks": [
     {
       "category": "language",
       "status": "reviewed",
-      "explanation": "The introduction is the author's approved text; approved wording of notes and analyses is unchanged. The sources section is an English rendering of the approved Russian section."
+      "explanation": "One phrase in the introduction changed; the wording was approved by the author."
     },
     {
       "category": "clarity",
       "status": "reviewed",
-      "explanation": "Same structure as the Russian version: introduction, sūtra, commentary, two collapsible blocks per passage, Sources and Abbreviations."
+      "explanation": "The promise no longer points to a 'next' article, which could turn out to be the journal entry."
     },
     {
       "category": "logic",
       "status": "reviewed",
-      "explanation": "Research justifications are kept; unresolved questions are stated without internal identifiers."
+      "explanation": "Consistent with the journal entry, which refers to a separate note, 'Making Room for the Unknown'."
     },
     {
       "category": "factual_claims",
       "status": "reviewed",
-      "explanation": "Sources, abbreviations and Pāṇini rules match the verified Russian section; all external links open."
+      "explanation": "No factual statements changed."
     },
     {
       "category": "mathematics",
@@ -33,16 +33,5 @@
       "explanation": "No mathematical expressions."
     }
   ],
-  "issues": [
-    {
-      "id": "issue-1",
-      "category": "factual_claims",
-      "location": {
-        "fragment": "[methodology note](https://unfolding.day/ru/entries/patanjalayogashastra-methodology)"
-      },
-      "explanation": "The approved English introduction links to the Russian methodology page. An English version of that page is published at https://unfolding.day/entries/patanjalayogashastra-methodology. Resolved: the link now points to the English page, as approved by the author.",
-      "severity": "minor",
-      "status": "resolved"
-    }
-  ]
+  "issues": []
 }
