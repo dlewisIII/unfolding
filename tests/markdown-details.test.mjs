@@ -86,6 +86,8 @@ test("leaves collapsed content out of the excerpt", async () => {
   assert.equal(excerpt, "Lead with a methodology note. Visible lead. Also visible.");
   const syncScript = await readFile(new URL("../scripts/sync-content.mjs", import.meta.url), "utf8");
   assert.match(syncScript, /markdownExcerpt as excerptFrom/);
+  assert.match(syncScript, /excerptFrom\(body, 210, metadata\.title\)/);
+  assert.match(syncScript, /excerptFrom\(translatedBody, 210, translation\.title\)/);
 });
 
 test("opens every collapsed block for printing and restores it afterwards", () => {
@@ -128,4 +130,19 @@ test("wires the plugin into the site renderer and styles the research apparatus"
   assert.match(css, /\.prose td\.cell-compact\s*\{\s*white-space:\s*nowrap/);
   // The rule before the sources section is a quiet hairline, not the browser default.
   assert.match(css, /\.prose hr\s*\{[^}]*border-top:\s*1px solid var\(--subtle-border\)/);
+});
+
+test("the description does not repeat a leading title that the page already shows", () => {
+  const body = "# The First Sūtra: Testing the Method\n\nThis is an entry about a test.\n\n## 1. Aim\n\nText.";
+  // Same title in metadata: the repeated H1 is skipped, the source text is untouched.
+  assert.equal(markdownExcerpt(body, 210, "The First Sūtra: Testing the Method"), "This is an entry about a test. 1. Aim Text.");
+  // No metadata title: the H1 is the displayed title and is skipped as well.
+  assert.equal(markdownExcerpt(body, 210, null), "This is an entry about a test. 1. Aim Text.");
+  // A different approved title keeps the H1 text, because the page shows the metadata title instead.
+  assert.match(markdownExcerpt(body, 210, "Another title"), /^The First Sūtra: Testing the Method This is/);
+  // Without a repeated title nothing is removed.
+  assert.equal(markdownExcerpt("Plain start.\n\nMore.", 210, "Some title"), "Plain start. More.");
+  // Same rule as the page: a first paragraph equal to the title is hidden there, so it is skipped here too.
+  assert.equal(markdownExcerpt("Some title\n\nMore.", 210, "Some title"), "More.");
+  assert.ok(body.startsWith("# The First"));
 });

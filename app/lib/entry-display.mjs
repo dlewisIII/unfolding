@@ -126,8 +126,10 @@ export function journalPreview(markdown) {
 }
 
 /** Plain-text description of the visible lead: no collapsed blocks, link targets or Markdown marks. */
-export function markdownExcerpt(markdown, length = 210) {
-  const excerpt = withoutDetailsBlocks(markdown)
+export function markdownExcerpt(markdown, length = 210, title = null) {
+  // The entry page shows the title itself, so a leading title that repeats it is not part of the description.
+  const lead = withoutDuplicateLeadingTitle(markdown, entryDisplayTitle(title, markdown));
+  const excerpt = withoutDetailsBlocks(lead)
     .replace(/\[([^\]]+)\]\((?:https?:\/\/|\/)[^)\s]+\)/g, "$1")
     .replace(/[#*_`>$]/g, "").replaceAll("[", "").replaceAll("]", "").replace(/\s+/g, " ").trim().slice(0, length);
   return excerpt.length === length ? `${excerpt}…` : excerpt;

@@ -25,7 +25,7 @@ for (const folder of folders) {
       publishedAt: metadata.publishedAt,
       tags: metadata.tags || [],
       externalLinks: metadata.externalLinks || [],
-      excerpt: excerptFrom(body),
+      excerpt: excerptFrom(body, 210, metadata.title),
       body,
     },
   };
@@ -45,7 +45,7 @@ for (const folder of folders) {
       publishedAt: translation.publishedAt,
       tags: translation.tags ?? metadata.tags ?? [],
       externalLinks: metadata.externalLinks || [],
-      excerpt: excerptFrom(translatedBody),
+      excerpt: excerptFrom(translatedBody, 210, translation.title),
       body: translatedBody,
     };
   }
