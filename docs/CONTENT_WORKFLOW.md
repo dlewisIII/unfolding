@@ -34,6 +34,6 @@ Ordinary Markdown: lists, emphasis, links, math.
 
 Keep the blank lines around the content. `<details open>` starts expanded, blocks may be nested, lists inside keep their markers, printing expands every block, and collapsed content is left out of the entry excerpt.
 
-An entry with collapsible blocks is typeset as a research edition. Put each Sanskrit source in a blockquote (the Devanāgarī line, then the IAST line in italics) and the translation in the paragraph right after it. The sūtra's source goes directly under an `##` heading, and each commentary passage goes under its own `###` heading. Entries without collapsible blocks keep the ordinary blockquote style.
+An entry with collapsible blocks is typeset as a research edition. Put each Sanskrit source in a blockquote (the Devanāgarī line, then the IAST line in italics) and the translation in the paragraph right after it. The sūtra's source goes directly under the first `##` heading. The commentary follows under the next `##` heading as unnumbered passages, each one starting with its source blockquote after the previous passage's collapsible blocks. Entries without collapsible blocks keep the ordinary blockquote style.
 
 `review.json` is canonical and machine-readable. `review.md` is a derived human view. Connections are reserved as independent documents under `content/connections/`; discovery and UI are intentionally not implemented yet.

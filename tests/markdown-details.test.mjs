@@ -115,6 +115,7 @@ test("wires the plugin into the site renderer and styles the research apparatus"
   // Research typography applies only to entries with collapsible apparatus.
   assert.match(css, /\.entry-content:has\(> details\) blockquote\s*\{[^}]*font-style:\s*normal/);
   assert.match(css, /\.entry-content:has\(> details\) blockquote \+ p\s*\{/);
-  assert.match(css, /\.entry-content:has\(> details\) h2 \+ blockquote\s*\{/);
+  assert.match(css, /\.entry-content:has\(> details\) h2:first-of-type \+ blockquote\s*\{/);
+  assert.doesNotMatch(css, /\.entry-content:has\(> details\) h2 \+ blockquote/);
   assert.match(css, /\.prose blockquote\s*\{[^}]*font-style:\s*italic/);
 });

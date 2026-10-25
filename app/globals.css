@@ -235,13 +235,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .prose details li::marker { color: var(--secondary-text); }
 /* Research editions are the entries with collapsible apparatus. Their Sanskrit source is a
    blockquote (Devanāgarī, then IAST in italics), the translation is the paragraph right after
-   it, and the sūtra is the source directly under an h2; commentary passages sit under h3. */
+   it, and the sūtra is the source under the first h2. The commentary follows under the next h2
+   as unnumbered passages, each starting after the previous passage's apparatus. */
 .entry-content:has(> details) blockquote { color: var(--primary-text); font-style: normal; }
 .entry-content:has(> details) blockquote > p:first-child { font-size: 1.35em; line-height: 1.55; }
 .entry-content:has(> details) blockquote > p:last-child:not(:first-child) { color: var(--secondary-text); font-size: .95em; }
 .entry-content:has(> details) blockquote + p { color: var(--primary-text); font-size: 1.1em; }
-.entry-content:has(> details) h2 + blockquote { border-left-color: var(--primary-text); }
-.entry-content:has(> details) h2 + blockquote + p { font-size: 1.2em; font-variation-settings: "wght" 450; font-weight: 450; }
+.entry-content:has(> details) details + blockquote { margin-top: 2.2em; }
+.entry-content:has(> details) h2:first-of-type + blockquote { border-left-color: var(--primary-text); }
+.entry-content:has(> details) h2:first-of-type + blockquote + p { font-size: 1.2em; font-variation-settings: "wght" 450; font-weight: 450; }
 @media print {
   .prose details::details-content { content-visibility: visible; }
   .prose summary::before { content: none; }
