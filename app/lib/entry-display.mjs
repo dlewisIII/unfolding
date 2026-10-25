@@ -1,4 +1,4 @@
-import { detailsDepthChange } from "./markdown-details.mjs";
+import { detailsDepthChange, withoutDetailsBlocks } from "./markdown-details.mjs";
 
 const MAX_PREVIEW_MEANINGFUL_BLOCKS = 2;
 const MIN_PREVIEW_MEANINGFUL_CHARACTERS = 180;
@@ -123,6 +123,14 @@ export function journalPreview(markdown) {
     ) break;
   }
   return { body: selected.join("\n\n"), truncated: selected.length < blocks.length };
+}
+
+/** Plain-text description of the visible lead: no collapsed blocks, link targets or Markdown marks. */
+export function markdownExcerpt(markdown, length = 210) {
+  const excerpt = withoutDetailsBlocks(markdown)
+    .replace(/\[([^\]]+)\]\((?:https?:\/\/|\/)[^)\s]+\)/g, "$1")
+    .replace(/[#*_`>$]/g, "").replaceAll("[", "").replaceAll("]", "").replace(/\s+/g, " ").trim().slice(0, length);
+  return excerpt.length === length ? `${excerpt}…` : excerpt;
 }
 
 export function formatEntryDate(createdAt, locale) {

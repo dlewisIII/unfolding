@@ -8,7 +8,7 @@ import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
-import { journalPreview, splitMarkdownBlocks } from "../app/lib/entry-display.mjs";
+import { journalPreview, markdownExcerpt, splitMarkdownBlocks } from "../app/lib/entry-display.mjs";
 import { remarkDetails, withoutDetailsBlocks } from "../app/lib/markdown-details.mjs";
 import { printDetailsBoot } from "../app/lib/print-details.mjs";
 
@@ -82,8 +82,10 @@ test("leaves collapsed content out of the excerpt", async () => {
   const visible = withoutDetailsBlocks(markdown);
   assert.match(visible, /Visible lead\.[\s\S]*Also visible\./);
   assert.doesNotMatch(visible, /Hidden|nested|details/);
+  const excerpt = markdownExcerpt(`Lead with a [methodology note](https://unfolding.day/entries/x).\n\n${markdown}`);
+  assert.equal(excerpt, "Lead with a methodology note. Visible lead. Also visible.");
   const syncScript = await readFile(new URL("../scripts/sync-content.mjs", import.meta.url), "utf8");
-  assert.match(syncScript, /withoutDetailsBlocks\(body\)/);
+  assert.match(syncScript, /markdownExcerpt as excerptFrom/);
 });
 
 test("opens every collapsed block for printing and restores it afterwards", () => {
@@ -118,4 +120,6 @@ test("wires the plugin into the site renderer and styles the research apparatus"
   assert.match(css, /\.entry-content:has\(> details\) h2:first-of-type \+ blockquote\s*\{/);
   assert.doesNotMatch(css, /\.entry-content:has\(> details\) h2 \+ blockquote/);
   assert.match(css, /\.prose blockquote\s*\{[^}]*font-style:\s*italic/);
+  // The rule before the sources section is a quiet hairline, not the browser default.
+  assert.match(css, /\.prose hr\s*\{[^}]*border-top:\s*1px solid var\(--subtle-border\)/);
 });

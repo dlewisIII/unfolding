@@ -221,6 +221,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .prose td:last-child { padding-right: 0; }
 .prose .katex, .prose .katex-display { color: var(--math-text); }
 .prose .katex-display { overflow-x: auto; overflow-y: hidden; padding: .5em 0; }
+.prose hr { margin: 2.6em 0 1.4em; border: 0; border-top: 1px solid var(--subtle-border); }
 .prose details + details { margin-top: 2px; }
 .prose summary { display: flex; align-items: center; gap: 8px; width: fit-content; padding: 3px 0; color: var(--secondary-text); font-family: var(--sans); font-size: 12px; letter-spacing: .035em; list-style: none; cursor: pointer; user-select: none; transition: color .18s ease; }
 .prose summary::-webkit-details-marker { display: none; }
@@ -242,6 +243,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .entry-content:has(> details) blockquote > p:last-child:not(:first-child) { color: var(--secondary-text); font-size: .95em; }
 .entry-content:has(> details) blockquote + p { color: var(--primary-text); font-size: 1.1em; }
 .entry-content:has(> details) details + blockquote { margin-top: 2.2em; }
+.entry-content:has(> details) hr ~ :is(p, ul) { color: var(--body-soft); font-size: .92em; }
 .entry-content:has(> details) h2:first-of-type + blockquote { border-left-color: var(--primary-text); }
 .entry-content:has(> details) h2:first-of-type + blockquote + p { font-size: 1.2em; font-variation-settings: "wght" 450; font-weight: 450; }
 @media print {
