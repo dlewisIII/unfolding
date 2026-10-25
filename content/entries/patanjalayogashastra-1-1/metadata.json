@@ -4,12 +4,12 @@
   "slug": "patanjalayogashastra-1-1",
   "title": "Pātañjalayogaśāstra 1.1 — исследовательский перевод с комментарием Вьясы",
   "originalLanguage": "ru",
-  "status": "reviewed",
+  "status": "published",
   "createdAt": "2026-10-25T23:33:17+03:00",
   "submittedAt": "2026-10-25T23:41:23+03:00",
-  "publishedAt": null,
+  "publishedAt": "2026-10-25T23:42:10+03:00",
   "originalSha256": "9ec3eae3bf80bde9246f029838c0069efc4d1c9d6c6d514b7a93498b8e499f2c",
-  "publishedFrom": null,
+  "publishedFrom": "draft",
   "tags": [
     "йога",
     "Патанджали",
@@ -22,19 +22,23 @@
       "locale": "en",
       "title": "Pātañjalayogaśāstra 1.1 — Research Translation with Vyāsa’s Commentary",
       "slug": "patanjalayogashastra-1-1",
-      "status": "reviewed",
+      "status": "published",
       "translatedAt": "2026-10-25T23:33:17+03:00",
       "translationMethod": "author",
       "submittedAt": "2026-10-25T23:41:23+03:00",
-      "publishedAt": null,
+      "publishedAt": "2026-10-25T23:42:10+03:00",
       "originalSha256": "b9886f4ea6cf0d38fb55dcbbb1533602deaa98d676532b9bb1f4972ef692daa3",
-      "publishedFrom": null,
+      "publishedFrom": "draft",
       "tags": [
         "yoga",
         "Patañjali",
         "Sanskrit",
         "textual study"
-      ]
+      ],
+      "publishedSha256": "01b9deddbceef3990c229fd7372f6c181f8f8e5396090f828e21c73b4336368c",
+      "authorDecision": "publish_current_draft"
     }
-  }
+  },
+  "publishedSha256": "9ec3eae3bf80bde9246f029838c0069efc4d1c9d6c6d514b7a93498b8e499f2c",
+  "authorDecision": "publish_current_draft"
 }
