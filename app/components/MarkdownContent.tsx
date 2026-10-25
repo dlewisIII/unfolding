@@ -60,12 +60,29 @@ export function normalizeExternalAnchors(markdown: string) {
   );
 }
 
+type HastNode = { type: string; value?: string; properties?: { className?: string[] }; children?: HastNode[] };
+
+function cellText(node: HastNode): string {
+  return node.type === "text" ? node.value ?? "" : (node.children ?? []).map(cellText).join("");
+}
+
+function hasMath(node: HastNode): boolean {
+  return Boolean(node.properties?.className?.includes("katex")) || (node.children ?? []).some(hasMath);
+}
+
+/** Long prose wraps inside table cells; short values and formulas stay on one line so numbers never split. */
+function cellClassName(node: HastNode) {
+  return hasMath(node) || cellText(node).trim().length <= 14 ? "cell-compact" : undefined;
+}
+
 export function MarkdownContent({ children }: { children: string }) {
   return <ReactMarkdown
     remarkPlugins={[remarkGfm, remarkMath, remarkDetails]}
     rehypePlugins={[rehypeKatex]}
     components={{
       table: ({ node: _node, ...props }) => <div className="table-scroll"><table {...props} /></div>,
+      th: ({ node, ...props }) => <th {...props} className={node ? cellClassName(node as HastNode) : undefined} />,
+      td: ({ node, ...props }) => <td {...props} className={node ? cellClassName(node as HastNode) : undefined} />,
       a: ({ node: _node, href, children, ...props }) => {
         const external = typeof href === "string" && /^(?:https?:)?\/\//i.test(href);
         return <a

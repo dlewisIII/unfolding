@@ -111,8 +111,8 @@ test("wires the plugin into the site renderer and styles the research apparatus"
   assert.match(layout, /__html: printDetailsBoot/);
   assert.match(css, /\.prose summary\s*\{[^}]*list-style:\s*none[^}]*cursor:\s*pointer/);
   assert.match(css, /\.prose details\[open\] > summary::before\s*\{[^}]*rotate\(90deg\)/);
-  assert.match(css, /\.prose details ul\s*\{\s*list-style:\s*disc;?\s*\}/);
-  assert.match(css, /\.prose details ol\s*\{\s*list-style:\s*decimal;?\s*\}/);
+  assert.match(css, /\.entry-content ul\s*\{\s*list-style:\s*disc;?\s*\}/);
+  assert.match(css, /\.entry-content ol\s*\{\s*list-style:\s*decimal;?\s*\}/);
   assert.match(css, /@media print\s*\{[^}]*\.prose details::details-content\s*\{\s*content-visibility:\s*visible;?\s*\}/);
   // Research typography applies only to entries with collapsible apparatus.
   assert.match(css, /\.entry-content:has\(> details\) blockquote\s*\{[^}]*font-style:\s*normal/);
@@ -120,6 +120,12 @@ test("wires the plugin into the site renderer and styles the research apparatus"
   assert.match(css, /\.entry-content:has\(> details\) h2:first-of-type \+ blockquote\s*\{/);
   assert.doesNotMatch(css, /\.entry-content:has\(> details\) h2 \+ blockquote/);
   assert.match(css, /\.prose blockquote\s*\{[^}]*font-style:\s*italic/);
+  // Lists show markers inside articles only; tables wrap long text instead of scrolling sideways.
+  assert.match(css, /\.entry-content ul ul\s*\{\s*list-style:\s*circle;?\s*\}/);
+  assert.match(css, /\.prose table\s*\{[^}]*width:\s*100%/);
+  assert.doesNotMatch(css, /white-space:\s*nowrap;\s*\}\s*\n\.prose th \{/);
+  assert.doesNotMatch(css.match(/\.prose td\s*\{[^}]*\}/g).join(""), /nowrap/);
+  assert.match(css, /\.prose td\.cell-compact\s*\{\s*white-space:\s*nowrap/);
   // The rule before the sources section is a quiet hairline, not the browser default.
   assert.match(css, /\.prose hr\s*\{[^}]*border-top:\s*1px solid var\(--subtle-border\)/);
 });

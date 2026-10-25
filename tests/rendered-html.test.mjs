@@ -69,7 +69,9 @@ test("renders both indexable journal homes and published bilingual entries", asy
   assert.match(html, /href="\/about"/i);
   assert.match(html, /href="\/search"/i);
   assert.match(html, /class="home-link" href="\/"[^>]+aria-label="Home"/i);
-  assert.doesNotMatch(html, /target="_top"|target="_blank"/i);
+  // Site chrome never opens new tabs; links authored inside entry prose (sources, cross-references) may.
+  assert.doesNotMatch(html.replace(/<div class="prose entry-content[\s\S]*?<\/div>/g, ""), /target="_top"|target="_blank"/i);
+  assert.doesNotMatch(html, /target="_top"/i);
   assert.match(html, /href="\/ru"/i);
   assert.match(html, /aria-label="UNFOLDING"/i);
   assert.match(html, /viewBox="0 0 1041 125"/i);
