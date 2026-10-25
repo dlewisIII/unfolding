@@ -9,6 +9,7 @@ const execFileAsync = promisify(execFile);
 const entryMarkdownPattern = /^content\/entries\/.+\.md$/;
 const mathPipelineFiles = new Set([
   "app/components/MarkdownContent.tsx",
+  "app/lib/markdown-details.mjs",
   "app/globals.css",
   "package.json",
   "pnpm-lock.yaml",

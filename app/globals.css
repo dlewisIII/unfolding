@@ -221,6 +221,31 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .prose td:last-child { padding-right: 0; }
 .prose .katex, .prose .katex-display { color: var(--math-text); }
 .prose .katex-display { overflow-x: auto; overflow-y: hidden; padding: .5em 0; }
+.prose details + details { margin-top: 2px; }
+.prose summary { display: flex; align-items: center; gap: 8px; width: fit-content; padding: 3px 0; color: var(--secondary-text); font-family: var(--sans); font-size: 12px; letter-spacing: .035em; list-style: none; cursor: pointer; user-select: none; transition: color .18s ease; }
+.prose summary::-webkit-details-marker { display: none; }
+.prose summary::before { content: "›"; display: inline-block; width: 10px; font-size: 17px; line-height: 1; text-align: center; transition: transform .17s ease; }
+.prose summary:hover { color: var(--primary-text); }
+.prose details[open] > summary { margin-bottom: 8px; }
+.prose details[open] > summary::before { transform: rotate(90deg); }
+.prose details > :not(summary) { margin-left: 18px; color: var(--body-soft); font-size: .94em; }
+.prose details ul { list-style: disc; }
+.prose details ul ul { list-style: circle; }
+.prose details ol { list-style: decimal; }
+.prose details li::marker { color: var(--secondary-text); }
+/* Research editions are the entries with collapsible apparatus. Their Sanskrit source is a
+   blockquote (Devanāgarī, then IAST in italics), the translation is the paragraph right after
+   it, and the sūtra is the source directly under an h2; commentary passages sit under h3. */
+.entry-content:has(> details) blockquote { color: var(--primary-text); font-style: normal; }
+.entry-content:has(> details) blockquote > p:first-child { font-size: 1.35em; line-height: 1.55; }
+.entry-content:has(> details) blockquote > p:last-child:not(:first-child) { color: var(--secondary-text); font-size: .95em; }
+.entry-content:has(> details) blockquote + p { color: var(--primary-text); font-size: 1.1em; }
+.entry-content:has(> details) h2 + blockquote { border-left-color: var(--primary-text); }
+.entry-content:has(> details) h2 + blockquote + p { font-size: 1.2em; font-variation-settings: "wght" 450; font-weight: 450; }
+@media print {
+  .prose details::details-content { content-visibility: visible; }
+  .prose summary::before { content: none; }
+}
 .entry-content h2 { margin: 26px 0 9px; color: var(--primary-text); font-family: var(--display); font-size: 23px; font-weight: 500; line-height: 1.24; letter-spacing: -.006em; }
 .entry-content h3 { margin: 21px 0 7px; color: var(--body-soft); font-family: var(--display); font-size: 16px; font-weight: 500; line-height: 1.32; letter-spacing: 0; }
 .entry-content p { margin: 0 0 12px; }

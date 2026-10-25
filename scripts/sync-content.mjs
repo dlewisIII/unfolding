@@ -1,13 +1,14 @@
 import { existsSync } from "node:fs";
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { withoutDetailsBlocks } from "../app/lib/markdown-details.mjs";
 import { ensureEntriesRoot, entriesRoot, ensureOriginalIntegrity, readMetadata } from "./lib/content.mjs";
 
 await ensureEntriesRoot();
 const folders = (await readdir(entriesRoot, { withFileTypes: true })).filter((item) => item.isDirectory());
 const entries = [];
 function excerptFrom(body) {
-  const excerpt = body.replace(/[#*_`>$]/g, "").replaceAll("[", "").replaceAll("]", "").replace(/\s+/g, " ").trim().slice(0, 210);
+  const excerpt = withoutDetailsBlocks(body).replace(/[#*_`>$]/g, "").replaceAll("[", "").replaceAll("]", "").replace(/\s+/g, " ").trim().slice(0, 210);
   return excerpt.length === 210 ? `${excerpt}…` : excerpt;
 }
 for (const folder of folders) {

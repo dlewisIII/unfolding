@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { SiteHeader } from "./components/SiteHeader";
 import { copy, isLocale, siteUrl, type Locale } from "./i18n";
 import { publishedEntries } from "@/content/generated";
+import { printDetailsBoot } from "./lib/print-details.mjs";
 import "@fontsource/italiana/400.css";
 import "@fontsource/cormorant-garamond/400.css";
 import "@fontsource/cormorant-garamond/500.css";
@@ -49,6 +50,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       <head>
         <meta name="theme-color" content={theme === "dark" ? "#171717" : "#f5f1e8"} />
         <script dangerouslySetInnerHTML={{ __html: themeBoot }} />
+        <script dangerouslySetInnerHTML={{ __html: printDetailsBoot }} />
       </head>
       <body>
         <div className="site-shell">

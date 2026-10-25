@@ -1,3 +1,5 @@
+import { detailsDepthChange } from "./markdown-details.mjs";
+
 const MAX_PREVIEW_MEANINGFUL_BLOCKS = 2;
 const MIN_PREVIEW_MEANINGFUL_CHARACTERS = 180;
 
@@ -46,6 +48,7 @@ export function splitMarkdownBlocks(markdown) {
   let current = [];
   let fence = null;
   let displayMath = null;
+  let detailsDepth = 0;
   const flush = () => {
     if (current.length) blocks.push(current.join("\n").trimEnd());
     current = [];
@@ -79,7 +82,9 @@ export function splitMarkdownBlocks(markdown) {
       displayMath = "bracket";
       continue;
     }
-    if (!trimmed) {
+    // A collapsible block is one block: blank lines inside it never split it.
+    detailsDepth = Math.max(0, detailsDepth + detailsDepthChange(trimmed));
+    if (!trimmed && !detailsDepth) {
       flush();
       continue;
     }

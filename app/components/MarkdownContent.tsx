@@ -2,6 +2,7 @@ import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
+import { remarkDetails } from "../lib/markdown-details.mjs";
 
 /**
  * remark-math accepts $…$ and $$…$$. Authorial Markdown also uses the
@@ -61,7 +62,7 @@ export function normalizeExternalAnchors(markdown: string) {
 
 export function MarkdownContent({ children }: { children: string }) {
   return <ReactMarkdown
-    remarkPlugins={[remarkGfm, remarkMath]}
+    remarkPlugins={[remarkGfm, remarkMath, remarkDetails]}
     rehypePlugins={[rehypeKatex]}
     components={{
       table: ({ node: _node, ...props }) => <div className="table-scroll"><table {...props} /></div>,
