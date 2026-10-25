@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "id": "35f1337a-336e-47d5-a598-728023189675",
+  "slug": "first-sutra-testing-the-method",
+  "title": "Первая сутра: испытание метода",
+  "originalLanguage": "ru",
+  "status": "reviewed",
+  "createdAt": "2026-10-26T01:16:39+03:00",
+  "submittedAt": "2026-10-26T01:16:40+03:00",
+  "publishedAt": null,
+  "originalSha256": "c38626355ea48d7748defd79f24f3d3a3708591f38b859f5ac0362acaac725fe",
+  "publishedFrom": null,
+  "tags": [
+    "йога",
+    "Патанджали",
+    "санскрит",
+    "исследование текста"
+  ],
+  "externalLinks": [],
+  "translations": {
+    "en": {
+      "locale": "en",
+      "title": "The First Sūtra: Testing the Method",
+      "slug": "first-sutra-testing-the-method",
+      "status": "reviewed",
+      "translatedAt": "2026-10-26T01:16:40+03:00",
+      "translationMethod": "author",
+      "submittedAt": "2026-10-26T01:16:40+03:00",
+      "publishedAt": null,
+      "originalSha256": "34bd473475007ece3db39bf593fecb0e246cf50251251152895c66bd3fc595e1",
+      "publishedFrom": null,
+      "tags": [
+        "yoga",
+        "Patañjali",
+        "Sanskrit",
+        "textual study"
+      ]
+    }
+  }
+}

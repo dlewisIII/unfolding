@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 2,
+  "entryId": "35f1337a-336e-47d5-a598-728023189675",
+  "locale": "en",
+  "reviewedAt": "2026-10-26T01:16:40+03:00",
+  "originalSha256": "34bd473475007ece3db39bf593fecb0e246cf50251251152895c66bd3fc595e1",
+  "draftSha256": "34bd473475007ece3db39bf593fecb0e246cf50251251152895c66bd3fc595e1",
+  "summary": "Journal entry from the approved edition, aligned with the Russian version: same structure, table and links. Facts were checked against the research materials and the checks made for YS 1.1. No substantial issues: the version is ready for publication from the review perspective.",
+  "checks": [
+    {
+      "category": "language",
+      "status": "reviewed",
+      "explanation": "Approved wording; Sanskrit terms in italics."
+    },
+    {
+      "category": "clarity",
+      "status": "reviewed",
+      "explanation": "Same sections as the Russian version."
+    },
+    {
+      "category": "logic",
+      "status": "reviewed",
+      "explanation": "What is unproven is called unproven."
+    },
+    {
+      "category": "factual_claims",
+      "status": "reviewed",
+      "explanation": "Numbers, sources and results of checks match the research materials; all 7 links open."
+    },
+    {
+      "category": "mathematics",
+      "status": "not_applicable",
+      "explanation": "No mathematical expressions."
+    }
+  ],
+  "issues": []
+}
