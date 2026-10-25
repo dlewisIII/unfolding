@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "entryId": "de798db4-28f6-4274-a2a1-7ad211f42762",
+  "locale": "en",
+  "suggestedAt": "2026-10-25T23:33:18+03:00",
+  "source": "generated",
+  "options": [
+    {
+      "title": "Pātañjalayogaśāstra 1.1 — Research Translation with Vyāsa’s Commentary",
+      "rationale": "Mirrors the approved Russian title word for word."
+    },
+    {
+      "title": "Pātañjalayogaśāstra 1.1: A Research Translation with Vyāsa’s Commentary",
+      "rationale": "Same meaning with a colon instead of a dash."
+    }
+  ]
+}

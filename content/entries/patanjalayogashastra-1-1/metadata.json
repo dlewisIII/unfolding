@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "id": "de798db4-28f6-4274-a2a1-7ad211f42762",
+  "slug": "patanjalayogashastra-1-1",
+  "title": "Pātañjalayogaśāstra 1.1 — исследовательский перевод с комментарием Вьясы",
+  "originalLanguage": "ru",
+  "status": "reviewed",
+  "createdAt": "2026-10-25T23:33:17+03:00",
+  "submittedAt": "2026-10-25T23:41:23+03:00",
+  "publishedAt": null,
+  "originalSha256": "9ec3eae3bf80bde9246f029838c0069efc4d1c9d6c6d514b7a93498b8e499f2c",
+  "publishedFrom": null,
+  "tags": [
+    "йога",
+    "Патанджали",
+    "санскрит",
+    "исследование текста"
+  ],
+  "externalLinks": [],
+  "translations": {
+    "en": {
+      "locale": "en",
+      "title": "Pātañjalayogaśāstra 1.1 — Research Translation with Vyāsa’s Commentary",
+      "slug": "patanjalayogashastra-1-1",
+      "status": "reviewed",
+      "translatedAt": "2026-10-25T23:33:17+03:00",
+      "translationMethod": "author",
+      "submittedAt": "2026-10-25T23:41:23+03:00",
+      "publishedAt": null,
+      "originalSha256": "b9886f4ea6cf0d38fb55dcbbb1533602deaa98d676532b9bb1f4972ef692daa3",
+      "publishedFrom": null,
+      "tags": [
+        "yoga",
+        "Patañjali",
+        "Sanskrit",
+        "textual study"
+      ]
+    }
+  }
+}
