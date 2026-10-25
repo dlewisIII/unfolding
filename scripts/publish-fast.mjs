@@ -12,11 +12,10 @@ const source = process.argv.includes("--as-is") ? "--as-is" : "--from-draft";
 const host = process.env.UNFOLDING_VPS ?? "anastasia@77.222.47.125";
 const remoteDir = process.env.UNFOLDING_VPS_DIR ?? "/home/anastasia/apps/unfolding-production";
 const productionGit = { remote: "origin", branch: "main", pushUrl: "https://github.com/dlewisIII/unfolding.git" };
-let commands = 0;
 
 function fail(stage, detail, status = 1) { console.error(`FAST PUBLISH FAILED\nstage: ${stage}\n${detail}`); process.exit(status); }
 function run(stage, command, args, options = {}) {
-  const at = Date.now(); commands += 1;
+  const at = Date.now();
   const result = spawnSync(command, args, { cwd: process.cwd(), encoding: "utf8", ...options });
   stages.push([stage, Date.now() - at]);
   if (result.status !== 0) fail(stage, `command: ${command} ${args.join(" ")}\n${(result.stderr || result.stdout || "unknown error").trim().slice(-2400)}`, result.status || 1);
@@ -61,7 +60,7 @@ function assertProductionGitTarget() {
   if (branch !== productionGit.branch || upstream !== expectedUpstream || pushUrl !== productionGit.pushUrl) throw new Error(`Expected branch ${productionGit.branch}, upstream ${expectedUpstream}, and push remote ${productionGit.pushUrl}; found branch ${branch || "(detached)"}, upstream ${upstream || "(none)"}, push remote ${pushUrl || "(none)"}.`);
 }
 function httpCheck(name, url, expected) {
-  const at = Date.now(); commands += 1;
+  const at = Date.now();
   const result = spawnSync("curl", ["-fsS", "-o", "/dev/null", "-w", "%{http_code}", url], { encoding: "utf8" }); stages.push([`HTTP ${name}`, Date.now() - at]);
   if (result.status !== 0 || result.stdout.trim() !== expected) fail(`HTTP ${name}`, `expected: ${expected}\nreceived: ${result.stdout.trim() || "curl failure"}\n${result.stderr.trim()}`);
 }
