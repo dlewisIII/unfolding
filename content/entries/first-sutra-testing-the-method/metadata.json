@@ -4,12 +4,12 @@
   "slug": "first-sutra-testing-the-method",
   "title": "Первая сутра: испытание метода",
   "originalLanguage": "ru",
-  "status": "reviewed",
+  "status": "published",
   "createdAt": "2026-10-26T01:16:39+03:00",
   "submittedAt": "2026-10-26T01:16:40+03:00",
-  "publishedAt": null,
+  "publishedAt": "2026-10-26T02:30:20+03:00",
   "originalSha256": "c38626355ea48d7748defd79f24f3d3a3708591f38b859f5ac0362acaac725fe",
-  "publishedFrom": null,
+  "publishedFrom": "draft",
   "tags": [
     "йога",
     "Патанджали",
@@ -22,19 +22,23 @@
       "locale": "en",
       "title": "The First Sūtra: Testing the Method",
       "slug": "first-sutra-testing-the-method",
-      "status": "reviewed",
+      "status": "published",
       "translatedAt": "2026-10-26T01:16:40+03:00",
       "translationMethod": "author",
       "submittedAt": "2026-10-26T01:16:40+03:00",
-      "publishedAt": null,
+      "publishedAt": "2026-10-26T02:30:20+03:00",
       "originalSha256": "34bd473475007ece3db39bf593fecb0e246cf50251251152895c66bd3fc595e1",
-      "publishedFrom": null,
+      "publishedFrom": "draft",
       "tags": [
         "yoga",
         "Patañjali",
         "Sanskrit",
         "textual study"
-      ]
+      ],
+      "publishedSha256": "34bd473475007ece3db39bf593fecb0e246cf50251251152895c66bd3fc595e1",
+      "authorDecision": "publish_current_draft"
     }
-  }
+  },
+  "publishedSha256": "c38626355ea48d7748defd79f24f3d3a3708591f38b859f5ac0362acaac725fe",
+  "authorDecision": "publish_current_draft"
 }
