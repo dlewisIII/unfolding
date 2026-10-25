@@ -66,14 +66,14 @@ export function MarkdownContent({ children }: { children: string }) {
     rehypePlugins={[rehypeKatex]}
     components={{
       table: ({ node: _node, ...props }) => <div className="table-scroll"><table {...props} /></div>,
-      a: ({ node: _node, href, ...props }) => {
+      a: ({ node: _node, href, children, ...props }) => {
         const external = typeof href === "string" && /^(?:https?:)?\/\//i.test(href);
         return <a
           {...props}
           href={href}
           target={external ? "_blank" : undefined}
           rel={external ? "noopener noreferrer" : undefined}
-        />;
+        >{children}</a>;
       },
     }}
   >{normalizeExternalAnchors(normalizeDisplayMathDelimiters(children))}</ReactMarkdown>;

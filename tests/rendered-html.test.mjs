@@ -3,12 +3,11 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function render(pathname = "/", headers = {}) {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${pathname}`);
-  const { default: worker } = await import(workerUrl.href);
-  return worker.fetch(new Request(`http://localhost${pathname}`, { headers: { accept: "text/html", ...headers } }), {
-    ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) },
-  }, { waitUntil() {}, passThroughOnException() {} });
+  const entryUrl = new URL("../dist/server/index.js", import.meta.url);
+  entryUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${pathname}`);
+  const { default: handler } = await import(entryUrl.href);
+  // `vinext start` calls the App Router entry's default export as handler(Request) → Response.
+  return handler(new Request(`http://localhost${pathname}`, { headers: { accept: "text/html", ...headers } }));
 }
 
 test("serves English at the root regardless of language preferences", async () => {
