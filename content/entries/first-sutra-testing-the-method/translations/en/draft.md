@@ -32,7 +32,7 @@ Results of the first test:
 | Syntactic analysis | Done; alternative readings documented |
 | Pāṇini rules | Used in addition; the eight rules cited were checked against Böhtlingk’s edition |
 | Earlier Yoga texts | Not consulted; originally envisaged as an optional source |
-| Russian and English translations | Both editions prepared and aligned |
+| Russian and English translations | Both editions prepared and aligned; only the Russian translation was fixed before the comparison with Woods |
 | Woods (1914) | Control comparison with analysis of divergences |
 | Larson (2018) | Not used because the full text was unavailable |
 | Recheck of divergences | Two divergences rechecked against the dictionaries; others referred to the author or left open |
@@ -47,23 +47,27 @@ Earlier Yoga texts were not a mandatory stage. They were to be used where additi
 
 The YS 1.1 passage was stored with checksums so that later checks would rest on one and the same textual basis.
 
-**Morphological analysis.** The [Sanskrit Heritage Reader](https://sanskrit.inria.fr/DICO/reader.html) was used for segmentation and analysis of 56 distinct word forms (64 occurrences). Checks were made both on isolated word forms and in the context of sentences.
+**Morphological analysis.** The [Sanskrit Heritage Reader](https://sanskrit.inria.fr/DICO/reader.html) was used for segmentation and analysis of 56 distinct word forms (64 occurrences). Checks were made both on isolated word forms and in the context of sentences. The sentence-level analysis was obtained for nine of the ten sentences: the analyser did not process the longest one, the seventh passage of the commentary, within the allotted time.
 
 The automatic analysis brought out grammatical alternatives but did not always determine a single admissible reading. Such cases were examined separately and kept in a list of unresolved questions.
 
 **Dictionaries.** Meanings were checked against Monier-Williams (1899) and Apte (1957–1959) in the [Cologne Digital Sanskrit Dictionaries](https://www.sanskrit-lexicon.uni-koeln.de/).
 
-The dictionary entries used were extracted unchanged and stored with checksums. The analysis took the origin of senses into account: if a dictionary referred to the Yoga tradition itself or to later texts, such a sense was not treated as independent confirmation of an interpretation.
+The dictionary entries used were extracted unchanged and stored with checksums. In preparing the final edition, the origin of senses was taken into account: if a dictionary referred to the Yoga tradition itself or to later texts, such a sense was not treated as independent confirmation of an interpretation.
+
+This rule did not take shape at once. In the preliminary analysis, two such senses were at first taken as independent evidence: the sense of *sārvabhauma* “relating to all conditions of the mind” and the quotation from YS 1.17 in Apte’s entry on *asmitā*. The error was found while the author’s edition was being prepared; it is taken into account in the final edition and noted in the research materials.
 
 **Pāṇini’s grammar.** The *Aṣṭādhyāyī* was consulted to check particular word-formation constructions and compounds. In preparing the publication, all eight rules used were checked again against [Otto Böhtlingk, *Pâṇini’s Grammatik* (1887)](https://archive.org/details/grammatikhrsgb00paniuoft).
 
-**Translation and research documentation.** The Russian translation was made directly from the Sanskrit and fixed before Woods’s control translation was consulted. The English edition was prepared on the same Sanskrit basis and aligned with the Russian one.
+**Translation and research documentation.** The Russian translation was made directly from the Sanskrit and fixed before Woods’s control translation was consulted. The English edition was prepared on the same Sanskrit basis but later, after the comparison with Woods and the approval of the Russian edition, as a parallel to it. No English translation was fixed before the control comparison.
 
 In both published versions the Devanāgarī and IAST are identical byte for byte in all ten passages. Translation decisions and permitted differences between the languages are recorded in the research materials.
 
-A substantial part of the technical work was done with an AI agent: extracting and organizing source data, preparing grammatical tables, comparing dictionary evidence, identifying divergences and formatting the results.
+A substantial part of the work was done with AI agents: Codex in the first stages, then Claude Code. Besides extracting and organizing source data, preparing grammatical tables, comparing dictionary evidence, identifying divergences and formatting the results, the agents proposed grammatical readings, wrote the analyses of individual sentences and their synthesis, and drafted the preliminary Russian and English translations. Each stage followed a detailed brief from the author with explicit constraints: which sources were allowed, which senses must not be assumed in advance, and where to stop.
 
-The agent was not, however, the final arbiter of meaning. Disputed readings were examined separately, and the decisions included in the published translation were checked by the author.
+The agents were not, however, the final arbiters of meaning. Disputed readings were examined separately, and the decisions included in the published translation were checked by the author.
+
+The author’s review proved necessary: in preliminary versions of the translation, the agent added interpretations absent from the original, and once typed the Devanāgarī by hand with a distorted word. From then on, the Sanskrit text in the translations was inserted only programmatically, from the fixed source data.
 
 The stored source passages, checksums, grammatical tables, dictionary materials and the preliminary version of the translation make it possible to reconstruct the grounds of the decisions taken.
 
@@ -83,7 +87,7 @@ The second passage of the commentary contains the word *adhikṛta*, which Woods
 
 The check against Apte and Monier-Williams supports the sense “made the subject”: Apte gives a corresponding example of a passive form with an inanimate subject, and Monier-Williams records a close sense for *adhikṛtya*.
 
-The sense “begin” was not found in the examined entries of this word family. Our translation therefore keeps the wording “taken as the subject of the exposition”.
+The sense “begin” was not found in the examined entries of this word family. Our translation therefore keeps the sense “made the subject of the exposition”, rendered in English as “taken as the subject of the exposition”. In the Russian translation, the wording of this phrase was refined after the check without changing its sense.
 
 Woods’s reading may be an interpretive paraphrase of the context of the opening of a work, but it does not follow directly from the dictionary senses that were checked.
 
@@ -107,11 +111,13 @@ In the seventh passage, Woods offers an interpretation that sets *nirodha* as a 
 
 Our grammatical analysis left several possible constructions of this phrase. The control comparison did not provide sufficient grounds for choosing one of them.
 
+Work on this divergence did reveal a gap in the initial analysis: it had not considered the construction in which *abhimukham* qualifies *nirodham* (“makes *nirodha* facing/near”). Woods’s syntax is closest to precisely this construction. It has been added to the readings under consideration, but no choice between them has been made.
+
 The expression is therefore kept in its Sanskrit form.
 
 **Result of the control comparison.**
 
-The rechecks of two divergences, *adhikṛta* and *kṣipta*/*vikṣipta*, gave no grounds to change the translation in substance. Other divergences required the author’s decisions or remained open. The final edition did, however, refine a number of formulations by the author’s decisions, including in the first, second and eighth passages of the commentary.
+The rechecks of two divergences, *adhikṛta* and *kṣipta*/*vikṣipta*, gave no grounds to change the translation in substance. Other divergences required the author’s decisions or remained open. By the author’s decisions, however, the final edition changed the preliminary Russian translation of the sūtra and of eight of the nine passages of the commentary; in some passages the changes are minimal. Most of these changes were prompted not by the comparison with Woods itself but by the decision taken after it to keep more Sanskrit words in transliteration and not to supply the implied referents of pronouns (see section 5). Thus in the sūtra, *atha* is kept instead of “now”.
 
 The comparison also brought out an important feature of academic translations: they may contain interpretations based on the wider context of the work or on the later commentarial tradition. Such decisions must be distinguished from meanings established directly by the passage under study.
 
@@ -131,7 +137,7 @@ The control comparison with Woods was made on machine-recognized text. The Engli
 
 The second control translation originally planned was Gerald James Larson, *Classical Yoga Philosophy and the Legacy of Sāṃkhya* (2018). The full text of this edition, however, proved unavailable, so YS 1.1 was compared with Woods only.
 
-The sources of the original check of Pāṇini’s rules were not fully recorded. In preparing the publication, the rules were checked again against Böhtlingk’s edition.
+The sources of the original check of Pāṇini’s rules were not recorded. In preparing the publication, the rules were checked again against Böhtlingk’s edition.
 
 Some abbreviations in dictionary entries also remained not fully resolved: *Kap.* in Monier-Williams points to Kapila without a specific work, and *Sch.* denotes a commentator without naming them.
 
@@ -161,6 +167,8 @@ For the research to be reproducible, it is necessary to keep not only the result
 Cases in which the automatic check does not give an unambiguous result must be recorded separately. The agent must not resolve them by arbitrarily choosing the most familiar interpretation.
 
 After the autonomous pass is complete, the results will be reviewed by a person. This will make it possible to compare the agent’s work with the process of studying the first sūtra and to determine which operations can be reliably automated and which require direct research involvement.
+
+Two differences must be taken into account in this comparison. The work on the first sūtra was not autonomous: the agents went through its stages following detailed briefs from the author. In addition, YS 1.2 introduces conditions that the first test did not have: fixing the English translation before the comparison with Woods and checking significant quotations from Woods against a scan.
 
 ### Refining the Method for Subsequent Research
 
