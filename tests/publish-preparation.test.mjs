@@ -5,7 +5,7 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { commitPreparation, planPreparation } from "../scripts/lib/publish-preparation.mjs";
+import { commitPreparation, planPreparation, whitespaceErrors } from "../scripts/lib/publish-preparation.mjs";
 
 const slug = "first-note";
 const entry = `content/entries/${slug}`;
@@ -124,6 +124,37 @@ test("refuses to change or delete a committed original snapshot", async () => {
       assert.throws(() => planPreparation({ slug, cwd }), /immutable review snapshot|deleted/);
     } finally { await rm(cwd, { recursive: true, force: true }); }
   }
+});
+
+test("accepts Markdown hard line breaks but still reports other whitespace errors", async () => {
+  const cwd = await repository();
+  try {
+    await write(cwd, "text.md", "Original line.\n");
+    git(cwd, "add", "text.md");
+    git(cwd, "commit", "-q", "-m", "text");
+    await write(cwd, "text.md", "Hard break  \nnext line\n");
+    await write(cwd, "content/generated.ts", "export const value = 1;  \n");
+    assert.deepEqual(whitespaceErrors({ files: ["text.md"], cwd }), []);
+    assert.equal(whitespaceErrors({ files: ["content/generated.ts"], cwd }).length, 1);
+
+    await write(cwd, "notes.md", ["two  ", "one ", "three   ", "tab\t", "  ", "two again  ", "", ""].join("\n"));
+    git(cwd, "add", "notes.md");
+    const errors = whitespaceErrors({ files: ["notes.md"], cached: true, cwd });
+    assert.deepEqual(errors.map((error) => error.split("\n")[0]), ["notes.md:2: trailing whitespace.", "notes.md:3: trailing whitespace.", "notes.md:4: trailing whitespace.", "notes.md:5: trailing whitespace.", "notes.md:7: new blank line at EOF."]);
+  } finally { await rm(cwd, { recursive: true, force: true }); }
+});
+
+test("refuses a single trailing space in Markdown during preparation", async () => {
+  const cwd = await repository();
+  try {
+    const ru = "Строка с лишним пробелом \nследующая строка.\n";
+    await writeReviewedEntry(cwd, { ru });
+    const plan = planPreparation({ slug, cwd });
+    const head = git(cwd, "rev-parse", "HEAD");
+    assert.throws(() => commitPreparation({ plan, slug, cwd }), /first-note\/draft\.md:1: trailing whitespace/);
+    assert.equal(git(cwd, "rev-parse", "HEAD"), head);
+    assert.equal(git(cwd, "diff", "--cached", "--name-only"), "");
+  } finally { await rm(cwd, { recursive: true, force: true }); }
 });
 
 test("unstages its files and creates no commit when the whitespace check fails", async () => {

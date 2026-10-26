@@ -3,7 +3,7 @@ import { existsSync, statSync } from "node:fs";
 import { mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { commitPreparation, planPreparation } from "./lib/publish-preparation.mjs";
+import { commitPreparation, planPreparation, whitespaceErrors } from "./lib/publish-preparation.mjs";
 
 const started = Date.now();
 const stages = [];
@@ -93,7 +93,8 @@ function prepareCommit(slug, baseline) {
   const outsideScope = scope.filter((path) => !publicationPath(path, slug));
   if (outsideScope.length) throw new Error(`Publication changed files outside its allowlist: ${outsideScope.join(", ")}`);
   if (!scope.length) throw new Error("Publication made no Git changes; refusing to create an empty commit.");
-  run("git diff check", "git", ["diff", "--check", "--", ...scope]);
+  const whitespace = whitespaceErrors({ files: scope });
+  if (whitespace.length) fail("git diff check", `Whitespace errors in the publication scope:\n${whitespace.join("\n")}`);
   const scopedStatus = git(["status", "--short", "--", ...scope]).trim(); const scopedStat = git(["diff", "--stat", "--", ...scope]).trim();
   console.log(`GIT SCOPE\n${scopedStatus || "(new untracked files)"}\n${scopedStat || "(untracked files only)"}\nfiles:\n${scope.map((path) => `- ${path}`).join("\n")}`);
   run("git stage", "git", ["add", "--", ...scope]);

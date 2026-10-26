@@ -43,6 +43,27 @@ export function stagedPaths(cwd = process.cwd()) {
   return new Set(git(cwd, ["diff", "--cached", "--name-only", "-z"]).split("\0").filter(Boolean));
 }
 
+/**
+ * `git diff --check` problems for the given files, except exactly two spaces after text
+ * at the end of a Markdown line: that is the hard line break syntax, not an error.
+ */
+export function whitespaceErrors({ files, cached = false, cwd = process.cwd() }) {
+  if (!files.length) return [];
+  const result = spawnSync("git", ["diff", ...(cached ? ["--cached"] : []), "--check", "--no-color", "--", ...files], { cwd, encoding: "utf8" });
+  if (result.status === 0) return [];
+  if (result.status !== 2) throw new Error((result.stderr || result.stdout || "git diff --check failed").trim());
+  const lines = result.stdout.split("\n");
+  const errors = [];
+  for (let index = 0; index < lines.length; index += 1) {
+    const header = /^(.+):\d+: (.+)\.$/.exec(lines[index]);
+    if (!header) continue;
+    const content = lines[index + 1]?.startsWith("+") ? lines[index + 1].slice(1) : null;
+    const hardBreak = header[1].endsWith(".md") && header[2] === "trailing whitespace" && content !== null && /\S {2}$/.test(content);
+    if (!hardBreak) errors.push(content === null ? lines[index] : `${lines[index]}\n+${content}`);
+  }
+  return errors;
+}
+
 function assertRecord({ status, file }, slug, metadata) {
   if (/[DRCUT]/.test(status)) throw new Error(`${file} is deleted, renamed, copied, type-changed or conflicted (${status.trim()}); it cannot be prepared automatically.`);
   if (file === activeEntryFile) return;
@@ -100,15 +121,10 @@ export function commitPreparation({ plan, slug, cwd = process.cwd() }) {
     unstage();
     throw new Error(`Staged paths do not match the preparation plan.${missing.length ? `\nmissing: ${missing.join(", ")}` : ""}${unexpected.length ? `\nunexpected: ${unexpected.join(", ")}` : ""}`);
   }
-  // Author Markdown may end lines with two spaces as hard line breaks, so only the
-  // machine-written files get the whitespace check.
-  const machineFiles = plan.files.filter((file) => !file.endsWith(".md"));
-  if (machineFiles.length) {
-    const check = spawnSync("git", ["diff", "--cached", "--check", "--", ...machineFiles], { cwd, encoding: "utf8" });
-    if (check.status !== 0) {
-      unstage();
-      throw new Error(`Whitespace errors in the preparation scope:\n${(check.stdout || check.stderr).trim()}`);
-    }
+  const whitespace = whitespaceErrors({ files: plan.files, cached: true, cwd });
+  if (whitespace.length) {
+    unstage();
+    throw new Error(`Whitespace errors in the preparation scope:\n${whitespace.join("\n")}`);
   }
   git(cwd, ["commit", "-q", "-m", plan.message, "--", ...plan.files]);
   const sha = git(cwd, ["rev-parse", "--short=7", "HEAD"]).trim();
