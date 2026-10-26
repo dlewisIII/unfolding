@@ -4,12 +4,12 @@
   "slug": "preserving-space-for-the-unknown",
   "title": "Сохранить место неизвестного",
   "originalLanguage": "ru",
-  "status": "reviewed",
+  "status": "published",
   "createdAt": "2026-10-26T23:32:03+03:00",
   "submittedAt": "2026-10-27T00:10:02+03:00",
-  "publishedAt": null,
+  "publishedAt": "2026-10-27T00:27:19+03:00",
   "originalSha256": "873eaef8d02c96bc0a90cd511c644ab00dafd453633e2ae5072a6fa4d04174f6",
-  "publishedFrom": null,
+  "publishedFrom": "draft",
   "tags": [
     "йога",
     "Патанджали",
@@ -23,20 +23,24 @@
       "locale": "en",
       "title": "Preserving Space for the Unknown",
       "slug": "preserving-space-for-the-unknown",
-      "status": "reviewed",
+      "status": "published",
       "translatedAt": "2026-10-27T00:20:05+03:00",
       "translationMethod": "author",
       "submittedAt": "2026-10-27T00:24:50+03:00",
-      "publishedAt": null,
+      "publishedAt": "2026-10-27T00:27:20+03:00",
       "originalSha256": "b0487bdab5617385f55e597fcd4bd88acb976cc946d5869237f0774a436b75f9",
-      "publishedFrom": null,
+      "publishedFrom": "draft",
       "tags": [
         "yoga",
         "Patañjali",
         "Sanskrit",
         "translation",
         "consciousness"
-      ]
+      ],
+      "publishedSha256": "56632784b5c5677cccbc02112468a1aa3025612c067cf69add5436fd2e4daaab",
+      "authorDecision": "publish_current_draft"
     }
-  }
+  },
+  "publishedSha256": "e89fa76bfefad641d1d111ce9f940055678a8fcf380796c96d88c2512c13b027",
+  "authorDecision": "publish_current_draft"
 }

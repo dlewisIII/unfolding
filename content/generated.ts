@@ -5,6 +5,46 @@ export type PublishedVersion = { locale: Locale; slug: string; title: string | n
 export type PublishedEntry = { id: string; originalLanguage: Locale; versions: Partial<Record<Locale, PublishedVersion>>; };
 export const publishedEntries: PublishedEntry[] = [
   {
+    "id": "cdf83ba9-b77e-4af5-a5ab-eb0c83d83d5a",
+    "originalLanguage": "ru",
+    "versions": {
+      "ru": {
+        "locale": "ru",
+        "slug": "preserving-space-for-the-unknown",
+        "title": "Сохранить место неизвестного",
+        "createdAt": "2026-10-26T23:32:03+03:00",
+        "publishedAt": "2026-10-27T00:27:19+03:00",
+        "tags": [
+          "йога",
+          "Патанджали",
+          "санскрит",
+          "перевод",
+          "сознание"
+        ],
+        "externalLinks": [],
+        "excerpt": "Уже приняв решение перевести Pātañjalayogaśāstra и приступив к работе над первой сутрой и комментарием к ней, я несколько раз прослушала два перевода «Йога-сутр». Это были хорошие образные переводы, которые лег…",
+        "body": "# Сохранить место неизвестного\n\nУже приняв решение перевести *Pātañjalayogaśāstra* и приступив к работе над первой сутрой и комментарием к ней, я несколько раз прослушала два перевода *«Йога-сутр»*. Это были хорошие образные переводы, которые легко воспринимать: они вдохновляют на практику и подходят для первого знакомства с текстом. Но, сравнивая их с оригиналом, я всё больше ощущала, насколько глубже можно проникнуть в смысл текста, пытаясь разобраться в нём самостоятельно.\n\nВ начале работы с текстом Патанджали по выбранной методологии перевода у меня возникла трудность, с которой сталкивается любой переводчик: какое значение слова выбрать, чтобы как можно точнее передать смысл, заложенный автором, и избежать искажений?\n\nДело в том, что для многих санскритских понятий в русском и английском языках просто нет точных эквивалентов. Ближайшие по смыслу слова передают лишь отдельные стороны значения, а некоторые понятия могут вообще отсутствовать в привычном нам понятийном аппарате. Выбирая знакомое слово, мы невольно ограничиваем смысл рамками уже существующих представлений.\n\nЯ поняла, что если при переводе я остановлюсь на одной из возможных интерпретаций санскритского термина, она с большой долей вероятности будет соответствовать моему состоянию сознания на данный момент времени, и этот выбор может отчасти определяться сознательными и подсознательными установками и убеждениями.\n\nНо впоследствии, углубляясь в практику и достигая других состояний сознания, я могу для тех же терминов предпочесть другие варианты перевода, и эта разница может оказаться существенной. Если я заранее выберу какое-то конкретное значение санскритского понятия, это может лишить само прочтение текста части его глубины.\n\nА сохраняя санскритский термин в тексте и приводя в пояснении его возможные значения, я могу периодически соотносить собственный опыт с текстом, по-новому понимать сам текст и углублять свою практику.\n\nБолее того, сохранение санскритских понятий позволяет постепенно расширять собственный понятийный аппарат, не пытаясь обязательно свести неизвестное к уже знакомому. Возможно, именно такие понятия окажутся ближе к непосредственному опыту, для которого в привычном современном языке ещё нет подходящих слов.\n\nНо почему мне так важно точное понимание смысла этого текста?\n\nДело в том, что лично для меня *Pātañjalayogaśāstra* является не столько философской теорией, сколько реальным практическим учением. Несмотря на отсутствие в нём столь подробных инструкций, какие встречаются в некоторых более поздних традициях, например в крийя-йоге линии Лахири Махасаи, и на обилие понятий, которые на первый взгляд кажутся трансцендентными и довольно абстрактными, основное назначение текста — показать человеку путь к достижению и непосредственному переживанию определённых состояний.\n\nИнтересно, что впервые я познакомилась с этим учением много лет назад. Тогда я воспринимала его совсем иначе. А спустя годы, благодаря собственной практике, я неожиданно обнаружила, как прежде абстрактное стало совершенно конкретным. Я начала находить в тексте ответы на возникающие вопросы, способы преодоления трудностей и непосредственное руководство к действию. И я вижу, как по мере углубления практики меняется моё прочтение текста и открываются горизонты ещё непознанного.\n\nПоэтому для меня сохранить санскритские термины — значит **дать себе возможность раскрывать новые грани реальности и непосредственно проживать опыт, который нельзя передать словами.**\n"
+      },
+      "en": {
+        "locale": "en",
+        "slug": "preserving-space-for-the-unknown",
+        "title": "Preserving Space for the Unknown",
+        "createdAt": "2026-10-26T23:32:03+03:00",
+        "publishedAt": "2026-10-27T00:27:20+03:00",
+        "tags": [
+          "yoga",
+          "Patañjali",
+          "Sanskrit",
+          "translation",
+          "consciousness"
+        ],
+        "externalLinks": [],
+        "excerpt": "Having already decided to translate the Pātañjalayogaśāstra and begun working on the first sūtra and its commentary, I listened several times to two translations of the Yoga Sūtras. They were good, evocative tr…",
+        "body": "# Preserving Space for the Unknown\n\nHaving already decided to translate the *Pātañjalayogaśāstra* and begun working on the first sūtra and its commentary, I listened several times to two translations of the *Yoga Sūtras*. They were good, evocative translations that were easy to follow: they inspired practice and were well suited to a first encounter with the text. But as I compared them with the original, I increasingly felt how much more deeply I could explore the meaning of the text by trying to understand it for myself.\n\nAt the beginning of my work on Patañjali's text, following the chosen translation methodology, I encountered a difficulty familiar to every translator: which sense of a word should I choose to convey the author's intended meaning as accurately as possible and avoid distortion?\n\nThe difficulty is that many Sanskrit concepts simply have no exact equivalents in Russian or English. The closest words convey only certain aspects of their meaning, while some concepts may be entirely absent from our familiar conceptual framework. By choosing a familiar word, we inadvertently confine meaning within the boundaries of our existing understanding.\n\nI realized that if I settled on one of the possible interpretations of a Sanskrit term, it would most likely reflect my state of consciousness at that particular point in time, and that choice could be partly shaped by my conscious and subconscious assumptions and beliefs.\n\nYet later, as I deepen my practice and reach different states of consciousness, I may come to prefer different translations of the same terms, and those differences could be substantial. If I choose one particular meaning of a Sanskrit concept too early, I risk losing some of the depth the text has to offer.\n\nBy retaining the Sanskrit term in the text and providing its possible meanings in the accompanying notes, I can periodically relate my own experience to the text, discover new ways of understanding it, and deepen my practice.\n\nMoreover, preserving Sanskrit concepts allows me to gradually expand my own conceptual framework rather than insisting on reducing the unknown to something already familiar. Perhaps these very concepts will prove closer to direct experience, for which our familiar modern languages do not yet have adequate words.\n\nBut why is understanding the precise meaning of this text so important to me?\n\nThe reason is that, for me, the *Pātañjalayogaśāstra* is not so much a philosophical theory as a genuinely practical teaching. Despite the absence of instructions as detailed as those found in some later traditions, such as Kriya Yoga in the lineage of Lahiri Mahasaya, and despite its many concepts that at first seem transcendent and rather abstract, the primary purpose of the text is to show a person the path toward attaining and directly experiencing certain states.\n\nInterestingly, I first encountered this teaching many years ago. Back then, I understood it quite differently. Years later, through my own practice, I was surprised to discover that what had once seemed abstract had become entirely concrete. I began to find in the text answers to questions that arose, ways of overcoming difficulties, and direct guidance for action. And I can see how, as my practice deepens, my reading of the text changes and new horizons of the unknown open up.\n\nFor me, then, preserving Sanskrit terms means **giving myself the opportunity to uncover new facets of reality and directly experience what cannot be conveyed in words.**\n"
+      }
+    }
+  },
+  {
     "id": "35f1337a-336e-47d5-a598-728023189675",
     "originalLanguage": "ru",
     "versions": {
