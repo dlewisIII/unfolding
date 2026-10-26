@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 2,
+  "entryId": "cdf83ba9-b77e-4af5-a5ab-eb0c83d83d5a",
+  "locale": "en",
+  "reviewedAt": "2026-10-27T00:24:50+03:00",
+  "originalSha256": "b0487bdab5617385f55e597fcd4bd88acb976cc946d5869237f0774a436b75f9",
+  "draftSha256": "56632784b5c5677cccbc02112468a1aa3025612c067cf69add5436fd2e4daaab",
+  "summary": "Second review of the author's English translation after six targeted author edits: \"which sense of a word\", \"instructions as detailed as those found in\", \"losing some of the depth the text has to offer\", \"discover that what\", \"I began to find in the text answers to questions that arose\", and \"uncover new facets of reality\". All edits read correctly in context and keep the meaning of the Russian text. \"periodically\" is kept by author decision. No open issues remain: from the review perspective this version is ready for publication.",
+  "checks": [
+    {
+      "category": "language",
+      "status": "reviewed",
+      "explanation": "The edits are grammatical and idiomatic; no em dashes. The repeated \"meaning\", the double \"of\" construction and \"how what\" are gone."
+    },
+    {
+      "category": "clarity",
+      "status": "reviewed",
+      "explanation": "\"in the text\" now clearly attaches to finding the answers. Paragraph structure still matches the Russian one to one."
+    },
+    {
+      "category": "logic",
+      "status": "reviewed",
+      "explanation": "Argument structure preserved. \"losing some of the depth the text has to offer\" keeps the point of the Russian sentence: fixing one meaning too early narrows what the reading can yield."
+    },
+    {
+      "category": "factual_claims",
+      "status": "reviewed",
+      "explanation": "Unchanged from the first review: two translations of the *Yoga Sūtras* (one by Swami Vivekananda, per the author), Kriya Yoga in the lineage of Lahiri Mahasaya. \"instructions as detailed as those found in\" now states the comparison precisely."
+    },
+    {
+      "category": "mathematics",
+      "status": "not_applicable",
+      "explanation": "No mathematical expressions."
+    }
+  ],
+  "issues": [
+    {
+      "id": "issue-1",
+      "category": "clarity",
+      "location": {
+        "fragment": "I began to find in the text answers to questions that arose"
+      },
+      "explanation": "Previously \"I began finding answers to emerging questions in the text\", where \"in the text\" could attach to \"questions\". Fixed by the author.",
+      "severity": "minor",
+      "status": "resolved"
+    },
+    {
+      "id": "issue-2",
+      "category": "language",
+      "location": {
+        "fragment": "which sense of a word should I choose"
+      },
+      "explanation": "Previously \"meaning\" twice in one clause. Fixed by the author, which also mirrors the Russian distinction between значение and смысл.",
+      "severity": "minor",
+      "status": "resolved"
+    },
+    {
+      "id": "issue-3",
+      "category": "language",
+      "location": {
+        "fragment": "the absence of instructions as detailed as those found in some later traditions"
+      },
+      "explanation": "Previously \"the absence of the detailed instructions found in\". Fixed by the author.",
+      "severity": "note",
+      "status": "resolved"
+    },
+    {
+      "id": "issue-4",
+      "category": "language",
+      "location": {
+        "fragment": "I risk losing some of the depth the text has to offer"
+      },
+      "explanation": "Previously \"depriving my reading of the text of some of its depth\". Reworded by the author.",
+      "severity": "note",
+      "status": "resolved"
+    },
+    {
+      "id": "issue-5",
+      "category": "language",
+      "location": {
+        "fragment": "I was surprised to discover that what had once seemed abstract"
+      },
+      "explanation": "Previously \"discover how what\". Fixed by the author.",
+      "severity": "note",
+      "status": "resolved"
+    },
+    {
+      "id": "issue-6",
+      "category": "language",
+      "location": {
+        "fragment": "I can periodically relate my own experience to the text"
+      },
+      "explanation": "Kept as is by author decision.",
+      "severity": "note",
+      "status": "dismissed"
+    },
+    {
+      "id": "issue-7",
+      "category": "language",
+      "location": {
+        "fragment": "giving myself the opportunity to uncover new facets of reality"
+      },
+      "explanation": "Previously \"discover\". Changed by the author to \"uncover\", closer to the Russian «раскрывать».",
+      "severity": "note",
+      "status": "resolved"
+    }
+  ]
+}

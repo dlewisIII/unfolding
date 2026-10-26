@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 2,
+  "id": "cdf83ba9-b77e-4af5-a5ab-eb0c83d83d5a",
+  "slug": "preserving-space-for-the-unknown",
+  "title": "Сохранить место неизвестного",
+  "originalLanguage": "ru",
+  "status": "reviewed",
+  "createdAt": "2026-10-26T23:32:03+03:00",
+  "submittedAt": "2026-10-27T00:10:02+03:00",
+  "publishedAt": null,
+  "originalSha256": "873eaef8d02c96bc0a90cd511c644ab00dafd453633e2ae5072a6fa4d04174f6",
+  "publishedFrom": null,
+  "tags": [
+    "йога",
+    "Патанджали",
+    "санскрит",
+    "перевод",
+    "сознание"
+  ],
+  "externalLinks": [],
+  "translations": {
+    "en": {
+      "locale": "en",
+      "title": "Preserving Space for the Unknown",
+      "slug": "preserving-space-for-the-unknown",
+      "status": "reviewed",
+      "translatedAt": "2026-10-27T00:20:05+03:00",
+      "translationMethod": "author",
+      "submittedAt": "2026-10-27T00:24:50+03:00",
+      "publishedAt": null,
+      "originalSha256": "b0487bdab5617385f55e597fcd4bd88acb976cc946d5869237f0774a436b75f9",
+      "publishedFrom": null,
+      "tags": [
+        "yoga",
+        "Patañjali",
+        "Sanskrit",
+        "translation",
+        "consciousness"
+      ]
+    }
+  }
+}
