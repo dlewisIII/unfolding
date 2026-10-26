@@ -7,7 +7,7 @@
   "status": "published",
   "createdAt": "2026-10-26T01:16:39+03:00",
   "submittedAt": "2026-10-26T01:16:40+03:00",
-  "publishedAt": "2026-10-26T02:30:20+03:00",
+  "publishedAt": "2026-10-26T23:19:05+03:00",
   "originalSha256": "c38626355ea48d7748defd79f24f3d3a3708591f38b859f5ac0362acaac725fe",
   "publishedFrom": "draft",
   "tags": [
@@ -26,7 +26,7 @@
       "translatedAt": "2026-10-26T01:16:40+03:00",
       "translationMethod": "author",
       "submittedAt": "2026-10-26T01:16:40+03:00",
-      "publishedAt": "2026-10-26T02:30:20+03:00",
+      "publishedAt": "2026-10-26T23:19:06+03:00",
       "originalSha256": "34bd473475007ece3db39bf593fecb0e246cf50251251152895c66bd3fc595e1",
       "publishedFrom": "draft",
       "tags": [
@@ -35,18 +35,10 @@
         "Sanskrit",
         "textual study"
       ],
-      "publishedSha256": "34bd473475007ece3db39bf593fecb0e246cf50251251152895c66bd3fc595e1",
-      "authorDecision": "publish_current_draft",
-      "revisionStatus": "reviewed",
-      "revisionStartedAt": "2026-10-26T22:58:20+03:00",
-      "revisionSubmittedAt": "2026-10-26T22:58:32+03:00",
-      "revisionDraftSha256": "2e95c4840d18ff1863c0459e80232cde87dd50470959544ea40eb7afd08a878c"
+      "publishedSha256": "2e95c4840d18ff1863c0459e80232cde87dd50470959544ea40eb7afd08a878c",
+      "authorDecision": "publish_current_draft"
     }
   },
-  "publishedSha256": "c38626355ea48d7748defd79f24f3d3a3708591f38b859f5ac0362acaac725fe",
-  "authorDecision": "publish_current_draft",
-  "revisionStatus": "reviewed",
-  "revisionStartedAt": "2026-10-26T22:58:20+03:00",
-  "revisionSubmittedAt": "2026-10-26T22:58:31+03:00",
-  "revisionDraftSha256": "9924216af436f08755b36514cbc6f5e8b698b09b538117e8f8e4516db3867363"
+  "publishedSha256": "9924216af436f08755b36514cbc6f5e8b698b09b538117e8f8e4516db3867363",
+  "authorDecision": "publish_current_draft"
 }
