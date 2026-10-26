@@ -3,9 +3,11 @@ import { existsSync, statSync } from "node:fs";
 import { mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { commitPreparation, planPreparation } from "./lib/publish-preparation.mjs";
 
 const started = Date.now();
 const stages = [];
+const failureNotes = [];
 const deployCurrent = process.argv.includes("--deploy-current");
 const verifyGitScope = process.argv.includes("--verify-git-scope");
 const source = process.argv.includes("--as-is") ? "--as-is" : "--from-draft";
@@ -13,7 +15,7 @@ const host = process.env.UNFOLDING_VPS ?? "anastasia@77.222.47.125";
 const remoteDir = process.env.UNFOLDING_VPS_DIR ?? "/home/anastasia/apps/unfolding-production";
 const productionGit = { remote: "origin", branch: "main", pushUrl: "https://github.com/dlewisIII/unfolding.git" };
 
-function fail(stage, detail, status = 1) { console.error(`FAST PUBLISH FAILED\nstage: ${stage}\n${detail}`); process.exit(status); }
+function fail(stage, detail, status = 1) { console.error(`FAST PUBLISH FAILED\nstage: ${stage}\n${detail}${failureNotes.map((note) => `\nnote: ${note}`).join("")}`); process.exit(status); }
 function run(stage, command, args, options = {}) {
   const at = Date.now();
   const result = spawnSync(command, args, { cwd: process.cwd(), encoding: "utf8", ...options });
@@ -98,7 +100,7 @@ function prepareCommit(slug, baseline) {
   const newlyStaged = [...stagedPaths()].filter((path) => !baseline.staged.has(path)).sort(); const expected = [...scope].sort();
   if (JSON.stringify(newlyStaged) !== JSON.stringify(expected)) throw new Error("Newly staged paths do not exactly match the publication allowlist.");
   run("commit", "git", ["commit", "-m", `publish: ${slug}`, "--", ...scope]);
-  const sha = git(["rev-parse", "--short=7", "HEAD"]).trim(); assertProductionGitTarget(); run("push", "git", ["push", productionGit.remote, productionGit.branch]);
+  const sha = git(["rev-parse", "--short=7", "HEAD"]).trim(); assertProductionGitTarget(); run("push", "git", ["push", productionGit.remote, productionGit.branch]); failureNotes.length = 0;
   return { sha, destination: `${productionGit.remote}/${productionGit.branch}` };
 }
 async function createCommittedBuildContext() {
@@ -108,12 +110,35 @@ async function createCommittedBuildContext() {
 
 const slug = await (async () => { const at = Date.now(); try { return await preflight(); } catch (error) { fail("preflight", error.message); } finally { stages.push(["preflight", Date.now() - at]); } })();
 if (verifyGitScope) {
-  try { captureBaseline(slug); console.log(`FAST PUBLISH GIT SCOPE CHECK\n\nentry: ${slug}\n✓ baseline captured\n✓ existing dirty paths left untouched\n✓ no files staged, committed, pushed, built, or deployed`); } catch (error) { fail("git baseline", error.message); }
+  try {
+    const plan = planPreparation({ slug, source });
+    if (!plan.files.length) captureBaseline(slug);
+    const scope = plan.files.length ? `✓ preparation commit would be created: ${plan.message}\n${plan.files.map((path) => `  - ${path}`).join("\n")}` : "✓ baseline captured";
+    console.log(`FAST PUBLISH GIT SCOPE CHECK\n\nentry: ${slug}\n${scope}\n✓ existing dirty paths left untouched\n✓ no files staged, committed, pushed, built, or deployed`);
+  } catch (error) { fail("git baseline", error.message); }
   process.exit(0);
 }
+// An entry whose reviewed lifecycle is not yet committed gets its own preparation
+// commit first, so the publish commit below still contains only publication changes.
 let baseline;
-if (!deployCurrent) { try { assertProductionGitTarget(); baseline = captureBaseline(slug); } catch (error) { fail("git preflight", error.message); } }
+let preparation = { files: [] };
+if (!deployCurrent) {
+  try { assertProductionGitTarget(); preparation = planPreparation({ slug, source }); if (!preparation.files.length) baseline = captureBaseline(slug); } catch (error) { fail("git preflight", error.message); }
+}
 run("validation", "node", ["scripts/validate-katex.mjs", "--all"]);
+let prepared;
+if (preparation.files.length) {
+  const head = git(["rev-parse", "HEAD"]).trim(); const at = Date.now();
+  console.log(`PREPARE SCOPE\n${preparation.message}\nfiles:\n${preparation.files.map((path) => `- ${path}`).join("\n")}`);
+  try {
+    prepared = commitPreparation({ plan: preparation, slug }); failureNotes.push(`preparation commit ${prepared.sha} is local and was not pushed`);
+    baseline = captureBaseline(slug);
+  } catch (error) {
+    const current = git(["rev-parse", "--short=7", "HEAD"]).trim();
+    if (!prepared && !head.startsWith(current)) failureNotes.push(`preparation commit ${current} is local and was not pushed`);
+    fail("prepare commit", error.message);
+  } finally { stages.push(["prepare commit", Date.now() - at]); }
+}
 if (!deployCurrent) { run("publish RU", "node", ["scripts/publish-entry.mjs", "--active", "ru", source]); run("publish EN", "node", ["scripts/publish-entry.mjs", "--active", "en", source]); }
 run("sync", "node", ["scripts/sync-content.mjs"]);
 let gitResult;
@@ -124,4 +149,4 @@ const archive = `/tmp/${tag.replace(/[^a-z0-9.-]/gi, "-")}.tar`; run("image expo
 run("container update", "ssh", ["-o", "BatchMode=yes", host, `cd ${remoteDir} && UNFOLDING_IMAGE=${tag} docker compose up -d --force-recreate && for i in $(seq 1 12); do test "$(docker inspect -f '{{.State.Health.Status}}' unfolding-production-app-1)" = healthy && exit 0; sleep 5; done; exit 1`]);
 for (const [name, url, code] of [["root", "https://unfolding.day/", "200"], ["EN", `https://unfolding.day/entries/${slug}`, "200"], ["RU", `https://unfolding.day/ru/entries/${slug}`, "200"], ["www", `https://www.unfolding.day/entries/${slug}`, "301"], ["asset", "https://unfolding.day/favicon.svg", "200"]]) httpCheck(name, url, code);
 const gitSummary = gitResult ? `\n✓ git scope\n✓ commit ${gitResult.sha}\n✓ push ${gitResult.destination}` : "";
-console.log(`FAST PUBLISH\n\nentry: ${slug}\n✓ preflight\n✓ validation\n${deployCurrent ? "" : "✓ publish RU\n✓ publish EN\n"}✓ sync${gitSummary}\n✓ build\n✓ image transfer\n✓ deploy VPS\n✓ healthy\n✓ EN 200\n✓ RU 200\n✓ www 301\n✓ asset 200\n\nduration: ${((Date.now() - started) / 1000).toFixed(1)}s`);
+console.log(`FAST PUBLISH\n\nentry: ${slug}\n✓ preflight\n✓ validation\n${prepared ? `✓ prepare commit ${prepared.sha}\n` : ""}${deployCurrent ? "" : "✓ publish RU\n✓ publish EN\n"}✓ sync${gitSummary}\n✓ build\n✓ image transfer\n✓ deploy VPS\n✓ healthy\n✓ EN 200\n✓ RU 200\n✓ www 301\n✓ asset 200\n\nduration: ${((Date.now() - started) / 1000).toFixed(1)}s`);
