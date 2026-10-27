@@ -36,9 +36,17 @@
         "textual study"
       ],
       "publishedSha256": "7466881cdbddb00682a398efe66d3fdb307a29ed74be39111494d341c7b0fd39",
-      "authorDecision": "publish_current_draft"
+      "authorDecision": "publish_current_draft",
+      "revisionStatus": "reviewed",
+      "revisionStartedAt": "2026-10-27T00:33:14+03:00",
+      "revisionSubmittedAt": "2026-10-27T00:33:14+03:00",
+      "revisionDraftSha256": "9b4a1fe053f954f219dac0534e90783b8e69ee7e19fc56264addd245a5e5bd85"
     }
   },
   "publishedSha256": "ba5629499eb72ed5bbf03e7a77c989d59249835ba19777e6208b59817dc20167",
-  "authorDecision": "publish_current_draft"
+  "authorDecision": "publish_current_draft",
+  "revisionStatus": "reviewed",
+  "revisionStartedAt": "2026-10-27T00:33:14+03:00",
+  "revisionSubmittedAt": "2026-10-27T00:33:14+03:00",
+  "revisionDraftSha256": "7c4b4e33f9a2db02db7b4ed9364f05c05267e8d8c2b285bb27bf5e8581b08d1d"
 }
