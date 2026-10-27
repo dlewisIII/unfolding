@@ -40,7 +40,7 @@ await writeJson(path.join(directory, "review.json"), review);
 await writeJson(path.join(directory, "suggested-tags.json"), { schemaVersion: 1, entryId: metadata.id, locale, suggestedAt: reviewedAt, ...tagsSchema.parse(await readJson(path.resolve(tagsInput))) });
 const counts = review.checks.map((item) => `- **${item.category.replace("_", " ")}**: ${item.status}${item.explanation ? ` — ${item.explanation}` : ""}`);
 const details = review.issues.map((item) => `### ${item.category} · ${item.severity}\n\n${item.location.fragment ? `“${item.location.fragment}”` : `paragraph ${item.location.paragraph}`}\n\n${item.explanation}`);
-await writeFile(path.join(directory, "review.md"), `# Review\n\n${review.summary}\n\n${counts.join("\n")}\n${details.length ? `\n${details.join("\n\n")}` : ""}\n`, "utf8");
+await writeFile(path.join(directory, "review.md"), `# Review\n\n${review.summary}\n\n${counts.join("\n")}\n${details.length ? `\n${details.join("\n\n")}\n` : ""}`, "utf8");
 const reviewedLifecycle = lifecycle.status === "published"
   ? { ...lifecycle, revisionStatus: "reviewed", revisionSubmittedAt: reviewedAt, revisionDraftSha256: sha256(draft) }
   : { ...lifecycle, status: "reviewed", submittedAt: reviewedAt, originalSha256 };

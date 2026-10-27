@@ -49,6 +49,7 @@ test("keeps one root identity and independent immutable language lifecycles", as
   const sealedRu = await readFile(path.join(workspace, "content/entries/first-note/original.md"), "utf8");
   assert.equal(sealedRu, "Исходный текст.\n");
   assert.equal((JSON.parse(await readFile(path.join(workspace, "content/entries/first-note/review.json"), "utf8"))).checks.length, 5);
+  assert.match(await readFile(path.join(workspace, "content/entries/first-note/review.md"), "utf8"), /mathematics\*\*: not_applicable — No mathematics\.\n$/);
   assert.equal((JSON.parse(await readFile(path.join(workspace, "content/entries/first-note/suggested-tags.json"), "utf8"))).tags[0], "experience");
   assert.equal(root.tags.length, 0);
   await run(process.execPath, [script("suggest-title.mjs"), "--active", "ru", titleInput], { cwd: workspace });
